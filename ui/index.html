@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Engineering Knowledge Agent</title>
+<style>
+  :root {
+    --bg: #0e1116; --panel: #161b22; --panel-2: #1c2230; --line: #2a3140;
+    --fg: #e6edf3; --muted: #8b97a8; --accent: #4c9aff; --accent-2: #3fb950;
+    --warn: #d29922; --bad: #f85149; --gold: #c792ea;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  header { padding: 16px 24px; border-bottom: 1px solid var(--line);
+           display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; letter-spacing: .2px; }
+  header .meta { color: var(--muted); font-size: 12px; font-family: var(--mono); }
+  main { max-width: 1180px; margin: 0 auto; padding: 20px 24px 90px; }
+  .health { display: flex; gap: 10px; align-items: center; font-family: var(--mono);
+            font-size: 11px; color: var(--muted); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+         background: var(--muted); margin-right: 5px; }
+  .dot.ok { background: var(--accent-2); } .dot.bad { background: var(--bad); }
+  .dot.wait { background: var(--warn); }
+  .ask { display: flex; gap: 10px; }
+  .ask input[type=text] { flex: 1; background: var(--panel); border: 1px solid var(--line);
+    color: var(--fg); border-radius: 8px; padding: 12px 14px; font-size: 14px; }
+  .ask input[type=text]:focus { outline: none; border-color: var(--accent); }
+  button.primary { background: var(--accent); color: #08101c; border: 0; border-radius: 8px;
+    padding: 12px 20px; font-weight: 600; cursor: pointer; }
+  button.primary:disabled { opacity: .45; cursor: default; }
+  .controls { display: flex; gap: 16px; align-items: center; margin: 12px 0 6px;
+    color: var(--muted); font-size: 13px; flex-wrap: wrap; }
+  .controls label { display: flex; align-items: center; gap: 6px; }
+  select, input[type=number] { background: var(--panel); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font-size: 13px; }
+  input[type=number] { width: 66px; }
+  .examples { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 0; }
+  .examples button { background: var(--panel-2); border: 1px solid var(--line); color: var(--muted);
+    border-radius: 999px; padding: 5px 12px; font-size: 12px; cursor: pointer; text-align: left; }
+  .examples button:hover { color: var(--fg); border-color: var(--accent); }
+  section { margin-top: 24px; }
+  h2 { font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+       color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  h2 .note { text-transform: none; letter-spacing: 0; float: right; font-size: 11px;
+             font-family: var(--mono); }
+  .answer { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px; white-space: pre-wrap; }
+  .answer code, .cite { font-family: var(--mono); }
+  .cite { color: var(--accent); cursor: pointer; text-decoration: none;
+    border-bottom: 1px dotted var(--accent); }
+  .cite.bad { color: var(--bad); border-color: var(--bad); }
+  .pipeline { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; }
+  .stage { background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 12px; min-width: 128px; flex: 1; }
+  .stage .name { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .stage .val { font-family: var(--mono); font-size: 18px; margin-top: 4px; }
+  .stage .sub { color: var(--muted); font-size: 11px; font-family: var(--mono); }
+  .arrow { align-self: center; color: var(--muted); }
+  /* wide result tables scroll inside their own box; the page never does */
+  .tw { overflow-x: auto; }
+  .tw.scrolly { max-height: 560px; overflow-y: auto; }
+  .tw.scrolly th { position: sticky; top: 0; background: var(--bg); z-index: 1; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td.wrap { max-width: 300px; overflow-wrap: anywhere; }
+  th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+  td.mono, th.mono { font-family: var(--mono); }
+  td.num { text-align: right; font-family: var(--mono); }
+  .ev { cursor: pointer; }
+  .ev:hover td { background: var(--panel-2); }
+  .ev.gold td:first-child { box-shadow: inset 3px 0 0 var(--accent-2); }
+  pre { background: #0b0f14; border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; overflow-x: auto; font-family: var(--mono); font-size: 12px; margin: 0;
+    max-height: 460px; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 999px; border: 1px solid var(--line);
+    color: var(--muted); font-family: var(--mono); white-space: nowrap; }
+  .tag.source { color: var(--accent); } .tag.test { color: var(--accent-2); }
+  .tag.doc { color: var(--warn); } .tag.commit { color: var(--gold); }
+  .tag.hit { color: var(--accent-2); border-color: var(--accent-2); }
+  .tag.miss { color: var(--bad); border-color: var(--bad); }
+  .trace-step { border-left: 2px solid var(--line); padding: 6px 0 6px 14px; margin-left: 6px; }
+  .trace-step .head { font-family: var(--mono); font-size: 12px; }
+  .trace-step .detail { color: var(--muted); font-size: 11px; font-family: var(--mono);
+    word-break: break-word; }
+  .hidden { display: none; }
+  .spinner { color: var(--muted); font-family: var(--mono); font-size: 12px; }
+  .err { color: var(--bad); font-family: var(--mono); font-size: 12px; }
+  .bench td.win { color: var(--accent-2); }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tabs button { background: none; border: 1px solid var(--line); color: var(--muted);
+    padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+  .tabs button.on { color: var(--fg); border-color: var(--accent); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+  .card .k { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .card .v { font-family: var(--mono); font-size: 20px; margin-top: 4px; }
+  .qrow { cursor: pointer; }
+  .qrow:hover td { background: var(--panel-2); }
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
+  .filters input[type=text] { background: var(--panel); border: 1px solid var(--line);
+    color: var(--fg); border-radius: 6px; padding: 5px 10px; font-size: 13px; min-width: 220px; }
+  .banner { background: var(--panel-2); border: 1px solid var(--warn); border-left-width: 3px;
+    border-radius: 6px; padding: 10px 14px; font-size: 12px; font-family: var(--mono);
+    color: var(--warn); margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Engineering Knowledge Agent</h1>
+  <span class="meta" id="meta">loading index…</span>
+  <span class="health" id="health">
+    <span><span class="dot wait" id="dot-index"></span>index</span>
+    <span><span class="dot wait" id="dot-llm"></span>llm</span>
+  </span>
+</header>
+
+<main>
+  <div class="tabs">
+    <button id="tab-ask" class="on" onclick="showTab('ask')">Ask</button>
+    <button id="tab-search" onclick="showTab('search')">Search</button>
+    <button id="tab-symbol" onclick="showTab('symbol')">Symbols</button>
+    <button id="tab-bench" onclick="showTab('bench')">Benchmark</button>
+    <button id="tab-traces" onclick="showTab('traces')">Traces</button>
+  </div>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <!-- ============================ ASK ============================ -->
+  <div id="view-ask">
+    <div class="ask">
+      <input type="text" id="q" placeholder="Ask about this repository…"
+             onkeydown="if(event.key==='Enter')ask()" />
+      <button class="primary" id="go" onclick="ask()">Ask</button>
+    </div>
+    <div class="controls">
+      <label>retriever
+        <select id="retriever" onchange="saveOpts()">
+          <option value="hybrid">hybrid</option>
+          <option value="dense">dense only</option>
+          <option value="bm25">BM25 only</option>
+          <option value="symbol">symbol only</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="reranker" onchange="saveOpts()" /> reranker</label>
+      <label><input type="checkbox" id="agentic" onchange="saveOpts()" /> agentic retrieval</label>
+      <label>k <input type="number" id="k" min="1" max="40" value="10" onchange="saveOpts()" /></label>
+      <span id="status" class="spinner"></span>
+    </div>
+    <div class="examples" id="examples"></div>
+
+    <section id="answer-section" class="hidden">
+      <h2>Answer <span class="note" id="answer-note"></span></h2>
+      <div class="answer" id="answer"></div>
+    </section>
+
+    <section id="trace-section" class="hidden">
+      <h2>Retrieval trace</h2>
+      <div class="pipeline" id="pipeline"></div>
+      <div id="tracesteps" style="margin-top:14px"></div>
+    </section>
+
+    <section id="evidence-section" class="hidden">
+      <h2>Evidence <span class="note">click a row to expand the retrieved source</span></h2>
+      <div class="tw"><table id="evidence"></table></div>
+    </section>
+  </div>
+
+  <!-- =========================== SEARCH =========================== -->
+  <div id="view-search" class="hidden">
+    <div class="ask">
+      <input type="text" id="sq" placeholder="Retrieval only — no LLM call, milliseconds…"
+             onkeydown="if(event.key==='Enter')runSearch()" />
+      <button class="primary" id="sgo" onclick="runSearch()">Search</button>
+    </div>
+    <div class="controls">
+      <label>retriever
+        <select id="sretriever">
+          <option value="hybrid">hybrid</option>
+          <option value="dense">dense only</option>
+          <option value="bm25">BM25 only</option>
+          <option value="symbol">symbol only</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="sreranker" /> reranker</label>
+      <label>k <input type="number" id="sk" min="1" max="50" value="15" /></label>
+      <span id="sstatus" class="spinner"></span>
+    </div>
+    <section id="sresults-section" class="hidden">
+      <h2>Results <span class="note">compare retrievers on the same query</span></h2>
+      <div class="tw"><table id="sresults"></table></div>
+    </section>
+  </div>
+
+  <!-- =========================== SYMBOLS ========================== -->
+  <div id="view-symbol" class="hidden">
+    <div class="ask">
+      <input type="text" id="sym" placeholder="Symbol name, e.g. allocate_slots or KVCacheManager"
+             onkeydown="if(event.key==='Enter')runImpact()" />
+      <button class="primary" onclick="runImpact()">Impact</button>
+    </div>
+    <div class="controls"><span id="symstatus" class="spinner"></span></div>
+    <div class="examples" id="symexamples"></div>
+    <section id="impact-section" class="hidden">
+      <h2>Change impact <span class="note">definitions → callers → tests → importers</span></h2>
+      <div id="impact"></div>
+    </section>
+  </div>
+
+  <!-- ========================== BENCHMARK ========================= -->
+  <div id="view-bench" class="hidden">
+    <section>
+      <h2>Ablation <span class="note">recorded runs, test split</span></h2>
+      <div id="bench"></div>
+    </section>
+    <section id="eval-section" class="hidden">
+      <h2>Live evaluation <span class="note" id="eval-note"></span></h2>
+      <div id="evalout"></div>
+    </section>
+    <section>
+      <h2>Benchmark dataset</h2>
+      <div id="dataset-summary"></div>
+      <div class="filters" style="margin-top:12px">
+        <input type="text" id="dsq" placeholder="filter questions…" oninput="loadQuestions()" />
+        <select id="dscat" onchange="loadQuestions()"><option value="">all categories</option></select>
+        <select id="dssplit" onchange="loadQuestions()">
+          <option value="">dev + test</option><option value="test">test</option><option value="dev">dev</option>
+        </select>
+        <select id="dssource" onchange="loadQuestions()">
+          <option value="">auto + curated</option><option value="curated">curated</option><option value="auto">auto</option>
+        </select>
+        <span class="spinner" id="dsstatus"></span>
+      </div>
+      <div class="tw scrolly"><table id="questions"></table></div>
+    </section>
+  </div>
+
+  <!-- =========================== TRACES =========================== -->
+  <div id="view-traces" class="hidden">
+    <section>
+      <h2>Recent queries <span class="note">every question is traced to disk</span></h2>
+      <div class="tw"><table id="traces"></table></div>
+    </section>
+    <section id="tracedetail-section" class="hidden">
+      <h2>Trace detail</h2>
+      <pre id="tracedetail"></pre>
+    </section>
+  </div>
+</main>
+
+<script>
+const EXAMPLES = [
+  "Where is KV cache memory allocated and how is its capacity determined?",
+  "Trace a request from the API server until model execution on the GPU.",
+  "A server dies with CUDA out of memory while allocating the KV cache — which components decide that allocation?",
+  "If the KV cache block allocation logic changed, what could break?",
+  "Why does the engine core run in a separate process?",
+  "How does continuous batching decide which requests run in a step?",
+];
+const SYMBOLS = ["allocate_slots", "KVCacheManager", "Scheduler.schedule",
+                 "determine_available_memory", "LLMEngine"];
+
+let LAST = null, TIMER = null;
+
+const el = id => document.getElementById(id);
+const esc = s => (s || "").replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+// sub-millisecond retrievers are the point of BM25 — do not round them to "0 ms"
+const ms = v => (v < 10 ? Number(v).toFixed(1) : Math.round(v)) + " ms";
+const num = (v, d = 4) => (v === undefined || v === null) ? "–" : Number(v).toFixed(d);
+
+async function api(path, options) {
+  const res = await fetch(path, options);
+  if (!res.ok) {
+    let detail = await res.text();
+    try { detail = JSON.parse(detail).detail || detail; } catch (e) {}
+    throw new Error(detail);
+  }
+  return res.json();
+}
+
+// ---------------------------------------------------------------- boot
+async function boot() {
+  el("examples").innerHTML = EXAMPLES.map(
+    (e, i) => `<button onclick="setQ(${i})">${esc(e.length > 68 ? e.slice(0, 66) + '…' : e)}</button>`).join("");
+  el("symexamples").innerHTML = SYMBOLS.map(
+    s => `<button onclick="el('sym').value='${s}';runImpact()">${esc(s)}</button>`).join("");
+  loadOpts();
+  try {
+    const meta = await api("/api/meta");
+    el("meta").textContent =
+      `${meta.repository} @ ${(meta.commit || "").slice(0, 10)} · ${meta.n_chunks.toLocaleString()} chunks · ` +
+      `${meta.embedding_model} · reranker ${meta.reranker || "off"} · ${meta.llm}`;
+    el("dot-index").className = "dot ok";
+  } catch (e) {
+    el("meta").textContent = "index not loaded — run `rag ingest` then `rag index`";
+    el("dot-index").className = "dot bad";
+  }
+  await checkHealth();
+
+  // deep links: /?tab=search&q=… runs the query on load, so a particular
+  // test case can be bookmarked or handed to someone else.
+  const p = new URLSearchParams(location.search);
+  const tab = p.get("tab") || (p.get("q") ? "ask" : p.get("sym") ? "symbol" : "ask");
+  if (p.get("retriever")) el("retriever").value = el("sretriever").value = p.get("retriever");
+  if (p.get("reranker")) el("reranker").checked = el("sreranker").checked = p.get("reranker") === "1";
+  if (p.get("agentic")) el("agentic").checked = p.get("agentic") === "1";
+  showTab(tab);
+  if (p.get("q") && tab === "ask") { el("q").value = p.get("q"); ask(); }
+  if (p.get("q") && tab === "search") { el("sq").value = p.get("q"); runSearch(); }
+  if (p.get("sym")) { el("sym").value = p.get("sym"); runImpact(); }
+  if (p.get("qid")) { showTab("bench"); evaluateQuestion(p.get("qid")); }
+}
+
+async function checkHealth() {
+  try {
+    const h = await api("/api/health");
+    el("dot-index").className = "dot " + (h.index === "ready" ? "ok" : "bad");
+    el("dot-llm").className = "dot " + (h.llm === "ready" ? "ok" : "bad");
+    if (h.llm !== "ready") {
+      el("banner").textContent =
+        "Generation backend is not reachable — the Ask tab will fail, but Search, " +
+        "Symbols and Benchmark work without it. " + (h.llm_detail || "");
+      el("banner").classList.remove("hidden");
+    } else {
+      el("banner").classList.add("hidden");
+    }
+  } catch (e) { el("dot-llm").className = "dot bad"; }
+}
+
+function setQ(i) { el("q").value = EXAMPLES[i]; ask(); }
+
+function saveOpts() {
+  localStorage.setItem("eka-opts", JSON.stringify({
+    retriever: el("retriever").value, reranker: el("reranker").checked,
+    agentic: el("agentic").checked, k: el("k").value,
+  }));
+}
+function loadOpts() {
+  try {
+    const o = JSON.parse(localStorage.getItem("eka-opts") || "{}");
+    if (o.retriever) el("retriever").value = o.retriever;
+    if (o.k) el("k").value = o.k;
+    el("reranker").checked = !!o.reranker;
+    el("agentic").checked = !!o.agentic;
+  } catch (e) {}
+}
+
+function showTab(which) {
+  for (const t of ["ask", "search", "symbol", "bench", "traces"]) {
+    el("view-" + t).classList.toggle("hidden", t !== which);
+    el("tab-" + t).classList.toggle("on", t === which);
+  }
+  if (which === "bench") loadBenchmark();
+  if (which === "traces") loadTraces();
+}
+
+// ----------------------------------------------------------------- ask
+function startTimer(target, label) {
+  const t0 = performance.now();
+  clearInterval(TIMER);
+  el(target).className = "spinner";
+  TIMER = setInterval(() => {
+    el(target).textContent = `${label} ${((performance.now() - t0) / 1000).toFixed(1)} s`;
+  }, 100);
+  return () => { clearInterval(TIMER); return performance.now() - t0; };
+}
+
+async function ask() {
+  const question = el("q").value.trim();
+  if (!question) return;
+  el("go").disabled = true;
+  const agentic = el("agentic").checked;
+  const stop = startTimer("status", agentic ? "agent running…" : "retrieving + generating…");
+  try {
+    LAST = await api("/api/ask", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        question,
+        retriever: el("retriever").value,
+        reranker: el("reranker").checked,
+        agentic,
+        k: Number(el("k").value) || null,
+      }),
+    });
+    render(LAST);
+    el("status").textContent = `${(stop() / 1000).toFixed(1)} s round trip`;
+    el("status").className = "spinner";
+  } catch (err) {
+    stop();
+    el("status").textContent = String(err.message || err).slice(0, 400);
+    el("status").className = "err";
+    checkHealth();
+  } finally {
+    el("go").disabled = false;
+  }
+}
+
+function citeLinks(text, citations) {
+  const supported = new Set(citations || []);
+  return esc(text || "").replace(/\[([^\]\n]+?):(\d+)-(\d+)\]/g, (m, path, a, b) => {
+    const good = supported.has(m) ||
+                 (citations || []).some(c => c.startsWith(`[${path}:${a}-${b}`));
+    return `<a class="cite ${good ? "" : "bad"}" onclick="jump('${path}')">${m}</a>`;
+  });
+}
+
+function render(data) {
+  el("answer").innerHTML = citeLinks(data.answer, data.citations) || "<em>no answer</em>";
+  const unsupported = (data.unsupported_citations || []).length;
+  el("answer-note").innerHTML = unsupported
+    ? `<span style="color:var(--bad)">${unsupported} citation(s) not backed by context</span>`
+    : `${(data.citations || []).length} validated citations`;
+  el("answer-section").classList.remove("hidden");
+
+  const steps = (data.trace && data.trace.steps) || [];
+  el("pipeline").innerHTML = steps.map((s, i) => {
+    const n = s.detail && (s.detail.n_results ?? s.detail.n_candidates);
+    return `${i ? '<div class="arrow">→</div>' : ''}
+      <div class="stage">
+        <div class="name">${esc(s.name)}</div>
+        <div class="val">${n !== undefined && n !== null ? n : "—"}</div>
+        <div class="sub">${Math.round(s.duration_ms)} ms</div>
+      </div>`;
+  }).join("");
+
+  el("tracesteps").innerHTML = steps.map(s => {
+    const detail = Object.entries(s.detail || {})
+      .filter(([k, v]) => typeof v !== "object")
+      .map(([k, v]) => `${k}=${esc(String(v)).slice(0, 160)}`).join("  ");
+    const top = (s.results || []).slice(0, 5).map(r =>
+      `<div class="detail">· ${esc(r.location || r.tool || JSON.stringify(r).slice(0, 90))}` +
+      `${r.score !== undefined ? " " + Number(r.score).toFixed(4) : ""}</div>`).join("");
+    return `<div class="trace-step">
+        <div class="head">${esc(s.name)} <span class="detail">(${Math.round(s.duration_ms)} ms)</span></div>
+        <div class="detail">${detail}</div>${top}
+      </div>`;
+  }).join("") + usageLine(data);
+  el("trace-section").classList.remove("hidden");
+
+  el("evidence").innerHTML = evidenceTable(data.evidence || []);
+  el("evidence-section").classList.remove("hidden");
+}
+
+function evidenceTable(evidence, prefix = "src") {
+  const rows = evidence.map((e, i) => `
+    <tr class="ev ${e.is_gold ? "gold" : ""}" onclick="toggle('${prefix}-${i}')">
+      <td class="num">${i + 1}</td>
+      <td class="mono">${esc(e.location)}${e.is_gold ? ' <span class="tag hit">gold</span>' : ''}</td>
+      <td class="mono">${esc((e.symbol || "").slice(0, 52))}</td>
+      <td><span class="tag ${e.artifact_type}">${e.artifact_type}</span></td>
+      <td class="num">${num(e.score)}</td>
+      <td class="mono" style="color:var(--muted)">${esc(e.reason || "")}</td>
+    </tr>
+    <tr id="${prefix}-${i}" class="hidden"><td colspan="6"><pre>${esc(e.content || "")}</pre></td></tr>`).join("");
+  return `<tr><th>#</th><th>location</th><th>symbol</th><th>type</th><th>score</th><th>via</th></tr>${rows}`;
+}
+
+function usageLine(data) {
+  const u = (data.trace && data.trace.usage) || {};
+  const s = data.usage || {};
+  const id = (data.trace && data.trace.trace_id) || "";
+  return `<div class="trace-step"><div class="detail">
+      llm_calls=${u.llm_calls || 0} tokens=${u.prompt_tokens || 0}+${u.completion_tokens || 0}
+      context_tokens=${s.context_tokens || 0} cost=$${(u.estimated_cost_usd || 0).toFixed(4)}
+      total=${Math.round((data.trace && data.trace.total_ms) || 0)} ms
+      trace=${esc(id)}
+    </div></div>`;
+}
+
+function toggle(id) { el(id).classList.toggle("hidden"); }
+function jump(path) {
+  const idx = (LAST.evidence || []).findIndex(e => e.path === path);
+  if (idx >= 0) {
+    el("src-" + idx).classList.remove("hidden");
+    el("src-" + idx).scrollIntoView({behavior: "smooth", block: "center"});
+  }
+}
+
+// -------------------------------------------------------------- search
+async function runSearch() {
+  const query = el("sq").value.trim();
+  if (!query) return;
+  el("sgo").disabled = true;
+  const stop = startTimer("sstatus", "searching…");
+  try {
+    const data = await api("/api/search", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        query, retriever: el("sretriever").value,
+        reranker: el("sreranker").checked, k: Number(el("sk").value) || 15,
+      }),
+    });
+    const ms = stop();
+    el("sresults").innerHTML = `<tr><th>#</th><th>location</th><th>symbol</th><th>type</th>
+        <th>score</th><th>component scores</th></tr>` +
+      data.results.map((r, i) => `
+        <tr class="ev" onclick="toggle('sr-${i}')">
+          <td class="num">${i + 1}</td>
+          <td class="mono">${esc(r.location)}</td>
+          <td class="mono">${esc((r.symbol || "").slice(0, 46))}</td>
+          <td><span class="tag ${r.artifact_type || ''}">${esc(r.artifact_type || r.retriever || '')}</span></td>
+          <td class="num">${num(r.score)}</td>
+          <td class="mono wrap" style="color:var(--muted);font-size:11px">${
+            esc(Object.entries(r.component_scores || {}).map(([k, v]) => `${k}=${Number(v).toFixed(3)}`).join(" "))}</td>
+        </tr>
+        <tr id="sr-${i}" class="hidden"><td colspan="6"><pre>${esc(r.content || "")}</pre></td></tr>`).join("");
+    el("sresults-section").classList.remove("hidden");
+    el("sstatus").textContent = `${data.results.length} results in ${Math.round(ms)} ms`;
+    el("sstatus").className = "spinner";
+  } catch (err) {
+    stop();
+    el("sstatus").textContent = String(err.message || err).slice(0, 300);
+    el("sstatus").className = "err";
+  } finally { el("sgo").disabled = false; }
+}
+
+// -------------------------------------------------------------- symbol
+async function runImpact() {
+  const name = el("sym").value.trim();
+  if (!name) return;
+  el("symstatus").textContent = "resolving…";
+  el("symstatus").className = "spinner";
+  try {
+    const data = await api(`/api/impact/${encodeURIComponent(name)}`);
+    const block = (title, rows, render) => `
+      <section><h2>${title} <span class="note">${rows.length}</span></h2>
+      ${rows.length ? `<div class="tw"><table>${rows.map(render).join("")}</table></div>`
+                    : '<div class="spinner">none</div>'}</section>`;
+    el("impact").innerHTML =
+      block("Definitions", data.definitions, r =>
+        `<tr><td class="mono">${esc(r.location)}</td><td class="mono">${esc(r.symbol)}</td></tr>`) +
+      block("Callers", data.callers, r =>
+        `<tr><td class="mono">${esc(r.location)}</td><td class="mono">${esc(r.symbol)}</td></tr>`) +
+      block("Tests", data.tests, r =>
+        `<tr><td class="mono">${esc(r.location)}</td><td class="mono">${esc(r.symbol)}</td></tr>`) +
+      block("Importers", data.importers, r => `<tr><td class="mono">${esc(r)}</td></tr>`);
+    el("impact-section").classList.remove("hidden");
+    el("symstatus").textContent = "";
+  } catch (err) {
+    el("symstatus").textContent = String(err.message || err).slice(0, 300);
+    el("symstatus").className = "err";
+  }
+}
+
+// ----------------------------------------------------------- benchmark
+async function loadBenchmark() {
+  const target = el("bench");
+  if (target.dataset.loaded) { return; }
+  target.innerHTML = '<div class="spinner">loading…</div>';
+  const data = await api("/api/benchmark");
+  if (!data.runs || !data.runs.length) {
+    target.innerHTML = '<div class="spinner">no benchmark runs yet — run `rag benchmark`</div>';
+  } else {
+    const get = (r, key) => key.split(".").reduce((o, k) => (o || {})[k], r);
+    const best = {};
+    for (const key of ["retrieval.recall@10", "retrieval.mrr", "retrieval.ndcg@10",
+                       "generation.answer_accuracy", "generation.faithfulness"]) {
+      best[key] = Math.max(...data.runs.map(r => get(r, key) ?? -1));
+    }
+    const cell = (r, key) => {
+      const v = get(r, key);
+      const win = v !== undefined && v !== null && Math.abs(v - best[key]) < 1e-9;
+      return `<td class="num ${win ? "win" : ""}">${num(v)}</td>`;
+    };
+    target.innerHTML = `<div class="tw"><table class="bench">
+      <tr><th>system</th><th>recall@5</th><th>recall@10</th><th>MRR</th><th>nDCG@10</th>
+          <th>answer acc.</th><th>faithful.</th><th>cite valid.</th><th>retrieval p50</th></tr>
+      ${data.runs.map(r => `<tr>
+        <td class="mono">${esc(r.name)}</td>
+        <td class="num">${num(get(r, "retrieval.recall@5"))}</td>
+        ${cell(r, "retrieval.recall@10")}${cell(r, "retrieval.mrr")}${cell(r, "retrieval.ndcg@10")}
+        ${cell(r, "generation.answer_accuracy")}${cell(r, "generation.faithfulness")}
+        <td class="num">${num(get(r, "generation.citation_validity"))}</td>
+        <td class="num">${r.latency && r.latency.retrieval_ms ? ms(r.latency.retrieval_ms.p50) : "–"}</td>
+      </tr>`).join("")}
+    </table></div>
+    <div class="trace-step" style="margin-top:12px"><div class="detail">
+      ${esc(JSON.stringify(data.fingerprint.repository_commit ? {
+        commit: data.fingerprint.repository_commit.slice(0, 10),
+        chunks: data.fingerprint.n_chunks,
+        embedding: data.fingerprint.embedding_model,
+        reranker: data.fingerprint.reranker,
+        llm: data.fingerprint.llm,
+        questions: data.fingerprint.n_questions,
+      } : {}))}
+    </div></div>`;
+  }
+  target.dataset.loaded = "1";
+  loadQuestions(true);
+}
+
+async function loadQuestions(first) {
+  el("dsstatus").textContent = "loading…";
+  el("dsstatus").className = "spinner";
+  const params = new URLSearchParams({
+    q: el("dsq").value, category: el("dscat").value,
+    split: el("dssplit").value, source: el("dssource").value, limit: "200",
+  });
+  const ds = await api("/api/dataset?" + params);
+  if (!ds.n_questions) {
+    el("dataset-summary").innerHTML =
+      '<div class="spinner">no dataset — run `rag dataset build`</div>';
+    el("dsstatus").textContent = "";
+    return;
+  }
+  if (first) {
+    el("dataset-summary").innerHTML = `<div class="cards">
+      <div class="card"><div class="k">questions</div><div class="v">${ds.n_questions}</div></div>
+      <div class="card"><div class="k">multi-hop</div><div class="v">${Math.round(ds.multi_hop_fraction * 100)}%</div></div>
+      <div class="card"><div class="k">categories</div><div class="v">${(ds.categories || []).length}</div></div>
+      <div class="card"><div class="k">avg gold files</div><div class="v">${ds.avg_gold_files}</div></div>
+    </div>`;
+    el("dscat").innerHTML = '<option value="">all categories</option>' +
+      (ds.categories || []).map(c => `<option value="${c}">${c}</option>`).join("");
+  }
+  el("questions").innerHTML =
+    `<tr><th>question</th><th>category</th><th>hops</th><th>source</th><th>split</th><th>gold files</th></tr>` +
+    ds.questions.map(r => `
+      <tr class="qrow" onclick="evaluateQuestion('${r.id}')">
+        <td>${esc(r.question)}</td>
+        <td class="mono">${esc(r.category)}</td>
+        <td class="mono">${r.difficulty === "multi_hop" ? "multi" : "single"}</td>
+        <td class="mono">${esc(r.source)}</td>
+        <td class="mono">${esc(r.split)}</td>
+        <td class="mono wrap" style="color:var(--muted);font-size:11px">${esc((r.relevant_files || []).join(" "))}</td>
+      </tr>`).join("");
+  el("dsstatus").textContent = `${ds.n_matching} matching — click a row to run it live`;
+}
+
+async function evaluateQuestion(id) {
+  el("eval-section").classList.remove("hidden");
+  el("evalout").innerHTML = '<div class="spinner">running the pipeline on this question…</div>';
+  el("eval-section").scrollIntoView({behavior: "smooth", block: "start"});
+  const stop = startTimer("eval-note", "running…");
+  try {
+    const d = await api("/api/evaluate", {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        question_id: id,
+        retriever: el("retriever").value,
+        reranker: el("reranker").checked,
+        agentic: el("agentic").checked,
+        // skip generation only when the backend is known to be down
+        generate: !el("dot-llm").classList.contains("bad"),
+      }),
+    });
+    const m = d.retrieval;
+    el("evalout").innerHTML = `
+      <div style="margin-bottom:12px">${esc(d.question.question)}</div>
+      <div class="cards">
+        <div class="card"><div class="k">recall@10</div><div class="v">${num(m.recall_at["10"], 3)}</div></div>
+        <div class="card"><div class="k">MRR</div><div class="v">${num(m.mrr, 3)}</div></div>
+        <div class="card"><div class="k">nDCG@10</div><div class="v">${num(m.ndcg_at["10"], 3)}</div></div>
+        <div class="card"><div class="k">first hit</div><div class="v">${m.first_hit_rank || "—"}</div></div>
+      </div>
+      <section><h2>Gold labels</h2>
+        ${d.gold_found.map(f => `<div class="mono"><span class="tag hit">found</span> ${esc(f)}</div>`).join("")}
+        ${d.gold_missed.map(f => `<div class="mono"><span class="tag miss">missed</span> ${esc(f)}</div>`).join("")}
+      </section>
+      ${d.answer ? `<section><h2>Answer</h2><div class="answer">${citeLinks(d.answer, d.citations)}</div></section>` : ""}
+      <section><h2>Retrieved <span class="note">gold hits marked green</span></h2>
+        <div class="tw"><table>${evidenceTable(d.evidence, "ev")}</table></div></section>`;
+    el("eval-note").textContent = `${(stop() / 1000).toFixed(1)} s`;
+    el("eval-note").className = "note";
+  } catch (err) {
+    stop();
+    el("evalout").innerHTML = `<div class="err">${esc(String(err.message || err)).slice(0, 400)}</div>`;
+    el("eval-note").textContent = "";
+  }
+}
+
+// -------------------------------------------------------------- traces
+async function loadTraces() {
+  const data = await api("/api/traces?limit=50");
+  el("traces").innerHTML = data.traces.length
+    ? `<tr><th>question</th><th>steps</th><th>total</th><th>trace id</th></tr>` +
+      data.traces.map(t => `
+        <tr class="qrow" onclick="loadTrace('${t.trace_id}')">
+          <td>${esc((t.question || "").slice(0, 110))}</td>
+          <td class="num">${t.n_steps ?? "–"}</td>
+          <td class="num">${t.total_ms ? Math.round(t.total_ms) + " ms" : "–"}</td>
+          <td class="mono" style="color:var(--muted)">${esc(t.trace_id)}</td>
+        </tr>`).join("")
+    : '<tr><td class="spinner">no traces yet — ask a question first</td></tr>';
+}
+
+async function loadTrace(id) {
+  const t = await api(`/api/traces/${id}`);
+  el("tracedetail").textContent = JSON.stringify(t, null, 2);
+  el("tracedetail-section").classList.remove("hidden");
+  el("tracedetail-section").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+boot();
+</script>
+</body>
+</html>

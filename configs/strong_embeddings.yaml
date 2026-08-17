@@ -1,0 +1,84 @@
+# Ablation config: a stronger retrieval embedding model (see docs/evaluation.md).
+repository: vllm
+repo_path: data/vllm
+index_dir: indexes/vllm-arctic
+seed: 0
+trace_dir: traces
+ingestion:
+  include_globs:
+  - '**/*.py'
+  - '**/*.md'
+  - '**/*.rst'
+  exclude_dirs:
+  - .git
+  - node_modules
+  - __pycache__
+  - .venv
+  - build
+  - dist
+  - third_party
+  - .buildkite
+  max_file_bytes: 400000
+  max_chunk_lines: 220
+  chunk_overlap_lines: 20
+  min_chunk_chars: 60
+  index_module_chunks: true
+  doc_max_chars: 4000
+  doc_min_chars: 120
+  git_max_commits: 3000
+  git_max_diff_chars: 4000
+  git_include_merges: false
+embedding:
+  model: Snowflake/snowflake-arctic-embed-m-v1.5
+  query_prefix: 'Represent this sentence for searching relevant passages: '
+  batch_size: 128
+  max_seq_length: 512
+  device: auto
+  normalize: true
+retrieval:
+  dense_k: 40
+  bm25_k: 40
+  symbol_k: 10
+  git_k: 10
+  fusion: rrf
+  rrf_k: 10
+  fusion_weights:
+    dense: 0.5
+    bm25: 1.0
+    symbol: 0.3
+    git: 0.2
+  candidate_k: 50
+  final_k: 10
+reranker:
+  enabled: true
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  batch_size: 64
+  max_length: 512
+  max_doc_chars: 3000
+  device: auto
+llm:
+  provider: openai
+  model: Qwen/Qwen3-4B
+  base_url: http://127.0.0.1:8099/v1
+  api_key_env: EKA_API_KEY
+  temperature: 0.0
+  max_tokens: 1200
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: false
+generation:
+  context_token_budget: 6000
+  max_chunk_tokens: 900
+  per_file_chunk_cap: 3
+  artifact_quota:
+    source: 0.6
+    test: 0.15
+    doc: 0.15
+    commit: 0.1
+  include_related_symbols: true
+agent:
+  enabled: false
+  max_iterations: 4
+  per_step_k: 8
+  max_evidence: 16
+  planner_max_subqueries: 3

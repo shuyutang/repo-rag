@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+data/
+indexes/
+traces/
+*.egg-info/
+
+# index_repo.sh writes configs/<repo>.yaml for every repository indexed, with
+# machine-local absolute paths.  The two checked-in configs are the tuned ones
+# the benchmark numbers were produced with; everything else is generated.
+configs/*.yaml
+!configs/default.yaml
+!configs/strong_embeddings.yaml

@@ -1,0 +1,57 @@
+# Checks that back up what the documentation claims: the docstring convention
+# is enforced, the shell scripts are shellcheck-clean, and the test suite runs
+# without network or GPU.
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: ruff (google docstring convention)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff
+      - run: ruff check eka scripts tests
+
+  shell:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # shellcheck is preinstalled on ubuntu-latest runners.
+      - run: shellcheck scripts/*.sh
+
+  test:
+    name: pytest (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      # torch, transformers and sentence-transformers are deliberately not
+      # installed here.  They are imported lazily -- inside
+      # SentenceTransformerEmbedder.__init__ and CrossEncoderReranker.__init__
+      # -- and the fixture-repo suite uses deterministic stub models, so the
+      # whole run stays at ~220 MB of wheels instead of several GB.  This is
+      # also what makes the "no network, no GPU" claim in the README a checked
+      # fact rather than an assertion: if a heavy import ever moves to module
+      # scope, this job goes red.
+      - run: |
+          pip install -e . --no-deps
+          pip install numpy scipy fastapi 'pydantic>=2' 'typer>=0.12' 'rich>=13' \
+                      pyyaml 'openai>=1.40' orjson tqdm pytest httpx
+      - run: python -m pytest

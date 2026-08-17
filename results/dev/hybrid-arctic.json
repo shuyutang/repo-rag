@@ -1,0 +1,4714 @@
+{
+  "spec": {
+    "name": "hybrid-arctic",
+    "retriever": "hybrid",
+    "reranker": false,
+    "agentic": false,
+    "evaluate_generation": false,
+    "limit": null,
+    "sample": null,
+    "sample_seed": 0,
+    "split": "dev",
+    "k": 20
+  },
+  "fingerprint": {
+    "repository": "vllm",
+    "embedding_model": "Snowflake/snowflake-arctic-embed-m-v1.5",
+    "reranker": null,
+    "llm": "openai:Qwen/Qwen3-4B",
+    "judge_llm": null,
+    "chunking": {
+      "include_globs": [
+        "**/*.py",
+        "**/*.md",
+        "**/*.rst"
+      ],
+      "exclude_dirs": [
+        ".git",
+        "node_modules",
+        "__pycache__",
+        ".venv",
+        "build",
+        "dist",
+        "third_party",
+        ".buildkite"
+      ],
+      "max_file_bytes": 400000,
+      "max_chunk_lines": 220,
+      "chunk_overlap_lines": 20,
+      "min_chunk_chars": 60,
+      "index_module_chunks": true,
+      "doc_max_chars": 4000,
+      "doc_min_chars": 120,
+      "git_max_commits": 3000,
+      "git_max_diff_chars": 4000,
+      "git_include_merges": false
+    },
+    "retrieval": {
+      "dense_k": 40,
+      "bm25_k": 40,
+      "symbol_k": 10,
+      "git_k": 10,
+      "fusion": "rrf",
+      "rrf_k": 10,
+      "fusion_weights": {
+        "dense": 0.5,
+        "bm25": 1.0,
+        "symbol": 0.3,
+        "git": 0.2
+      },
+      "candidate_k": 50,
+      "final_k": 10
+    },
+    "generation": {
+      "context_token_budget": 6000,
+      "max_chunk_tokens": 900,
+      "per_file_chunk_cap": 3,
+      "artifact_quota": {
+        "source": 0.6,
+        "test": 0.15,
+        "doc": 0.15,
+        "commit": 0.1
+      },
+      "include_related_symbols": true
+    },
+    "agent": {
+      "enabled": false,
+      "max_iterations": 4,
+      "per_step_k": 8,
+      "max_evidence": 16,
+      "planner_max_subqueries": 3
+    },
+    "seed": 0,
+    "repository_commit": "63344913a66c76a13b4b7f20735c6b2963cfb997",
+    "n_chunks": 60272,
+    "dataset": "evaluation_data/benchmark.jsonl",
+    "dataset_version": "f7cc8afc2d89",
+    "n_questions": 158,
+    "spec": {
+      "name": "hybrid-arctic",
+      "retriever": "hybrid",
+      "reranker": false,
+      "agentic": false,
+      "evaluate_generation": false,
+      "limit": null,
+      "sample": null,
+      "sample_seed": 0,
+      "split": "dev",
+      "k": 20
+    },
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-35-generic-x86_64-with-glibc2.39"
+  },
+  "retrieval": {
+    "n_questions": 45,
+    "recall@1": 0.3815,
+    "precision@1": 0.6889,
+    "ndcg@1": 0.5704,
+    "recall@5": 0.6111,
+    "precision@5": 0.5156,
+    "ndcg@5": 0.618,
+    "recall@10": 0.6981,
+    "precision@10": 0.4044,
+    "ndcg@10": 0.6487,
+    "recall@20": 0.7667,
+    "precision@20": 0.2967,
+    "ndcg@20": 0.6629,
+    "mrr": 0.7719,
+    "hit_rate@10": 0.8889
+  },
+  "retrieval_by_category": {
+    "architecture": {
+      "n_questions": 3,
+      "recall@5": 0.0,
+      "precision@5": 0.0,
+      "ndcg@5": 0.0,
+      "recall@10": 0.1111,
+      "precision@10": 0.0333,
+      "ndcg@10": 0.0179,
+      "mrr": 0.0509,
+      "hit_rate@10": 0.3333
+    },
+    "change_impact": {
+      "n_questions": 8,
+      "recall@5": 0.4688,
+      "precision@5": 0.625,
+      "ndcg@5": 0.5986,
+      "recall@10": 0.5938,
+      "precision@10": 0.475,
+      "ndcg@10": 0.6642,
+      "mrr": 0.875,
+      "hit_rate@10": 0.875
+    },
+    "code_lookup": {
+      "n_questions": 7,
+      "recall@5": 0.7143,
+      "precision@5": 0.7143,
+      "ndcg@5": 0.9002,
+      "recall@10": 0.8571,
+      "precision@10": 0.5857,
+      "ndcg@10": 0.899,
+      "mrr": 1.0,
+      "hit_rate@10": 1.0
+    },
+    "configuration": {
+      "n_questions": 6,
+      "recall@5": 0.8333,
+      "precision@5": 0.5333,
+      "ndcg@5": 0.9088,
+      "recall@10": 0.8333,
+      "precision@10": 0.4333,
+      "ndcg@10": 0.8855,
+      "mrr": 0.9167,
+      "hit_rate@10": 1.0
+    },
+    "debugging": {
+      "n_questions": 4,
+      "recall@5": 0.3333,
+      "precision@5": 0.1,
+      "ndcg@5": 0.2792,
+      "recall@10": 0.4167,
+      "precision@10": 0.1,
+      "ndcg@10": 0.2993,
+      "mrr": 0.4375,
+      "hit_rate@10": 0.75
+    },
+    "documentation": {
+      "n_questions": 8,
+      "recall@5": 0.875,
+      "precision@5": 0.525,
+      "ndcg@5": 0.7124,
+      "recall@10": 0.875,
+      "precision@10": 0.3625,
+      "ndcg@10": 0.715,
+      "mrr": 0.6875,
+      "hit_rate@10": 0.875
+    },
+    "historical": {
+      "n_questions": 7,
+      "recall@5": 0.631,
+      "precision@5": 0.6571,
+      "ndcg@5": 0.5361,
+      "recall@10": 0.7381,
+      "precision@10": 0.5,
+      "ndcg@10": 0.605,
+      "mrr": 0.8333,
+      "hit_rate@10": 1.0
+    },
+    "tests": {
+      "n_questions": 2,
+      "recall@5": 0.5,
+      "precision@5": 0.4,
+      "ndcg@5": 0.3493,
+      "recall@10": 0.75,
+      "precision@10": 0.4,
+      "ndcg@10": 0.5345,
+      "mrr": 1.0,
+      "hit_rate@10": 1.0
+    }
+  },
+  "retrieval_by_difficulty": {
+    "multi_hop": {
+      "n_questions": 22,
+      "recall@5": 0.3864,
+      "precision@5": 0.4455,
+      "ndcg@5": 0.3883,
+      "recall@10": 0.5189,
+      "precision@10": 0.35,
+      "ndcg@10": 0.4604,
+      "mrr": 0.6698,
+      "hit_rate@10": 0.8182
+    },
+    "single_hop": {
+      "n_questions": 23,
+      "recall@5": 0.8261,
+      "precision@5": 0.5826,
+      "ndcg@5": 0.8377,
+      "recall@10": 0.8696,
+      "precision@10": 0.4565,
+      "ndcg@10": 0.8289,
+      "mrr": 0.8696,
+      "hit_rate@10": 0.9565
+    }
+  },
+  "generation": {},
+  "latency": {
+    "retrieval_ms": {
+      "mean": 102.3,
+      "p50": 105.0,
+      "p95": 230.0,
+      "max": 298.2
+    },
+    "total_ms": {
+      "mean": 102.3,
+      "p50": 105.0,
+      "p95": 230.0,
+      "max": 298.2
+    }
+  },
+  "per_question": [
+    {
+      "question_id": "code_lookup-001",
+      "question": "What does the `init_weight_transfer_engine` method do in the `vllm` codebase?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-001",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.9,
+          "20": 0.45
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/weight_transfer/clients.py:69-70",
+          "symbol": "vllm.distributed.weight_transfer.clients.HTTPVLLMWeightSyncClient.init_weight_transfer_engine",
+          "score": 0.13408,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/engine/protocol.py:253-257",
+          "symbol": "vllm.engine.protocol.EngineClient.init_weight_transfer_engine",
+          "score": 0.12143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/clients.py:97-101",
+          "symbol": "vllm.distributed.weight_transfer.clients.RayVLLMWeightSyncClient.init_weight_transfer_engine",
+          "score": 0.11444,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/base.py:373-373",
+          "symbol": "vllm.distributed.weight_transfer.base.VLLMWeightSyncClient.init_weight_transfer_engine",
+          "score": 0.1041,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/llm.py:851-866",
+          "symbol": "vllm.entrypoints.llm.LLM.init_weight_transfer_engine",
+          "score": 0.09783,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/async_llm.py:1122-1133",
+          "symbol": "vllm.v1.engine.async_llm.AsyncLLM.init_weight_transfer_engine",
+          "score": 0.09359,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/distributed/test_weight_transfer.py:1273-1275",
+          "symbol": "tests.distributed.test_weight_transfer.RecordingClient.init_weight_transfer_engine",
+          "score": 0.08382,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/serve/dev/rlhf/api_router.py:157-172",
+          "symbol": "vllm.entrypoints.serve.dev.rlhf.api_router.init_weight_transfer_engine",
+          "score": 0.0799,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_worker.py:1232-1244",
+          "symbol": "vllm.v1.worker.gpu_worker.Worker.init_weight_transfer_engine",
+          "score": 0.07135,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/clients.py:1-15",
+          "symbol": "vllm.distributed.weight_transfer.clients",
+          "score": 0.06545,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/engine/async_llm.py"
+      ],
+      "retrieval_ms": 165.3
+    },
+    {
+      "question_id": "code_lookup-002",
+      "question": "What is the purpose of the _pad1d function and how does it handle reflect padding on small inputs?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-002",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.2,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.937015
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/models/whisper_causal.py:52-76",
+          "symbol": "vllm.model_executor.models.whisper_causal._pad1d",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/whisper_causal.py:101-110",
+          "symbol": "vllm.model_executor.models.whisper_causal.WhisperCausalConv1d.forward",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/funasr.py:145-178",
+          "symbol": "vllm.model_executor.models.funasr.MultiHeadedAttentionSANM.__init__",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/minicpmv.py:271-321",
+          "symbol": "vllm.transformers_utils.processors.minicpmv.MiniCPMVProcessor.pad",
+          "score": 0.07197,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/conv.py:16-20",
+          "symbol": "vllm.model_executor.layers.conv.ConvLayerBase",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/minicpmo.py:469-528",
+          "symbol": "vllm.transformers_utils.processors.minicpmo.MiniCPMOProcessor.pad",
+          "score": 0.06971,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/kernels/attention/test_rocm_aiter_mla_head_padding.py:191-195",
+          "symbol": "tests.kernels.attention.test_rocm_aiter_mla_head_padding.test_asm_padding_env_force_asm_disables_gluon",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/parser/engine/test_seed_oss.py:161-189",
+          "symbol": "tests.parser.engine.test_seed_oss.test_budget_reflect_tags_do_not_break_adapter_pipeline",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backends/mla/rocm_aiter_mla.py:97-121",
+          "symbol": "vllm.v1.attention.backends.mla.rocm_aiter_mla._aiter_mla_small_head_mode",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/core/kv_cache_utils.py:1585-1617",
+          "symbol": "vllm.v1.core.kv_cache_utils._approximate_gcd",
+          "score": 0.05556,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/models/whisper_causal.py"
+      ],
+      "retrieval_ms": 32.9
+    },
+    {
+      "question_id": "code_lookup-006",
+      "question": "Where is `apply` implemented and what does it do?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-006",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.6,
+          "20": 0.45
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.853932,
+          "10": 0.86645,
+          "20": 0.910101
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "tests/model_executor/model_loader/test_reload.py:679-680",
+          "symbol": "tests.model_executor.model_loader.test_reload._RecordingQuantMethod.apply",
+          "score": 0.09692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/sample/logits_processor/interface.py:77-84",
+          "symbol": "vllm.v1.sample.logits_processor.interface.LogitsProcessor.apply",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/benchmarks/sweep/plot.py:45-48",
+          "symbol": "vllm.benchmarks.sweep.plot.PlotFilterBase.apply",
+          "score": 0.08722,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/benchmarks/test_sampling_params.py:80-81",
+          "symbol": "tests.benchmarks.test_sampling_params._FakeTokenizer.apply_chat_template",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/linear.py:154-163",
+          "symbol": "vllm.model_executor.layers.linear.LinearMethodBase.apply",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/tokenizers/protocol.py:100-106",
+          "symbol": "vllm.tokenizers.protocol.TokenizerLike.apply_chat_template",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/base_config.py:39-44",
+          "symbol": "vllm.model_executor.layers.quantization.base_config.QuantizeMethodBase.apply",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/nvfp4/base.py:68-76",
+          "symbol": "vllm.model_executor.kernels.linear.nvfp4.base.NvFp4LinearKernel.apply_weights",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/modular_kernel.py:1058-1080",
+          "symbol": "vllm.model_executor.layers.fused_moe.modular_kernel.FusedMoEExpertsMonolithic.apply",
+          "score": 0.05342,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/mxfp6/base.py:68-76",
+          "symbol": "vllm.model_executor.kernels.linear.mxfp6.base.MxFp6LinearKernel.apply_weights",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/fused_moe/experts/fused_humming_moe.py"
+      ],
+      "retrieval_ms": 36.0
+    },
+    {
+      "question_id": "code_lookup-007",
+      "question": "What is the purpose of the XDRotaryEmbedding class and what does the get_next_input_positions method do?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-007",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.6,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.706366,
+          "10": 0.721383,
+          "20": 0.725318
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:140-146",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.get_next_input_positions",
+          "score": 0.16136,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:148-160",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.get_next_input_positions_tensor",
+          "score": 0.13452,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/mrope.py:423-436",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.mrope.MRotaryEmbedding.get_next_input_positions",
+          "score": 0.1324,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:1-4",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:10-18",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding",
+          "score": 0.10817,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/mrope.py:438-451",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.mrope.MRotaryEmbedding.get_next_input_positions_tensor",
+          "score": 0.09808,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/kernels/core/test_apply_rotary_emb.py:43-104",
+          "symbol": "tests.kernels.core.test_apply_rotary_emb.get_test_cases",
+          "score": 0.07532,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:38-87",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.forward_native",
+          "score": 0.06845,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/interfaces.py:1658-1677",
+          "symbol": "vllm.model_executor.models.interfaces.SupportsXDRoPE.get_xdrope_input_positions",
+          "score": 0.06512,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:89-138",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.forward_cuda",
+          "score": 0.06471,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/rotary_embedding/xdrope.py"
+      ],
+      "retrieval_ms": 143.0
+    },
+    {
+      "question_id": "code_lookup-011",
+      "question": "What does the `update_state_after_alloc` method do and what is the purpose of the `tmp_disagg_tracker` dictionary?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-011",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.95
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.989712,
+          "20": 0.985678
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/ec_transfer/ec_connector/cpu/scheduler/__init__.py:67-82",
+          "symbol": "vllm.distributed.ec_transfer.ec_connector.cpu.scheduler.ECCPUScheduler.update_state_after_alloc",
+          "score": 0.11465,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/vllm_v1_adapter.py:1230-1293",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.lmcache_integration.vllm_v1_adapter.LMCacheConnectorV1Impl.update_state_after_alloc",
+          "score": 0.11174,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/disaggregated/kv_load_failure_recovery_offline/load_recovery_example_connector.py:119-131",
+          "symbol": "examples.disaggregated.kv_load_failure_recovery_offline.load_recovery_example_connector.LoadRecoveryExampleConnector.update_state_after_alloc",
+          "score": 0.10721,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/engine/test_abort_final_step.py:90-96",
+          "symbol": "tests.v1.engine.test_abort_final_step.DummyKVConnector.update_state_after_alloc",
+          "score": 0.09775,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/ec_transfer/ec_connector/cpu/connector.py:99-101",
+          "symbol": "vllm.distributed.ec_transfer.ec_connector.cpu.connector.ECCPUConnector.update_state_after_alloc",
+          "score": 0.08722,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/vllm_v1_adapter.py:154-212",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.lmcache_integration.vllm_v1_adapter.RequestTracker.from_new_request",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_handshake_pp_aggregation.py:146-149",
+          "symbol": "tests.v1.kv_connector.unit.test_handshake_pp_aggregation._LegacyConnector.update_state_after_alloc",
+          "score": 0.06748,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_connector.py:281-287",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.lmcache_connector.LMCacheConnectorV1.update_state_after_alloc",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/flexkv_connector.py:200-206",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.flexkv_connector.FlexKVConnectorV1.update_state_after_alloc",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_multi_connector.py:93-94",
+          "symbol": "tests.v1.kv_connector.unit.test_multi_connector.MockConnector.update_state_after_alloc",
+          "score": 0.05989,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/vllm_v1_adapter.py"
+      ],
+      "retrieval_ms": 130.8
+    },
+    {
+      "question_id": "code_lookup-015",
+      "question": "What does the function do when it needs to reduce the number of audio channels?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-015",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.5,
+          "20": 0.3
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.821314,
+          "10": 0.82497,
+          "20": 0.812492
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/multimodal/audio.py:55-69",
+          "symbol": "vllm.multimodal.audio.AudioSpec",
+          "score": 0.12937,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:91-166",
+          "symbol": "vllm.multimodal.audio.normalize_audio",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:46-51",
+          "symbol": "vllm.multimodal.audio.ChannelReduction",
+          "score": 0.11212,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:354-373",
+          "symbol": "tests.multimodal.test_audio.TestMultiModalDataParserChannelNormalization.test_parser_with_target_channels_2",
+          "score": 0.10417,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/multimodal/parse.py:601-621",
+          "symbol": "vllm.multimodal.parse.MultiModalDataParser.__init__",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:72-75",
+          "symbol": "vllm.multimodal.audio.AudioSpec.needs_normalization",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:77-83",
+          "symbol": "vllm.multimodal.audio.AudioSpec.__repr__",
+          "score": 0.06798,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:189-208",
+          "symbol": "tests.multimodal.test_audio.TestNormalizeAudio.test_time_channels_format_numpy",
+          "score": 0.06513,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/minicpmo.py:123-138",
+          "symbol": "vllm.model_executor.models.minicpmo.MiniCPMOAudioFeatureInputs",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:118-133",
+          "symbol": "tests.multimodal.test_audio.TestNormalizeAudio",
+          "score": 0.05861,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/multimodal/audio.py"
+      ],
+      "retrieval_ms": 34.8
+    },
+    {
+      "question_id": "code_lookup-029",
+      "question": "What does the function check for when comparing a value to a target string?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-029",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.3,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.919721,
+          "10": 0.890268,
+          "20": 0.890268
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/utils.py:105-123",
+          "symbol": "vllm.model_executor.layers.quantization.quark.utils._is_equal_or_regex_match",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/utils.py:155-172",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.utils._find_first_match",
+          "score": 0.11722,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/utils.py:175-193",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.utils._is_equal_or_regex_match",
+          "score": 0.10817,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/torch_utils.py:942-954",
+          "symbol": "vllm.utils.torch_utils.is_torch_equal",
+          "score": 0.08279,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/detokenizer.py:310-362",
+          "symbol": "vllm.v1.engine.detokenizer.check_stop_strings",
+          "score": 0.07177,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/torch_utils.py:914-927",
+          "symbol": "vllm.utils.torch_utils.is_torch_equal_or_newer",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/mkdocs/gen_files/generate_attention_backends.py:98-120",
+          "symbol": "docs.mkdocs.gen_files.generate_attention_backends._find_bool_class_var",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_xgrammar.py:229-273",
+          "symbol": "vllm.v1.structured_output.backend_xgrammar.has_xgrammar_unsupported_json_features",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/utils.py:97-102",
+          "symbol": "vllm.model_executor.layers.quantization.quark.utils.check_equal_or_regex_match",
+          "score": 0.05787,
+          "via": "hybrid"
+        },
+        {
+          "location": "tools/report_build_time_ninja.py:104-148",
+          "symbol": "tools.report_build_time_ninja.ReadTargets",
+          "score": 0.05667,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/quantization/quark/utils.py"
+      ],
+      "retrieval_ms": 31.7
+    },
+    {
+      "question_id": "configuration-031",
+      "question": "What does the data_parallel_master_ip configuration option control in the context of the DP group initialization?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-031",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.4,
+          "10": 0.2,
+          "20": 0.25
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.62784,
+          "10": 0.62784,
+          "20": 0.617234
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/usage/security.md:24-27",
+          "symbol": "docs/usage/security.md#Security > Inter-Node Communication > Configuration Options for Inter-Node Communications > 3. **Data Parallel Configuration:**",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/parallel.py:586-611",
+          "symbol": "vllm.config.parallel.ParallelConfig._pick_stateless_dp_port",
+          "score": 0.10256,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/engine/test_dp_placement_node_allowlist.py:14-24",
+          "symbol": "tests.v1.engine.test_dp_placement_node_allowlist._vllm_config",
+          "score": 0.08713,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/utils.py:517-732",
+          "symbol": "vllm.v1.engine.utils.CoreEngineActorManager.create_dp_placement_groups",
+          "score": 0.08519,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/parallel.py:621-662",
+          "symbol": "vllm.config.parallel.ParallelConfig.stateless_init_dp_group",
+          "score": 0.08056,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:1551-1583",
+          "symbol": "vllm.distributed.parallel_state._init_elastic_ep_world",
+          "score": 0.07164,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/sentinel/gpu_worker_sentinel.py:35-45",
+          "symbol": "vllm.v1.worker.sentinel.gpu_worker_sentinel.WorkerSentinel.__init__",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit c73b0d0db9",
+          "symbol": "commit:c73b0d0db9",
+          "score": 0.07135,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_mooncake_connector.py:526-542",
+          "symbol": "tests.v1.kv_connector.unit.test_mooncake_connector._make_bootstrap_vllm_config",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:1751-1970",
+          "symbol": "vllm.distributed.parallel_state.initialize_model_parallel",
+          "score": 0.05657,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/parallel.py"
+      ],
+      "retrieval_ms": 134.2
+    },
+    {
+      "question_id": "configuration-035",
+      "question": "What does the 'k_values' configuration option control in the benchmark setup?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-035",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.5,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.932778,
+          "10": 0.878574,
+          "20": 0.878574
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "benchmarks/benchmark_topk_topp.py:30-38",
+          "symbol": "benchmarks.benchmark_topk_topp.BenchmarkConfig",
+          "score": 0.12662,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/benchmarking/cli.md:690-717",
+          "symbol": "docs/benchmarking/cli.md#Benchmark CLI > Examples > \ud83d\ude80 Online Benchmark > Load Pattern Configuration > Load Pattern Control Parameters",
+          "score": 0.10428,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/benchmarking/cli.md:654-689",
+          "symbol": "docs/benchmarking/cli.md#Benchmark CLI > Examples > \ud83d\ude80 Online Benchmark > Load Pattern Configuration > Load Pattern Control Parameters",
+          "score": 0.10417,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/benchmarking/cli.md:650-652",
+          "symbol": "docs/benchmarking/cli.md#Benchmark CLI > Examples > \ud83d\ude80 Online Benchmark > Load Pattern Configuration",
+          "score": 0.09608,
+          "via": "hybrid"
+        },
+        {
+          "location": "benchmarks/benchmark_topk_topp.py:44-66",
+          "symbol": "benchmarks.benchmark_topk_topp.calculate_ops_pct",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "benchmarks/benchmark_topk_topp.py:160-276",
+          "symbol": "benchmarks.benchmark_topk_topp.create_benchmark_configs",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/benchmarking/sweeps.md:7-104",
+          "symbol": "docs/benchmarking/sweeps.md#Parameter Sweeps > Online Benchmark > Basic",
+          "score": 0.075,
+          "via": "hybrid"
+        },
+        {
+          "location": "benchmarks/benchmark_topk_topp.py:290-357",
+          "symbol": "benchmarks.benchmark_topk_topp.run_benchmark",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/disaggregated/disaggregated_encoder/README.md:7-13",
+          "symbol": "examples/disaggregated/disaggregated_encoder/README.md#Disaggregated Encoder > Files",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "benchmarks/benchmark_topk_topp.py:1-24",
+          "symbol": "benchmarks.benchmark_topk_topp",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "benchmarks/benchmark_topk_topp.py"
+      ],
+      "retrieval_ms": 77.9
+    },
+    {
+      "question_id": "configuration-036",
+      "question": "What does the SpeculativeConfig.hf_config_override method do in the context of applying overrides to a pretrained configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-036",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.3,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.96394,
+          "10": 0.920139,
+          "20": 0.864321
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/speculative.py:687-693",
+          "symbol": "vllm.config.speculative.SpeculativeConfig._apply_composed_hf_override",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit cbe9c40f99",
+          "symbol": "commit:cbe9c40f99",
+          "score": 0.11818,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/speculative.py:695-719",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.compose_draft_hf_overrides",
+          "score": 0.10817,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:48-62",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_callable_overrides_reach_the_draft_config",
+          "score": 0.10476,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:65-85",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_arch_mapping_applies_before_callable_override",
+          "score": 0.09454,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:42-45",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_none_overrides_fall_back_to_arch_mapping",
+          "score": 0.09167,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:32-39",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_dict_overrides_are_not_forwarded_to_draft",
+          "score": 0.08882,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:1-20",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/speculative.py:84-149",
+          "symbol": "vllm.config.speculative.SpeculativeConfig",
+          "score": 0.07571,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:88-113",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_inkling_override_exposes_only_first_mtp_depth",
+          "score": 0.07273,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 276.6
+    },
+    {
+      "question_id": "configuration-037",
+      "question": "What does the compute_hash method determine based on the configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-037",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.8
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.953786
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/compilation.py:218-225",
+          "symbol": "vllm.config.compilation.PassConfig.compute_hash",
+          "score": 0.1232,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:54-64",
+          "symbol": "vllm.compilation.compiler_interface.CompilerInterface.compute_hash",
+          "score": 0.12099,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/compilation.py:780-811",
+          "symbol": "vllm.config.compilation.CompilationConfig.compute_hash",
+          "score": 0.10667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/compilation/backends.py:146-147",
+          "symbol": "vllm.compilation.backends.CompilerManager.compute_hash",
+          "score": 0.10066,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/kernel.py:254-268",
+          "symbol": "vllm.config.kernel.KernelConfig.compute_hash",
+          "score": 0.09804,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/scheduler.py:193-219",
+          "symbol": "vllm.config.scheduler.SchedulerConfig.compute_hash",
+          "score": 0.09416,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/kernel.py:37-59",
+          "symbol": "vllm.config.kernel.IrOpPriorityConfig.compute_hash",
+          "score": 0.09121,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/vllm.py:436-542",
+          "symbol": "vllm.config.vllm.VllmConfig.compute_hash",
+          "score": 0.08263,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/attention.py:117-129",
+          "symbol": "vllm.config.attention.AttentionConfig.compute_hash",
+          "score": 0.07895,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:456-461",
+          "symbol": "vllm.compilation.compiler_interface.InductorAdaptor.compute_hash",
+          "score": 0.07795,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/load.py"
+      ],
+      "retrieval_ms": 32.8
+    },
+    {
+      "question_id": "configuration-038",
+      "question": "What does the parallel_config parameter control in the get_layers_start_end_indices method?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-038",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.3,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.983218,
+          "10": 0.983218,
+          "20": 0.983218
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/model.py:1523-1536",
+          "symbol": "vllm.config.model.ModelConfig.get_layers_start_end_indices",
+          "score": 0.15401,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/model.py:1538-1540",
+          "symbol": "vllm.config.model.ModelConfig.get_num_layers",
+          "score": 0.125,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/vocab_parallel_embedding.py:342-378",
+          "symbol": "vllm.model_executor.layers.vocab_parallel_embedding.VocabParallelEmbedding._get_indices",
+          "score": 0.08846,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/model.py:1542-1610",
+          "symbol": "vllm.config.model.ModelConfig.get_num_layers_by_block_type",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/numa_utils.py:372-404",
+          "symbol": "vllm.utils.numa_utils._get_enginecore_numa_nodes",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/models/deepseek_v32/nvidia/model.py:158-213",
+          "symbol": "vllm.models.deepseek_v32.nvidia.model.DeepseekV32Model.__init__",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/lora/test_layers.py:1080-1180",
+          "symbol": "tests.lora.test_layers.test_vocab_parallel_embedding_indices",
+          "score": 0.06602,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/models/deepseek_v4/nvidia/model.py:995-1105",
+          "symbol": "vllm.models.deepseek_v4.nvidia.model.DeepseekV4Model.__init__",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/vocab_parallel_embedding.py:1-12",
+          "symbol": "vllm.model_executor.layers.vocab_parallel_embedding",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/vocab_parallel_embedding.py:487-507",
+          "symbol": "vllm.model_executor.layers.vocab_parallel_embedding.VocabParallelEmbedding.forward",
+          "score": 0.05873,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/model.py"
+      ],
+      "retrieval_ms": 230.0
+    },
+    {
+      "question_id": "configuration-042",
+      "question": "What does the tensor_parallel_size parameter control in the draft worker configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-042",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.3,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.944848,
+          "10": 0.903358,
+          "20": 0.903358
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/speculative.py:1343-1362",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.create_draft_parallel_config",
+          "score": 0.11688,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/e2e/spec_decode/draft_model/test_draft_model.py:167-196",
+          "symbol": "tests.v1.e2e.spec_decode.draft_model.test_draft_model.test_draft_model_engine_args_tensor_parallelism",
+          "score": 0.10049,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/spec_decode/draft_model.py:63-78",
+          "symbol": "vllm.v1.spec_decode.draft_model.DraftModelProposer._raise_if_draft_tp_mismatch",
+          "score": 0.09615,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/speculative.py:1290-1323",
+          "symbol": "vllm.config.speculative.SpeculativeConfig._verify_and_get_draft_tp",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/configuration/conserving_memory.md:5-26",
+          "symbol": "docs/configuration/conserving_memory.md#Conserving Memory > Tensor Parallelism (TP)",
+          "score": 0.08391,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/configuration/optimization.md:86-102",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Parallelism Strategies > Tensor Parallelism (TP)",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/e2e/spec_decode/draft_model/test_draft_model.py:293-308",
+          "symbol": "tests.v1.e2e.spec_decode.draft_model.test_draft_model.test_draft_model_engine_args_rejects_invalid_tp_argname",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_model_runner.py:3584-3590",
+          "symbol": "vllm.v1.worker.gpu_model_runner.GPUModelRunner._pad_for_sequence_parallelism",
+          "score": 0.08125,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/speculative.py:1373-1430",
+          "symbol": "vllm.config.speculative.SpeculativeConfig._verify_args",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit ace9fda495",
+          "symbol": "commit:ace9fda495",
+          "score": 0.05417,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 128.0
+    },
+    {
+      "question_id": "tests-058",
+      "question": "Which tests exercise the behavior of binding a KV cache tensor to a layer in the model executor?",
+      "category": "tests",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "tests-058",
+        "category": "tests",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.5,
+          "5": 0.5,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.2,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.275412,
+          "10": 0.550823,
+          "20": 0.544672
+        },
+        "first_hit_rank": 1,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/worker/test_utils.py:60-92",
+          "symbol": "tests.v1.worker.test_utils.test_bind_kv_cache_draft_model",
+          "score": 0.0943,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/model_executor/test_routed_experts_capture.py:200-224",
+          "symbol": "tests.model_executor.test_routed_experts_capture.test_public_binding_only_visits_target_model",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/model_executor/test_utils.py:69-101",
+          "symbol": "tests.model_executor.test_utils.test_replace_parameter_preserves_weight_loader",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/model_executor/test_routed_experts_capture.py:1-23",
+          "symbol": "tests.model_executor.test_routed_experts_capture",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/model_executor/test_utils.py:141-161",
+          "symbol": "tests.model_executor.test_utils.test_replace_parameter_does_not_rebind_plain_function_attribute",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/attention/attention.py:148-215",
+          "symbol": "vllm.model_executor.layers.attention.attention._init_kv_cache_quant",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/attention_layer_base.py:26-32",
+          "symbol": "vllm.model_executor.layers.attention_layer_base.AttentionLayerBase.bind_kv_cache",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 79ca54d221",
+          "symbol": "commit:79ca54d221",
+          "score": 0.06014,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/quantization/test_per_token_kv_cache.py:487-518",
+          "symbol": "tests.quantization.test_per_token_kv_cache.test_process_weights_sets_placeholder_scales",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_kv_cache_utils.py:1701-1920",
+          "symbol": "tests.v1.core.test_kv_cache_utils.test_get_kv_cache_config_one_worker",
+          "score": 0.05659,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/worker/test_utils.py",
+        "vllm/model_executor/layers/attention_layer_base.py"
+      ],
+      "retrieval_ms": 37.7
+    },
+    {
+      "question_id": "change_impact-064",
+      "question": "What would be affected if the tp_ratio symbol changed in the describe method?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-064",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.25,
+          "10": 0.25,
+          "20": 0.25
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.4,
+          "20": 0.2
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.411744,
+          "10": 0.419996,
+          "20": 0.419996
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:528-545",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.tp_ratio",
+          "score": 0.10457,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:604-616",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.describe",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/mooncake/mooncake_connector.py:98-116",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.mooncake.mooncake_connector._get_tp_ratio",
+          "score": 0.08474,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:577-587",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.handshake_target_ranks",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 7c21548ce3",
+          "symbol": "commit:7c21548ce3",
+          "score": 0.07917,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:589-602",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.target_remote_ranks",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/ssm_conv_transfer_utils.py:71-103",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.ssm_conv_transfer_utils.MambaConvSplitInfo.remote_conv_offsets",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/mooncake/mooncake_connector.py:198-232",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.mooncake.mooncake_connector._compute_sender_transfer_plan",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 6fbfdd1831",
+          "symbol": "commit:6fbfdd1831",
+          "score": 0.05886,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/mooncake/mooncake_connector.py:251-302",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.mooncake.mooncake_connector._validate_asymmetric_region_lengths",
+          "score": 0.05882,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "benchmarks/benchmark_serving_structured_output.py",
+        "benchmarks/multi_turn/bench_dataset.py",
+        "benchmarks/multi_turn/benchmark_serving_multi_turn.py",
+        "vllm/distributed/kv_transfer/kv_connector/utils.py"
+      ],
+      "retrieval_ms": 77.2
+    },
+    {
+      "question_id": "change_impact-067",
+      "question": "What would be affected if the SecondaryTierManager's medium class variable changed?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-067",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.5,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.81338,
+          "10": 0.821776,
+          "20": 0.813282
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/kv_offload/tiering/example/manager.py:37-51",
+          "symbol": "vllm.v1.kv_offload.tiering.example.manager.ExampleSecondaryTierManager",
+          "score": 0.154,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/base.py:121-148",
+          "symbol": "vllm.v1.kv_offload.tiering.base.SecondaryTierManager",
+          "score": 0.14965,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/factory.py:16-27",
+          "symbol": "vllm.v1.kv_offload.tiering.factory.SecondaryTierFactory",
+          "score": 0.12598,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/obj/manager.py:94-114",
+          "symbol": "vllm.v1.kv_offload.tiering.obj.manager.ObjectStoreSecondaryTierManager",
+          "score": 0.11875,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/fs/manager.py:86-115",
+          "symbol": "vllm.v1.kv_offload.tiering.fs.manager.FileSystemTierManager",
+          "score": 0.08995,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/example/manager.py:1-10",
+          "symbol": "vllm.v1.kv_offload.tiering.example.manager",
+          "score": 0.08681,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 48fcfc926c",
+          "symbol": "commit:48fcfc926c",
+          "score": 0.0834,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_offload/tiering/test_tiering_offloading.py:1165-1191",
+          "symbol": "tests.v1.kv_offload.tiering.test_tiering_offloading.TestTieringOffloadingManager.test_tier_filter_skips_filtered_secondary",
+          "score": 0.08155,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 4bfa0f2b14",
+          "symbol": "commit:4bfa0f2b14",
+          "score": 0.08041,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/factory.py:57-100",
+          "symbol": "vllm.v1.kv_offload.tiering.factory.SecondaryTierFactory.get_tier_class",
+          "score": 0.07393,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/kv_offload/tiering/base.py",
+        "vllm/v1/kv_offload/tiering/example/manager.py",
+        "vllm/v1/kv_offload/tiering/fs/manager.py",
+        "vllm/v1/kv_offload/tiering/obj/manager.py"
+      ],
+      "retrieval_ms": 123.0
+    },
+    {
+      "question_id": "change_impact-068",
+      "question": "What would be affected if the StructuredOutputBackend class's compile_grammar method returned a different type than StructuredOutputGrammar?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-068",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.5,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.7,
+          "20": 0.65
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.563305,
+          "10": 0.952047,
+          "20": 0.935638
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:98-105",
+          "symbol": "vllm.v1.structured_output.backend_types.StructuredOutputBackend",
+          "score": 0.13692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:106-126",
+          "symbol": "vllm.v1.structured_output.backend_types.StructuredOutputBackend.compile_grammar",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_xgrammar.py:35-39",
+          "symbol": "vllm.v1.structured_output.backend_xgrammar.XgrammarBackend",
+          "score": 0.11264,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_guidance.py:87-91",
+          "symbol": "vllm.v1.structured_output.backend_guidance.GuidanceBackend",
+          "score": 0.09317,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_xgrammar.py:78-130",
+          "symbol": "vllm.v1.structured_output.backend_xgrammar.XgrammarBackend.compile_grammar",
+          "score": 0.08929,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_guidance.py:108-134",
+          "symbol": "vllm.v1.structured_output.backend_guidance.GuidanceBackend.compile_grammar",
+          "score": 0.08889,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:1-6",
+          "symbol": "vllm.v1.structured_output.backend_types",
+          "score": 0.0866,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_lm_format_enforcer.py:94-98",
+          "symbol": "vllm.v1.structured_output.backend_lm_format_enforcer.LMFormatEnforcerBackend",
+          "score": 0.08631,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_outlines.py:52-57",
+          "symbol": "vllm.v1.structured_output.backend_outlines.OutlinesBackend",
+          "score": 0.08452,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_xgrammar.py:1-8",
+          "symbol": "vllm.v1.structured_output.backend_xgrammar",
+          "score": 0.07941,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/structured_output/backend_guidance.py",
+        "vllm/v1/structured_output/backend_lm_format_enforcer.py",
+        "vllm/v1/structured_output/backend_outlines.py",
+        "vllm/v1/structured_output/backend_types.py"
+      ],
+      "retrieval_ms": 225.9
+    },
+    {
+      "question_id": "change_impact-073",
+      "question": "What would be affected if the all_gatherv method in the device communicator changed its behavior?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-073",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.75,
+          "10": 0.75,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.7,
+          "20": 0.65
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.894641,
+          "20": 0.971386
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/device_communicators/cuda_communicator.py:604-658",
+          "symbol": "vllm.distributed.device_communicators.cuda_communicator.CudaCommunicator.all_gatherv",
+          "score": 0.14738,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/xpu_communicator.py:111-163",
+          "symbol": "vllm.distributed.device_communicators.xpu_communicator.XpuCommunicator.all_gatherv",
+          "score": 0.1256,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/base_device_communicator.py:254-260",
+          "symbol": "vllm.distributed.device_communicators.base_device_communicator.DeviceCommunicatorBase.all_gatherv",
+          "score": 0.12531,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:712-720",
+          "symbol": "vllm.distributed.parallel_state.GroupCoordinator.all_gatherv",
+          "score": 0.1231,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/pynccl.py:222-255",
+          "symbol": "vllm.distributed.device_communicators.pynccl.PyNcclCommunicator.all_gatherv",
+          "score": 0.11752,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/xpu_communicator.py:1-4",
+          "symbol": "vllm.distributed.device_communicators.xpu_communicator",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/xpu_communicator.py:16-26",
+          "symbol": "vllm.distributed.device_communicators.xpu_communicator.XpuCommunicator",
+          "score": 0.06876,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/base_device_communicator.py:1-6",
+          "symbol": "vllm.distributed.device_communicators.base_device_communicator",
+          "score": 0.06556,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/pynccl.py:60-76",
+          "symbol": "vllm.distributed.device_communicators.pynccl.PyNcclCommunicator",
+          "score": 0.06389,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/cuda_communicator.py:29-52",
+          "symbol": "vllm.distributed.device_communicators.cuda_communicator.CudaCommunicator",
+          "score": 0.0609,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/device_communicators/all2all.py",
+        "vllm/distributed/device_communicators/base_device_communicator.py",
+        "vllm/distributed/device_communicators/cuda_communicator.py",
+        "vllm/distributed/parallel_state.py"
+      ],
+      "retrieval_ms": 91.6
+    },
+    {
+      "question_id": "change_impact-075",
+      "question": "What would be affected if the build_for_drafting method changed its behavior of using the build function with fast_build=True?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-075",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.25,
+          "10": 0.25,
+          "20": 0.75
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.4,
+          "20": 0.3
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.645571,
+          "10": 0.598885,
+          "20": 0.784283
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/attention/backend.py:768-788",
+          "symbol": "vllm.v1.attention.backend.AttentionMetadataBuilder.build_for_drafting",
+          "score": 0.11818,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backends/rocm_aiter_fa.py:669-707",
+          "symbol": "vllm.v1.attention.backends.rocm_aiter_fa.AiterFlashAttentionMetadataBuilder.build_for_drafting",
+          "score": 0.1023,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backends/rocm_aiter_fa.py:398-406",
+          "symbol": "vllm.v1.attention.backends.rocm_aiter_fa.AiterFlashAttentionMetadataBuilder",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backend.py:650-666",
+          "symbol": "vllm.v1.attention.backend.AttentionMetadataBuilder",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backend.py:721-739",
+          "symbol": "vllm.v1.attention.backend.AttentionMetadataBuilder.build",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/attention/backends/mla/flashmla_sparse.py:491-511",
+          "symbol": "vllm.v1.attention.backends.mla.flashmla_sparse.FlashMLASparseMetadataBuilder.build",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 6f91edf96d",
+          "symbol": "commit:6f91edf96d",
+          "score": 0.06084,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/models/deepseek_v4/amd/rocm.py:397-435",
+          "symbol": "vllm.models.deepseek_v4.amd.rocm.DeepseekV4ROCMAiterSparseSWAMetadataBuilder.build",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/models/deepseek_v4/amd/rocm.py:335-371",
+          "symbol": "vllm.models.deepseek_v4.amd.rocm.DeepseekV4ROCMAiterMLASparseMetadataBuilder.build",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit cbe9c40f99",
+          "symbol": "commit:cbe9c40f99",
+          "score": 0.055,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/attention/backend.py",
+        "vllm/v1/spec_decode/extract_hidden_states.py",
+        "vllm/v1/spec_decode/gemma4.py",
+        "vllm/v1/spec_decode/llm_base_proposer.py"
+      ],
+      "retrieval_ms": 147.0
+    },
+    {
+      "question_id": "change_impact-078",
+      "question": "What would be affected if the return value of the get_number_of_image_patches function changed?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-078",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.75,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.7,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.801579,
+          "10": 0.96889,
+          "20": 0.96889
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/transformers_utils/processors/pixtral.py:40-47",
+          "symbol": "vllm.transformers_utils.processors.pixtral.MistralCommonImageProcessor.get_number_of_image_patches",
+          "score": 0.14222,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/minimax_m3.py:307-326",
+          "symbol": "vllm.transformers_utils.processors.minimax_m3.MiniMaxM3VLImageProcessor.get_number_of_image_patches",
+          "score": 0.13939,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/cohere2_vision.py:169-187",
+          "symbol": "vllm.model_executor.models.cohere2_vision.Cohere2VisionProcessingInfo.get_num_patches",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/models/multimodal/processing/test_minimax_m3.py:74-84",
+          "symbol": "tests.models.multimodal.processing.test_minimax_m3.test_image_tokens_increase_with_max_long_side_pixel",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/interns1.py:195-211",
+          "symbol": "vllm.model_executor.models.interns1.InternS1ProcessingInfo.get_num_image_tokens",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/moondream3.py:523-525",
+          "symbol": "vllm.transformers_utils.processors.moondream3.Moondream3Processor.get_num_image_tokens",
+          "score": 0.07045,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/granite4_vision.py:45-78",
+          "symbol": "vllm.transformers_utils.processors.granite4_vision.Granite4VisionProcessor._get_number_of_features",
+          "score": 0.06656,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/idefics3.py:106-120",
+          "symbol": "vllm.model_executor.models.idefics3.Idefics3ProcessingInfo._get_image_feature_grid_size",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/pixtral.py:13-19",
+          "symbol": "vllm.transformers_utils.processors.pixtral.MistralCommonImageProcessor",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/pixtral.py:1-5",
+          "symbol": "vllm.transformers_utils.processors.pixtral",
+          "score": 0.05556,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/models/cohere2_vision.py",
+        "vllm/model_executor/models/idefics3.py",
+        "vllm/model_executor/models/interns1.py",
+        "vllm/transformers_utils/processors/pixtral.py"
+      ],
+      "retrieval_ms": 161.6
+    },
+    {
+      "question_id": "change_impact-080",
+      "question": "What would be affected if the is_per_tensor method returned a different value?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-080",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.25,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.4,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.553146,
+          "10": 0.657112,
+          "20": 0.66395
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/fused_moe/config.py:297-299",
+          "symbol": "vllm.model_executor.layers.fused_moe.config.FusedMoEQuantConfig.is_per_tensor",
+          "score": 0.1367,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/utils/quant_utils.py:115-116",
+          "symbol": "vllm.model_executor.layers.quantization.utils.quant_utils.GroupShape.is_per_tensor",
+          "score": 0.10833,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/pytorch.py:66-75",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.pytorch.PerTensorTorchFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/pytorch.py:124-138",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.pytorch.RowWiseTorchFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.07311,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/rocm.py:97-107",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.rocm.ROCmFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/flashinfer.py:55-65",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.flashinfer.FlashInferFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/pytorch.py:183-193",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.pytorch.ChannelWiseTorchFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/experts/fused_batched_moe.py:641-647",
+          "symbol": "vllm.model_executor.layers.fused_moe.experts.fused_batched_moe.NaiveBatchedExperts.dequant",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/models/transformers/multimodal.py:670-715",
+          "symbol": "vllm.model_executor.models.transformers.multimodal.MultiModalMixin._split_embeddings",
+          "score": 0.05263,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/utils/quant_utils.py:104-113",
+          "symbol": "vllm.model_executor.layers.quantization.utils.quant_utils.GroupShape",
+          "score": 0.05,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/compilation/passes/fusion/matcher_utils.py",
+        "vllm/model_executor/kernels/linear/scaled_mm/flashinfer.py",
+        "vllm/model_executor/kernels/linear/scaled_mm/humming.py",
+        "vllm/model_executor/layers/quantization/utils/quant_utils.py"
+      ],
+      "retrieval_ms": 111.0
+    },
+    {
+      "question_id": "historical-081",
+      "question": "Why was the MarlinFP8ScaledMMLinearKernel class introduced in the fp8 quantization module?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-081",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.25,
+          "10": 0.25,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.1
+        },
+        "mrr": 0.3333333333333333,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.19519,
+          "10": 0.19519,
+          "20": 0.257341
+        },
+        "first_hit_rank": 3,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:29-37",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin.MarlinFP8ScaledMMLinearKernel",
+          "score": 0.16364,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:1-4",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin",
+          "score": 0.11275,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit acce57d8dd",
+          "symbol": "commit:acce57d8dd",
+          "score": 0.10152,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/online/fp8.py:350-386",
+          "symbol": "vllm.model_executor.layers.quantization.online.fp8.Fp8PtpcOnlineLinearMethod.create_weights",
+          "score": 0.09444,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:62-68",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin.MarlinFP8ScaledMMLinearKernel.__init__",
+          "score": 0.08929,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:35-56",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin.MarlinFP8ScaledMMLinearKernel.is_supported",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit ea2ead1db3",
+          "symbol": "commit:ea2ead1db3",
+          "score": 0.06802,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:58-60",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin.MarlinFP8ScaledMMLinearKernel.can_implement",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/online/fp8.py:1-17",
+          "symbol": "vllm.model_executor.layers.quantization.online.fp8",
+          "score": 0.06071,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/online/fp8.py:176-204",
+          "symbol": "vllm.model_executor.layers.quantization.online.fp8.Fp8PerTensorOnlineLinearMethod.create_weights",
+          "score": 0.05897,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/quantization/test_fp8.py",
+        "vllm/model_executor/layers/quantization/fp8.py",
+        "vllm/model_executor/model_loader/base_loader.py"
+      ],
+      "retrieval_ms": 144.8
+    },
+    {
+      "question_id": "historical-082",
+      "question": "Why was the _make_cp_vllm_config function introduced in the code?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-082",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.3333333333333333,
+          "5": 0.6666666666666666,
+          "10": 0.6666666666666666,
+          "20": 0.6666666666666666
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.5,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.677955,
+          "10": 0.641179,
+          "20": 0.658586
+        },
+        "first_hit_rank": 1,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/simple_kv_offload/test_scheduler.py:1534-1543",
+          "symbol": "tests.v1.simple_kv_offload.test_scheduler._make_cp_vllm_config",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit c88d3d4775",
+          "symbol": "commit:c88d3d4775",
+          "score": 0.0951,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/simple_kv_offload/test_scheduler.py:1546-1582",
+          "symbol": "tests.v1.simple_kv_offload.test_scheduler._make_cp_scheduler",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/simple_kv_offload/test_scheduler.py:1-47",
+          "symbol": "tests.v1.simple_kv_offload.test_scheduler",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/simple_kv_offload/test_scheduler.py:1813-1833",
+          "symbol": "tests.v1.simple_kv_offload.test_scheduler.test_cp_lazy_target_blocks_scaling",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_model_arch_config.py:443-469",
+          "symbol": "tests.config.test_model_arch_config.test_draft_model_arch_config",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/cp_utils.py:64-78",
+          "symbol": "vllm.v1.worker.cp_utils.get_dcp_dummy_context_len",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/contributing/README.md:257-275",
+          "symbol": "docs/contributing/README.md#Contributing to vLLM > Pull Requests & Code Reviews > Adding or Changing Kernels",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 36fd7e8b86",
+          "symbol": "commit:36fd7e8b86",
+          "score": 0.05385,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/cp_utils.py:22-52",
+          "symbol": "vllm.v1.worker.cp_utils.check_attention_cp_compatibility",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/simple_kv_offload/test_scheduler.py",
+        "vllm/v1/simple_kv_offload/manager.py"
+      ],
+      "retrieval_ms": 32.8
+    },
+    {
+      "question_id": "historical-083",
+      "question": "Why was the condition in the CompressedTensorsKVCacheMethod class modified to use an 'or' operator instead of an 'and' operator?",
+      "category": "historical",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "historical-083",
+        "category": "historical",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.5,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.7,
+          "20": 0.65
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.81338,
+          "10": 0.82656,
+          "20": 0.84199
+        },
+        "first_hit_rank": 1,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1031-1037",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod",
+          "score": 0.11818,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit a46abb7ae6",
+          "symbol": "commit:a46abb7ae6",
+          "score": 0.08961,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 79ca54d221",
+          "symbol": "commit:79ca54d221",
+          "score": 0.08942,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1041-1081",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod.validate_kv_cache_scheme",
+          "score": 0.08391,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1037-1039",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod.__init__",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/attention/attention.py:148-215",
+          "symbol": "vllm.model_executor.layers.attention.attention._init_kv_cache_quant",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1191-1221",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod.process_weights_after_loading",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:229-265",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsConfig.from_config",
+          "score": 0.0578,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:153-213",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsConfig.get_quant_method",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit e68988a248",
+          "symbol": "commit:e68988a248",
+          "score": 0.05385,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py"
+      ],
+      "retrieval_ms": 154.8
+    },
+    {
+      "question_id": "historical-085",
+      "question": "Why was the `_mamba_block_aligned_split` function modified to ensure prefill chunks are block-aligned past the last_cache_position?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-085",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.3333333333333333,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.7,
+          "20": 0.6
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.850834,
+          "10": 0.863348,
+          "20": 0.867324
+        },
+        "first_hit_rank": 1,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/core/sched/scheduler.py:350-425",
+          "symbol": "vllm.v1.core.sched.scheduler.Scheduler._mamba_block_aligned_split",
+          "score": 0.14943,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit c56f169d9a",
+          "symbol": "commit:c56f169d9a",
+          "score": 0.13723,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:161-168",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split.test_fragmented_first_chunk_does_not_poison_mamba_prefix_cache",
+          "score": 0.12238,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:76-92",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split._split",
+          "score": 0.09921,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:171-178",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split.test_fragmented_tail_chunk_does_not_poison_mamba_prefix_cache",
+          "score": 0.09583,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:1-24",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split",
+          "score": 0.08846,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/prefix_cache/test_partial_prefix_cache_hits.py:71-114",
+          "symbol": "tests.v1.core.prefix_cache.test_partial_prefix_cache_hits.test_mamba_align_split_partial_tail_schedule",
+          "score": 0.0875,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/prefix_cache/test_partial_prefix_cache_hits.py:152-186",
+          "symbol": "tests.v1.core.prefix_cache.test_partial_prefix_cache_hits.test_mamba_align_split_when_block_exceeds_long_prefill_threshold",
+          "score": 0.08263,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:95-126",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split._run_chunked_prefill",
+          "score": 0.07392,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/prefix_cache/test_partial_prefix_cache_hits.py:117-149",
+          "symbol": "tests.v1.core.prefix_cache.test_partial_prefix_cache_hits.test_mamba_align_split_when_block_exceeds_scheduling_budget",
+          "score": 0.07168,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/core/test_mamba_align_chunk_split.py",
+        "vllm/v1/core/sched/scheduler.py"
+      ],
+      "retrieval_ms": 196.1
+    },
+    {
+      "question_id": "historical-087",
+      "question": "Why was the parameter `worker._physical_blocks_per_logical_kv_block` added to the `_logical_to_kernel_block_ids` method?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-087",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.5,
+          "10": 0.75,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.6,
+          "10": 0.7,
+          "20": 0.55
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.251453,
+          "10": 0.494516,
+          "20": 0.671506
+        },
+        "first_hit_rank": 2,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/mooncake/mooncake_connector.py:1398-1422",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.mooncake.mooncake_connector.MooncakeConnectorWorker._logical_to_kernel_block_ids",
+          "score": 0.15664,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:66-96",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_logical_to_kernel_block_ids_with_hma",
+          "score": 0.14048,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py:2367-2396",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.base_worker.NixlBaseConnectorWorker._logical_to_kernel_block_ids",
+          "score": 0.12928,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:1320-1433",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_logical_to_kernel_block_ids_with_remote_ratio",
+          "score": 0.10833,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_mooncake_connector_hybrid_mamba.py:330-339",
+          "symbol": "tests.v1.kv_connector.unit.test_mooncake_connector_hybrid_mamba.test_logical_to_kernel_block_ids_expands_fa_not_gdn",
+          "score": 0.09921,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit a317bc5739",
+          "symbol": "commit:a317bc5739",
+          "score": 0.0951,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py:558-575",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.base_worker.NixlBaseConnectorWorker._sync_block_size_with_kernel",
+          "score": 0.08204,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:143-257",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_read_blocks_for_req_expands_remote_ids",
+          "score": 0.08095,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/ssm_conv_transfer_utils.py:220-232",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.ssm_conv_transfer_utils.compute_physical_blocks_per_logical",
+          "score": 0.066,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py:1892-1916",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.base_worker.NixlBaseConnectorWorker.save_kv_to_host",
+          "score": 0.0625,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/kv_connector/unit/test_nixl_connector_hma.py",
+        "tests/v1/kv_connector/unit/test_nixl_push_connector.py",
+        "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py"
+      ],
+      "retrieval_ms": 298.2
+    },
+    {
+      "question_id": "historical-092",
+      "question": "Why was validation added to check that logprob_token_ids are within the vocabulary bounds?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-092",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.75,
+          "10": 0.75,
+          "20": 0.75
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.5,
+          "20": 0.3
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.573498,
+          "10": 0.588231,
+          "20": 0.59788
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/sample/test_logprobs.py:422-430",
+          "symbol": "tests.v1.sample.test_logprobs.test_logprob_token_ids_validate_vocab_bounds_invalid",
+          "score": 0.12937,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/sampling_params.py:789-849",
+          "symbol": "vllm.sampling_params.SamplingParams._validate_logprobs",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 53b88d1dfc",
+          "symbol": "commit:53b88d1dfc",
+          "score": 0.11234,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/sample/test_logprobs.py:412-419",
+          "symbol": "tests.v1.sample.test_logprobs.test_logprob_token_ids_validate_vocab_bounds_valid",
+          "score": 0.10417,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/openai/chat_completion/test_logprob_token_ids.py:1-24",
+          "symbol": "tests.entrypoints.openai.chat_completion.test_logprob_token_ids",
+          "score": 0.10234,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/logits_process.py:106-121",
+          "symbol": "vllm.logits_process.NoBadWordsLogitsProcessor._check_token_ids_bounds",
+          "score": 0.08545,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/openai/completion/protocol.py:466-524",
+          "symbol": "vllm.entrypoints.openai.completion.protocol.CompletionRequest.check_logprobs",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/openai/chat_completion/protocol.py:792-848",
+          "symbol": "vllm.entrypoints.openai.chat_completion.protocol.ChatCompletionRequest.check_logprobs",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/sampling_params.py:851-869",
+          "symbol": "vllm.sampling_params.SamplingParams._validate_logit_bias",
+          "score": 0.06351,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 8b8af2caf7",
+          "symbol": "commit:8b8af2caf7",
+          "score": 0.06014,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/sample/test_logprobs.py",
+        "vllm/sampling_params.py",
+        "vllm/v1/sample/thinking_budget_state.py"
+      ],
+      "retrieval_ms": 117.6
+    },
+    {
+      "question_id": "historical-095",
+      "question": "Why was the `VLLM_GPU_SYNC_CHECK` environment variable added to the codebase?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-095",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.25,
+          "10": 0.75,
+          "20": 0.75
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.3,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.39038,
+          "10": 0.625963,
+          "20": 0.646476
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "commit 4e07ca2c92",
+          "symbol": "commit:4e07ca2c92",
+          "score": 0.14481,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit fbff187d59",
+          "symbol": "commit:fbff187d59",
+          "score": 0.12083,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:50-56",
+          "symbol": "vllm.utils.gpu_sync_debug.enable_gpu_sync_check",
+          "score": 0.10417,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:217-234",
+          "symbol": "vllm.utils.gpu_sync_debug.with_gpu_sync_check",
+          "score": 0.09109,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 50ac1c7bab",
+          "symbol": "commit:50ac1c7bab",
+          "score": 0.08681,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/utils_/test_gpu_sync_debug.py:38-56",
+          "symbol": "tests.utils_.test_gpu_sync_debug.test_with_env_set",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:200-214",
+          "symbol": "vllm.utils.gpu_sync_debug.gpu_sync_allowed",
+          "score": 0.07248,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/dp_utils.py:18-33",
+          "symbol": "vllm.v1.worker.dp_utils._get_device_and_group",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:1-22",
+          "symbol": "vllm.utils.gpu_sync_debug",
+          "score": 0.06349,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/envs.py:2174-2178",
+          "symbol": "vllm.envs.is_set",
+          "score": 0.05882,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/utils_/test_gpu_sync_debug.py",
+        "vllm/compilation/compiler_interface.py",
+        "vllm/envs.py"
+      ],
+      "retrieval_ms": 116.9
+    },
+    {
+      "question_id": "documentation-102",
+      "question": "What is the process for a client to send audio input and receive transcription updates from the server?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-102",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.4,
+          "10": 0.2,
+          "20": 0.15
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.586883,
+          "10": 0.586883,
+          "20": 0.579429
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "examples/speech_to_text/realtime/openai_realtime_microphone_client.py:40-75",
+          "symbol": "examples.speech_to_text.realtime.openai_realtime_microphone_client.websocket_handler",
+          "score": 0.11275,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:193-199",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Client \u2192 Server Events",
+          "score": 0.10833,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:180-191",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Protocol Overview",
+          "score": 0.10428,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/speech_to_text/realtime/openai_realtime_client.py:48-107",
+          "symbol": "examples.speech_to_text.realtime.openai_realtime_client.realtime_transcribe",
+          "score": 0.09643,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/speech_to_text/realtime/test_realtime_validation.py:168-263",
+          "symbol": "tests.entrypoints.speech_to_text.realtime.test_realtime_validation.test_empty_commit_does_not_crash_engine",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/speech_to_text/realtime/api_router.py:17-39",
+          "symbol": "vllm.entrypoints.speech_to_text.realtime.api_router.realtime_endpoint",
+          "score": 0.08631,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/speech_to_text/openai/openai_transcription_client.py:1-22",
+          "symbol": "examples.speech_to_text.openai.openai_transcription_client",
+          "score": 0.07778,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/speech_to_text/realtime/test_realtime_validation.py:71-165",
+          "symbol": "tests.entrypoints.speech_to_text.realtime.test_realtime_validation.test_multi_chunk_streaming",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/speech_to_text/realtime/openai_realtime_client.py:1-24",
+          "symbol": "examples.speech_to_text.realtime.openai_realtime_client",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/speech_to_text/realtime/connection.py:34-52",
+          "symbol": "vllm.entrypoints.speech_to_text.realtime.connection.RealtimeConnection",
+          "score": 0.06667,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/serving/online_serving/speech_to_text.md"
+      ],
+      "retrieval_ms": 34.9
+    },
+    {
+      "question_id": "documentation-104",
+      "question": "What is the process for tuning the multi-lora shrink/expand Triton kernel in vLLM?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-104",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.4,
+          "20": 0.2
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:6-40",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning > Tuning Process",
+          "score": 0.13636,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:44-55",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning > Config Files > File Naming",
+          "score": 0.12179,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:1-4",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning",
+          "score": 0.11859,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:57-60",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning > Config Files > JSON Structure",
+          "score": 0.07386,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/__init__.py:1-2",
+          "symbol": "vllm.lora.ops.triton_ops",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/punica_wrapper/punica_xpu.py:1-8",
+          "symbol": "vllm.lora.punica_wrapper.punica_xpu",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_shrink_op.py:1-10",
+          "symbol": "vllm.lora.ops.triton_ops.lora_shrink_op",
+          "score": 0.05952,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/punica_wrapper/punica_gpu.py:1-8",
+          "symbol": "vllm.lora.punica_wrapper.punica_gpu",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/fused_moe_lora_op.py:1665-1699",
+          "symbol": "vllm.lora.ops.triton_ops.fused_moe_lora_op._fused_moe_lora_fake",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_kernel_metadata.py:170-205",
+          "symbol": "vllm.lora.ops.triton_ops.lora_kernel_metadata.LoRAKernelMeta.meta_args",
+          "score": 0.05299,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/lora/ops/triton_ops/README_TUNING.md"
+      ],
+      "retrieval_ms": 29.4
+    },
+    {
+      "question_id": "documentation-105",
+      "question": "What is the purpose of the `--kv-cache-dtype-skip-layers` flag in the vllm command-line interface?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-105",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/features/quantization/quantized_kvcache.md:43-69",
+          "symbol": "docs/features/quantization/quantized_kvcache.md#Quantized KV Cache > FP8 KV Cache Overview > Skipping Specific Layers from KV-Cache Quantization",
+          "score": 0.13258,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 67ff0ae30f",
+          "symbol": "commit:67ff0ae30f",
+          "score": 0.12424,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 0becb7486b",
+          "symbol": "commit:0becb7486b",
+          "score": 0.08646,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 8ce53a616e",
+          "symbol": "commit:8ce53a616e",
+          "score": 0.08319,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/quantization/test_fp8.py:460-480",
+          "symbol": "tests.quantization.test_fp8.test_kv_cache_dtype_skip_layers",
+          "score": 0.0799,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/benchmarks/sweep/param_sweep.py:105-120",
+          "symbol": "vllm.benchmarks.sweep.param_sweep.ParameterSweepItem._normalize_cmd_kv_pair",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:994-999",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheGroupSpec",
+          "score": 0.07248,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:1050-1059",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheConfig.needs_kv_cache_zeroing",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit d79855eaac",
+          "symbol": "commit:d79855eaac",
+          "score": 0.06538,
+          "via": "hybrid"
+        },
+        {
+          "location": ".github/PULL_REQUEST_TEMPLATE.md:8-20",
+          "symbol": ".github/PULL_REQUEST_TEMPLATE.md#Test Result",
+          "score": 0.0625,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/features/quantization/quantized_kvcache.md"
+      ],
+      "retrieval_ms": 144.0
+    },
+    {
+      "question_id": "documentation-107",
+      "question": "What is the main benefit of using Hugging Face Inference Endpoints with vLLM for deploying models?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-107",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.7,
+          "20": 0.35
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.797917,
+          "10": 0.816903,
+          "20": 0.816903
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:3-7",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Overview",
+          "score": 0.125,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:9-13",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Deployment Methods",
+          "score": 0.12424,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:157-163",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Advanced Deployment Details",
+          "score": 0.12238,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:15-60",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Deployment Methods > Method 1: Deploy from the Catalog",
+          "score": 0.10989,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:122-155",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Deployment Methods > Method 3: Manual Deployment (Advanced Models)",
+          "score": 0.10238,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:165-170",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Next Steps",
+          "score": 0.09007,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/triton.md:1-3",
+          "symbol": "docs/deployment/frameworks/triton.md#NVIDIA Triton",
+          "score": 0.07536,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/huggingface_integration.md:1-19",
+          "symbol": "docs/design/huggingface_integration.md#Integration with Hugging Face",
+          "score": 0.06778,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:62-120",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Deployment Methods > Method 2: Guided Deployment (Transformers Models)",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/huggingface_integration.md:20-31",
+          "symbol": "docs/design/huggingface_integration.md#Integration with Hugging Face",
+          "score": 0.05595,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/deployment/frameworks/hf_inference_endpoints.md"
+      ],
+      "retrieval_ms": 45.1
+    },
+    {
+      "question_id": "documentation-112",
+      "question": "What is the purpose of the 'kv_transfer_params' in the example code?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-112",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/kv_connector/unit/test_lmcache_integration.py:179-193",
+          "symbol": "tests.v1.kv_connector.unit.test_lmcache_integration.test_sampling_params_interface",
+          "score": 0.10227,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_offload/cpu/test_manager.py:28-32",
+          "symbol": "tests.v1.kv_offload.cpu.test_manager.make_req_context",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_bidirectional_kv_transfer.py:65-83",
+          "symbol": "tests.v1.kv_connector.unit.test_bidirectional_kv_transfer._make_p_node_turn2_request",
+          "score": 0.07919,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/scale_out/derender/test_derender.py:489-508",
+          "symbol": "tests.entrypoints.scale_out.derender.test_derender.test_derender_completion_kv_transfer_params_passthrough",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/scale_out/derender/test_derender.py:249-266",
+          "symbol": "tests.entrypoints.scale_out.derender.test_derender.test_derender_chat_kv_transfer_params_passthrough",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/nixl_connector_usage.md:139-204",
+          "symbol": "docs/features/nixl_connector_usage.md#NixlConnector Usage Guide > Bidirectional KV Transfer (Multi-turn) > How it works",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/cohere/test_serving_conversion.py:71-122",
+          "symbol": "tests.entrypoints.cohere.test_serving_conversion._build_chat_completion_response",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/vllm_v1_adapter.py:102-117",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.lmcache_integration.vllm_v1_adapter.extract_request_configs",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/metadata.py:270-285",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.metadata.NixlConnectorMetadata.add_new_req_to_recv",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/disagg_prefill.md:52-78",
+          "symbol": "docs/features/disagg_prefill.md#Disaggregated Prefilling (experimental) > Reusing prefill token ids on decode",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/serving/expert_parallel_deployment.md"
+      ],
+      "retrieval_ms": 121.9
+    },
+    {
+      "question_id": "documentation-117",
+      "question": "What is the purpose of the `max_model_len` parameter in the context extension feature?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-117",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.6,
+          "10": 0.4,
+          "20": 0.25
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.683494,
+          "10": 0.684955,
+          "20": 0.678165
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "examples/features/context_extension/context_extension_offline.py:15-32",
+          "symbol": "examples.features.context_extension.context_extension_offline.create_llm",
+          "score": 0.12424,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/context_extension.md:57-70",
+          "symbol": "docs/features/context_extension.md#Context Extension > OpenAI Online Method > Key Parameters",
+          "score": 0.12179,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/context_extension.md:21-29",
+          "symbol": "docs/features/context_extension.md#Context Extension > OpenAI Online Method > Usage",
+          "score": 0.11859,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/context_extension.md:1-5",
+          "symbol": "docs/features/context_extension.md#Context Extension",
+          "score": 0.11212,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/engine/test_short_mm_context.py:20-41",
+          "symbol": "tests.engine.test_short_mm_context.test_context_length_too_short",
+          "score": 0.08929,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/e2e/general/test_context_length.py:21-64",
+          "symbol": "tests.v1.e2e.general.test_context_length.test_decoder_max_context_length_validation",
+          "score": 0.08424,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_worker.py:638-648",
+          "symbol": "vllm.v1.worker.gpu_worker.Worker.update_max_model_len",
+          "score": 0.07647,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/e2e/general/test_context_length.py:67-105",
+          "symbol": "tests.v1.e2e.general.test_context_length.test_auto_fit_max_model_len_rejects_oversized_input",
+          "score": 0.07323,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/context_extension.md:7-9",
+          "symbol": "docs/features/context_extension.md#Context Extension > Offline Inference Example",
+          "score": 0.06971,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 2801b11156",
+          "symbol": "commit:2801b11156",
+          "score": 0.06754,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/features/context_extension.md"
+      ],
+      "retrieval_ms": 105.0
+    },
+    {
+      "question_id": "documentation-119",
+      "question": "What is the purpose of the `@register_op` decorator in the vllm codebase?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-119",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.15
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.63093,
+          "10": 0.63093,
+          "20": 0.586244
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/ir/op.py:106-152",
+          "symbol": "vllm.ir.op.register_op",
+          "score": 0.15258,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/vllm_ir.md:351-368",
+          "symbol": "docs/design/vllm_ir.md#vLLM IR: Functional Intermediate Representation > Core vLLM IR Concepts > Operation Declaration",
+          "score": 0.11688,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/ir/op.py:87-93",
+          "symbol": "vllm.ir.op.register_op",
+          "score": 0.10968,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/ir/op.py:82-83",
+          "symbol": "vllm.ir.op.register_op",
+          "score": 0.10924,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/custom_op.py:338-360",
+          "symbol": "vllm.model_executor.custom_op.CustomOp.register_oot",
+          "score": 0.10373,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/ir/op.py:97-103",
+          "symbol": "vllm.ir.op.register_op",
+          "score": 0.10079,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/custom_op.py:83-100",
+          "symbol": "vllm.model_executor.custom_op.PluggableLayer.register_oot",
+          "score": 0.08846,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/ir/test_op.py:699-726",
+          "symbol": "tests.ir.test_op.test_registration_stack_traces",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/ir/test_op.py:49-83",
+          "symbol": "tests.ir.test_op.test_registration_overloads",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/custom_op.py:314-327",
+          "symbol": "vllm.model_executor.custom_op.CustomOp.register",
+          "score": 0.07037,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/design/vllm_ir.md"
+      ],
+      "retrieval_ms": 137.9
+    },
+    {
+      "question_id": "debugging-120",
+      "question": "What could cause the error message 'The quantization method {model_config.quantization} is not supported for the current GPU'?",
+      "category": "debugging",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "debugging-120",
+        "category": "debugging",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.2,
+          "20": 0.1
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.913117,
+          "20": 0.913117
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/vllm.py:774-809",
+          "symbol": "vllm.config.vllm.VllmConfig._get_quantization_config",
+          "score": 0.13258,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/quark.py:275-289",
+          "symbol": "vllm.model_executor.layers.quantization.quark.quark.QuarkConfig._check_scheme_supported",
+          "score": 0.11264,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:375-401",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsConfig._check_scheme_supported",
+          "score": 0.09896,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/quantization/utils.py:12-27",
+          "symbol": "tests.quantization.utils.is_quant_method_supported",
+          "score": 0.08497,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/torchao.py:102-131",
+          "symbol": "vllm.model_executor.layers.quantization.torchao._check_torchao_fp8_activation_capability",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/schemes/quark_w4a8_mxfp4_fp8.py:41-78",
+          "symbol": "vllm.model_executor.layers.quantization.quark.schemes.quark_w4a8_mxfp4_fp8.QuarkW4A8_MXFP4_FP8.__init__",
+          "score": 0.07045,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/engine/arg_utils.py:2633-2701",
+          "symbol": "vllm.engine.arg_utils.EngineArgs._set_default_chunked_prefill_and_prefix_caching_args",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/vllm.py:1042-1261",
+          "symbol": "vllm.config.vllm.VllmConfig.__post_init__",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 0b37d8389f",
+          "symbol": "commit:0b37d8389f",
+          "score": 0.05818,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/moe_wna16.py:50-92",
+          "symbol": "vllm.model_executor.layers.quantization.moe_wna16.MoeWNA16Config.__init__",
+          "score": 0.05348,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/vllm.py"
+      ],
+      "retrieval_ms": 137.8
+    },
+    {
+      "question_id": "curated-arch-001",
+      "question": "How does a completion request travel from the OpenAI-compatible HTTP server to model execution on the GPU?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-001",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 6
+      },
+      "retrieved": [
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:139-144",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > API Reference > Completions API",
+          "score": 0.10795,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:37-75",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > Completions API",
+          "score": 0.1047,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/getting_started/quickstart.md:231-267",
+          "symbol": "docs/getting_started/quickstart.md#Quickstart > Online Serving > OpenAI Completions API with vLLM",
+          "score": 0.10084,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:95-135",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > Extra HTTP Headers",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:1-14",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server",
+          "score": 0.08667,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/rl/rlhf_http_ipc.py:1-39",
+          "symbol": "examples.rl.rlhf_http_ipc",
+          "score": 0.08608,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:77-93",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > Extra Parameters",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "examples/rl/rlhf_http_nccl.py:1-37",
+          "symbol": "examples.rl.rlhf_http_nccl",
+          "score": 0.0609,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/cli/openai.py:123-152",
+          "symbol": "vllm.entrypoints.cli.openai._add_query_options",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:146-162",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > API Reference > Completions API > Extra parameters",
+          "score": 0.05556,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/entrypoints/openai/api_server.py",
+        "vllm/v1/engine/async_llm.py",
+        "vllm/v1/engine/core.py",
+        "vllm/v1/executor/multiproc_executor.py",
+        "vllm/v1/worker/gpu_worker.py",
+        "vllm/v1/worker/gpu_model_runner.py"
+      ],
+      "retrieval_ms": 71.0
+    },
+    {
+      "question_id": "curated-arch-003",
+      "question": "How does the scheduler decide which requests are executed in the next engine step, and what limits how many tokens it can batch?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-003",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.05
+        },
+        "mrr": 0.05263157894736842,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.042905
+        },
+        "first_hit_rank": 19,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/engine/core.py:622-736",
+          "symbol": "vllm.v1.engine.core.EngineCore.step_with_batch_queue",
+          "score": 0.12032,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:53-83",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.schedule",
+          "score": 0.11688,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/core.py:1430-1447",
+          "symbol": "vllm.v1.engine.core.EngineCoreProc._process_engine_step",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/engine/test_engine_core.py:242-398",
+          "symbol": "tests.v1.engine.test_engine_core.test_engine_core_concurrent_batches",
+          "score": 0.0828,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/core.py:581-611",
+          "symbol": "vllm.v1.engine.core.EngineCore.step",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/logits_processors.md:475-515",
+          "symbol": "docs/design/logits_processors.md#Logits Processors > Logits Processor Programming Model > How the vLLM engine builds the `BatchUpdate` data structure > Example: Batch Update with More New Requests Than Finished Requests",
+          "score": 0.06876,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/custom_logitsprocs.md:46-88",
+          "symbol": "docs/features/custom_logitsprocs.md#Custom Logits Processors > Creating a Custom Logits Processor > How the vLLM engine builds the `BatchUpdate` data structure",
+          "score": 0.06762,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/engine/core.py:613-620",
+          "symbol": "vllm.v1.engine.core.EngineCore.post_step",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:509-569",
+          "symbol": "tests.v1.core.test_async_scheduler.test_kv_pressure_preemption_with_inflight_output",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/logits_processors.md:430-473",
+          "symbol": "docs/design/logits_processors.md#Logits Processors > Logits Processor Programming Model > How the vLLM engine builds the `BatchUpdate` data structure > Example: Batch Update with Fewer New Requests Than Finished Requests",
+          "score": 0.05625,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/core/sched/output.py",
+        "vllm/config/scheduler.py"
+      ],
+      "retrieval_ms": 41.7
+    },
+    {
+      "question_id": "curated-arch-007",
+      "question": "How does speculative decoding propose draft tokens and decide which of them to keep?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-007",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.3333333333333333,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.1,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.053602,
+          "20": 0.053602
+        },
+        "first_hit_rank": 10,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "docs/features/speculative_decoding/README.md:75-102",
+          "symbol": "docs/features/speculative_decoding/README.md#Speculative Decoding > `--speculative-config` schema > Common keys",
+          "score": 0.10324,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 567a78432d",
+          "symbol": "commit:567a78432d",
+          "score": 0.10202,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/speculative_decoding/mlp.md:1-3",
+          "symbol": "docs/features/speculative_decoding/mlp.md#MLP Draft Models",
+          "score": 0.10101,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/speculative_decoding/adaptive_verification.md:1-11",
+          "symbol": "docs/features/speculative_decoding/adaptive_verification.md#Adaptive Verification",
+          "score": 0.09454,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/spec_decode/suffix_decoding.py:35-99",
+          "symbol": "vllm.v1.spec_decode.suffix_decoding.SuffixDecodingProposer.propose",
+          "score": 0.0942,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/speculative_decoding/suffix.md:1-35",
+          "symbol": "docs/features/speculative_decoding/suffix.md#Suffix Decoding",
+          "score": 0.09048,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/speculative_decoding/README.md:148-173",
+          "symbol": "docs/features/speculative_decoding/README.md#Speculative Decoding > `--speculative-config` schema > Method-specific keys > Cross-Vocabulary Draft Models (TLI)",
+          "score": 0.08194,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/metrics.md:557-576",
+          "symbol": "docs/design/metrics.md#Metrics > Future Work > Speculative Decoding",
+          "score": 0.08167,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 529d010351",
+          "symbol": "commit:529d010351",
+          "score": 0.07771,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/spec_decode/ngram_proposer.py:135-170",
+          "symbol": "vllm.v1.spec_decode.ngram_proposer.NgramProposer.propose",
+          "score": 0.07143,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/spec_decode/ngram_proposer.py",
+        "vllm/v1/sample/rejection_sampler.py",
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 37.0
+    },
+    {
+      "question_id": "curated-debug-001",
+      "question": "A server dies with 'CUDA out of memory' shortly after startup while allocating the KV cache. Which components decide that allocation and what knobs control it?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-001",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.3333333333333333,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.16666666666666666,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.16716,
+          "20": 0.16716
+        },
+        "first_hit_rank": 6,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "commit dd0d74cd92",
+          "symbol": "commit:dd0d74cd92",
+          "score": 0.13082,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/features/sleep_mode.md:60-75",
+          "symbol": "docs/features/sleep_mode.md#Sleep Mode > Usage > Offline inference > RLHF weight updates",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/configuration/optimization.md:19-25",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Faster Startup",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/startup_plan.py:1-26",
+          "symbol": "vllm.v1.worker.startup_plan",
+          "score": 0.07949,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/config/test_config_utils.py:207-216",
+          "symbol": "tests.config.test_config_utils.test_cache_config_hash_ignores_kv_cache_sizing_knobs",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_worker.py:460-612",
+          "symbol": "vllm.v1.worker.gpu_worker.Worker.determine_available_memory",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit d6875196ad",
+          "symbol": "commit:d6875196ad",
+          "score": 0.05886,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/entrypoints/openai/dp_supervisor.py:357-368",
+          "symbol": "vllm.entrypoints.openai.dp_supervisor.DPSupervisor._wait_until_ready",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/p2p/control/zmq.py:166-206",
+          "symbol": "vllm.v1.kv_offload.tiering.p2p.control.zmq.ZmqTransport.poll",
+          "score": 0.05556,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/shm_object_storage.py:22-115",
+          "symbol": "vllm.distributed.device_communicators.shm_object_storage.SingleWriterShmRingBuffer",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/worker/gpu_worker.py",
+        "vllm/config/cache.py",
+        "vllm/v1/core/kv_cache_utils.py"
+      ],
+      "retrieval_ms": 32.8
+    },
+    {
+      "question_id": "curated-debug-002",
+      "question": "Throughput collapses under load and the logs mention preemption. What causes a running request to be preempted and what happens to its KV blocks?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-002",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.15
+        },
+        "mrr": 0.08333333333333333,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.165263
+        },
+        "first_hit_rank": 12,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/core/test_scheduler.py:2770-2866",
+          "symbol": "tests.v1.core.test_scheduler.test_priority_scheduling_preemption",
+          "score": 0.12424,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:5612-5687",
+          "symbol": "tests.v1.core.test_scheduler.test_async_load_reservation_prevents_wedge_e2e",
+          "score": 0.0942,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 437e0b7f8e",
+          "symbol": "commit:437e0b7f8e",
+          "score": 0.08891,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:660-714",
+          "symbol": "tests.v1.core.test_async_scheduler.test_kv_pressure_preempt_mid_handoff",
+          "score": 0.08867,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_worker_slot_overflow.py:128-176",
+          "symbol": "tests.v1.core.test_worker_slot_overflow.test_reset_prefix_cache_priority_does_not_over_admit_worker_slot",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/offloading_connector/test_scheduler.py:645-714",
+          "symbol": "tests.v1.kv_connector.unit.offloading_connector.test_scheduler.test_request_preemption",
+          "score": 0.07571,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 4085ff7cb4",
+          "symbol": "commit:4085ff7cb4",
+          "score": 0.07304,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit b69816043a",
+          "symbol": "commit:b69816043a",
+          "score": 0.06732,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/configuration/optimization.md:27-47",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Preemption",
+          "score": 0.06719,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:1109-1142",
+          "symbol": "tests.v1.core.test_scheduler.test_preemption_re_records_prefix_cache_query",
+          "score": 0.06667,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/core/kv_cache_manager.py"
+      ],
+      "retrieval_ms": 35.4
+    },
+    {
+      "question_id": "curated-debug-005",
+      "question": "A multi-GPU run hangs at startup before any request is served. Which parts of the codebase set up the distributed process group and worker processes?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-005",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.3333333333333333,
+          "10": 0.3333333333333333,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.1
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.116995,
+          "10": 0.116995,
+          "20": 0.154748
+        },
+        "first_hit_rank": 2,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "tests/distributed/test_utils.py:115-141",
+          "symbol": "tests.distributed.test_utils.test_stateless_process_group",
+          "score": 0.11905,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/executor/multiproc_executor.py:1076-1105",
+          "symbol": "vllm.v1.executor.multiproc_executor.set_multiprocessing_worker_envs",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/arch_overview.md:101-107",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > GPU Worker Processes",
+          "score": 0.08712,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/worker/test_worker_memory_snapshot.py:119-196",
+          "symbol": "tests.v1.worker.test_worker_memory_snapshot.test_init_distributed_is_called_before_memory_snapshot",
+          "score": 0.08173,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/v1/worker/sentinel/gpu_worker_sentinel.py:1-5",
+          "symbol": "vllm.v1.worker.sentinel.gpu_worker_sentinel",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/distributed/test_multiproc_executor.py:174-203",
+          "symbol": "tests.distributed.test_multiproc_executor.test_multiproc_executor_worker_monitor",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/entrypoints/unit_tests/test_api_server_process_manager.py:92-131",
+          "symbol": "tests.entrypoints.unit_tests.test_api_server_process_manager.test_api_server_process_manager_init",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit 60d443f738",
+          "symbol": "commit:60d443f738",
+          "score": 0.06429,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/serving/expert_parallel_deployment.md:127-134",
+          "symbol": "docs/serving/expert_parallel_deployment.md#Expert Parallel Deployment > Multi-Node Deployment > Network Configuration",
+          "score": 0.06207,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/distributed/test_split_group.py:36-57",
+          "symbol": "tests.distributed.test_split_group.distributed_run",
+          "score": 0.05882,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/parallel_state.py",
+        "vllm/v1/executor/multiproc_executor.py",
+        "vllm/config/parallel.py"
+      ],
+      "retrieval_ms": 36.8
+    },
+    {
+      "question_id": "curated-impact-002",
+      "question": "What depends on the scheduler output structure, so that adding a field to it would require changes elsewhere?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-impact-002",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "docs/contributing/README.md:221-242",
+          "symbol": "docs/contributing/README.md#Contributing to vLLM > Pull Requests & Code Reviews > PR Title and Classification",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/contributing/README.md:257-275",
+          "symbol": "docs/contributing/README.md#Contributing to vLLM > Pull Requests & Code Reviews > Adding or Changing Kernels",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/governance/process.md:129-131",
+          "symbol": "docs/governance/process.md#Governance Process > Process > Decision Making",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/scheduler.py:193-219",
+          "symbol": "vllm.config.scheduler.SchedulerConfig.compute_hash",
+          "score": 0.0767,
+          "via": "hybrid"
+        },
+        {
+          "location": "vllm/config/scheduler.py:25-55",
+          "symbol": "vllm.config.scheduler.SchedulerConfig",
+          "score": 0.07487,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/logits_processors.md:281-292",
+          "symbol": "docs/design/logits_processors.md#Logits Processors > Logits Processor Programming Model",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/usage/security.md:392-394",
+          "symbol": "docs/usage/security.md#Security > FIPS Compatibility",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/logits_processors.md:23-86",
+          "symbol": "docs/design/logits_processors.md#Logits Processors > Logits Processors in the vLLM engine > Updating Logits Processor Internal State",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_lmcache_integration.py:217-229",
+          "symbol": "tests.v1.kv_connector.unit.test_lmcache_integration.test_scheduler_output_interface",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/worker/test_gpu_model_runner.py:617-645",
+          "symbol": "tests.v1.worker.test_gpu_model_runner.test_update_states_no_changes",
+          "score": 0.05556,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/output.py",
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/worker/gpu_model_runner.py",
+        "vllm/v1/engine/core.py"
+      ],
+      "retrieval_ms": 37.4
+    },
+    {
+      "question_id": "curated-tests-002",
+      "question": "How is scheduler behaviour tested without running a real model?",
+      "category": "tests",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-tests-002",
+        "category": "tests",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.5,
+          "5": 0.5,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.6,
+          "20": 0.45
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.423245,
+          "10": 0.518135,
+          "20": 0.566984
+        },
+        "first_hit_rank": 1,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/core/test_scheduler.py:2869-2919",
+          "symbol": "tests.v1.core.test_scheduler.test_priority_scheduling_no_preemption_when_space_available",
+          "score": 0.09091,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_deferred_block_free.py:381-415",
+          "symbol": "tests.v1.core.test_deferred_block_free.test_non_async_abort_defers_via_last_sched_seq",
+          "score": 0.08333,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:1588-1622",
+          "symbol": "tests.v1.core.test_scheduler.test_spec_decode_padding_first_decode_step",
+          "score": 0.07692,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:340-385",
+          "symbol": "tests.v1.core.test_scheduler.test_schedule_prefills_gating",
+          "score": 0.07222,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_deferred_block_free.py:256-304",
+          "symbol": "tests.v1.core.test_deferred_block_free.test_fence_held_across_multiple_inflight_steps",
+          "score": 0.07143,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:2372-2380",
+          "symbol": "tests.v1.core.test_scheduler.make_output",
+          "score": 0.06667,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:1231-1259",
+          "symbol": "tests.v1.core.test_scheduler.test_scheduler_reset_prefix_cache",
+          "score": 0.0625,
+          "via": "hybrid"
+        },
+        {
+          "location": "commit d8d95998dc",
+          "symbol": "commit:d8d95998dc",
+          "score": 0.06014,
+          "via": "hybrid"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:2770-2866",
+          "symbol": "tests.v1.core.test_scheduler.test_priority_scheduling_preemption",
+          "score": 0.05882,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/endpoint_plugins.md:52-77",
+          "symbol": "docs/design/endpoint_plugins.md#Endpoint Plugins > The two phase lifecycle > Reaching the engine from a route handler",
+          "score": 0.05263,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/core/test_scheduler.py",
+        "vllm/v1/core/sched/scheduler.py"
+      ],
+      "retrieval_ms": 33.2
+    },
+    {
+      "question_id": "curated-doc-001",
+      "question": "What does the design documentation say about how the hybrid KV cache manager handles models that mix attention types?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "curated-doc-001",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.8
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:6-21",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > What is a hybrid model?",
+          "score": 0.125,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:174-189",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 1: sliding window attention only models",
+          "score": 0.12032,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:210-226",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Implementation > Overview",
+          "score": 0.10795,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:45-55",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > High level idea",
+          "score": 0.10714,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:191-202",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 2: sliding window attention + full attention models",
+          "score": 0.1047,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:166-172",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 0: full attention only models",
+          "score": 0.09298,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:57-69",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > Case 1: toy model",
+          "score": 0.09109,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:204-206",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 3: mamba models",
+          "score": 0.09007,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:228-245",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Implementation > Memory Layout",
+          "score": 0.08095,
+          "via": "hybrid"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:111-124",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > Case 3: same `kv_hidden_size` and no regular pattern",
+          "score": 0.08056,
+          "via": "hybrid"
+        }
+      ],
+      "gold_files": [
+        "docs/design/hybrid_kv_cache_manager.md"
+      ],
+      "retrieval_ms": 33.6
+    }
+  ],
+  "failures": [],
+  "started_at": "2026-08-12T23:18:41",
+  "duration_s": 9.8
+}

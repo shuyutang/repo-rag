@@ -1,0 +1,4714 @@
+{
+  "spec": {
+    "name": "dense-minilm",
+    "retriever": "dense",
+    "reranker": false,
+    "agentic": false,
+    "evaluate_generation": false,
+    "limit": null,
+    "sample": null,
+    "sample_seed": 0,
+    "split": "dev",
+    "k": 20
+  },
+  "fingerprint": {
+    "repository": "vllm",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker": null,
+    "llm": "openai:Qwen/Qwen3-4B",
+    "judge_llm": null,
+    "chunking": {
+      "include_globs": [
+        "**/*.py",
+        "**/*.md",
+        "**/*.rst"
+      ],
+      "exclude_dirs": [
+        ".git",
+        "node_modules",
+        "__pycache__",
+        ".venv",
+        "build",
+        "dist",
+        "third_party",
+        ".buildkite"
+      ],
+      "max_file_bytes": 400000,
+      "max_chunk_lines": 220,
+      "chunk_overlap_lines": 20,
+      "min_chunk_chars": 60,
+      "index_module_chunks": true,
+      "doc_max_chars": 4000,
+      "doc_min_chars": 120,
+      "git_max_commits": 3000,
+      "git_max_diff_chars": 4000,
+      "git_include_merges": false
+    },
+    "retrieval": {
+      "dense_k": 40,
+      "bm25_k": 40,
+      "symbol_k": 10,
+      "git_k": 10,
+      "fusion": "rrf",
+      "rrf_k": 10,
+      "fusion_weights": {
+        "dense": 0.5,
+        "bm25": 1.0,
+        "symbol": 0.3,
+        "git": 0.2
+      },
+      "candidate_k": 50,
+      "final_k": 10
+    },
+    "generation": {
+      "context_token_budget": 6000,
+      "max_chunk_tokens": 900,
+      "per_file_chunk_cap": 3,
+      "artifact_quota": {
+        "source": 0.6,
+        "test": 0.15,
+        "doc": 0.15,
+        "commit": 0.1
+      },
+      "include_related_symbols": true
+    },
+    "agent": {
+      "enabled": false,
+      "max_iterations": 4,
+      "per_step_k": 8,
+      "max_evidence": 16,
+      "planner_max_subqueries": 3
+    },
+    "seed": 0,
+    "repository_commit": "63344913a66c76a13b4b7f20735c6b2963cfb997",
+    "n_chunks": 60272,
+    "dataset": "evaluation_data/benchmark.jsonl",
+    "dataset_version": "f7cc8afc2d89",
+    "n_questions": 158,
+    "spec": {
+      "name": "dense-minilm",
+      "retriever": "dense",
+      "reranker": false,
+      "agentic": false,
+      "evaluate_generation": false,
+      "limit": null,
+      "sample": null,
+      "sample_seed": 0,
+      "split": "dev",
+      "k": 20
+    },
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-35-generic-x86_64-with-glibc2.39"
+  },
+  "retrieval": {
+    "n_questions": 45,
+    "recall@1": 0.287,
+    "precision@1": 0.4222,
+    "ndcg@1": 0.3481,
+    "recall@5": 0.4204,
+    "precision@5": 0.3022,
+    "ndcg@5": 0.3796,
+    "recall@10": 0.5481,
+    "precision@10": 0.24,
+    "ndcg@10": 0.4401,
+    "recall@20": 0.6296,
+    "precision@20": 0.1767,
+    "ndcg@20": 0.4433,
+    "mrr": 0.5281,
+    "hit_rate@10": 0.7778
+  },
+  "retrieval_by_category": {
+    "architecture": {
+      "n_questions": 3,
+      "recall@5": 0.0,
+      "precision@5": 0.0,
+      "ndcg@5": 0.0,
+      "recall@10": 0.1111,
+      "precision@10": 0.0333,
+      "ndcg@10": 0.022,
+      "mrr": 0.0556,
+      "hit_rate@10": 0.3333
+    },
+    "change_impact": {
+      "n_questions": 8,
+      "recall@5": 0.25,
+      "precision@5": 0.25,
+      "ndcg@5": 0.184,
+      "recall@10": 0.375,
+      "precision@10": 0.225,
+      "ndcg@10": 0.2443,
+      "mrr": 0.4938,
+      "hit_rate@10": 0.75
+    },
+    "code_lookup": {
+      "n_questions": 7,
+      "recall@5": 0.5714,
+      "precision@5": 0.4,
+      "ndcg@5": 0.6489,
+      "recall@10": 0.5714,
+      "precision@10": 0.3,
+      "ndcg@10": 0.6806,
+      "mrr": 0.699,
+      "hit_rate@10": 1.0
+    },
+    "configuration": {
+      "n_questions": 6,
+      "recall@5": 0.5,
+      "precision@5": 0.3,
+      "ndcg@5": 0.625,
+      "recall@10": 0.6667,
+      "precision@10": 0.2167,
+      "ndcg@10": 0.6866,
+      "mrr": 0.6875,
+      "hit_rate@10": 0.8333
+    },
+    "debugging": {
+      "n_questions": 4,
+      "recall@5": 0.0,
+      "precision@5": 0.0,
+      "ndcg@5": 0.0,
+      "recall@10": 0.25,
+      "precision@10": 0.025,
+      "ndcg@10": 0.0753,
+      "mrr": 0.0534,
+      "hit_rate@10": 0.25
+    },
+    "documentation": {
+      "n_questions": 8,
+      "recall@5": 0.875,
+      "precision@5": 0.525,
+      "ndcg@5": 0.6818,
+      "recall@10": 0.875,
+      "precision@10": 0.325,
+      "ndcg@10": 0.6799,
+      "mrr": 0.7188,
+      "hit_rate@10": 0.875
+    },
+    "historical": {
+      "n_questions": 7,
+      "recall@5": 0.3452,
+      "precision@5": 0.3714,
+      "ndcg@5": 0.1783,
+      "recall@10": 0.5476,
+      "precision@10": 0.3286,
+      "ndcg@10": 0.3013,
+      "mrr": 0.5,
+      "hit_rate@10": 0.8571
+    },
+    "tests": {
+      "n_questions": 2,
+      "recall@5": 0.25,
+      "precision@5": 0.1,
+      "ndcg@5": 0.3066,
+      "recall@10": 0.75,
+      "precision@10": 0.25,
+      "ndcg@10": 0.5261,
+      "mrr": 0.5833,
+      "hit_rate@10": 1.0
+    }
+  },
+  "retrieval_by_difficulty": {
+    "multi_hop": {
+      "n_questions": 22,
+      "recall@5": 0.2008,
+      "precision@5": 0.2091,
+      "ndcg@5": 0.1461,
+      "recall@10": 0.3485,
+      "precision@10": 0.2045,
+      "ndcg@10": 0.2183,
+      "mrr": 0.3925,
+      "hit_rate@10": 0.6364
+    },
+    "single_hop": {
+      "n_questions": 23,
+      "recall@5": 0.6304,
+      "precision@5": 0.3913,
+      "ndcg@5": 0.6029,
+      "recall@10": 0.7391,
+      "precision@10": 0.2739,
+      "ndcg@10": 0.6523,
+      "mrr": 0.6578,
+      "hit_rate@10": 0.913
+    }
+  },
+  "generation": {},
+  "latency": {
+    "retrieval_ms": {
+      "mean": 19.8,
+      "p50": 18.8,
+      "p95": 23.9,
+      "max": 23.9
+    },
+    "total_ms": {
+      "mean": 19.8,
+      "p50": 18.8,
+      "p95": 23.9,
+      "max": 23.9
+    }
+  },
+  "per_question": [
+    {
+      "question_id": "code_lookup-001",
+      "question": "What does the `init_weight_transfer_engine` method do in the `vllm` codebase?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-001",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.4,
+          "10": 0.4,
+          "20": 0.35
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.530721,
+          "10": 0.594659,
+          "20": 0.698068
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/weight_transfer/base.py:289-298",
+          "symbol": "vllm.distributed.weight_transfer.base.WeightTransferEngine.init_transfer_engine",
+          "score": 0.74871,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/base.py:373-373",
+          "symbol": "vllm.distributed.weight_transfer.base.VLLMWeightSyncClient.init_weight_transfer_engine",
+          "score": 0.72667,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/engine/protocol.py:253-257",
+          "symbol": "vllm.engine.protocol.EngineClient.init_weight_transfer_engine",
+          "score": 0.6588,
+          "via": "dense"
+        },
+        {
+          "location": "docs/training/weight_transfer/README.md:161-166",
+          "symbol": "docs/training/weight_transfer/README.md#Weight Transfer > Extending the System",
+          "score": 0.65608,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/base.py:300-309",
+          "symbol": "vllm.distributed.weight_transfer.base.WeightTransferEngine.start_weight_update",
+          "score": 0.65462,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/weight_transfer.py:1-4",
+          "symbol": "vllm.config.weight_transfer",
+          "score": 0.65009,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/clients.py:69-70",
+          "symbol": "vllm.distributed.weight_transfer.clients.HTTPVLLMWeightSyncClient.init_weight_transfer_engine",
+          "score": 0.64588,
+          "via": "dense"
+        },
+        {
+          "location": "docs/training/weight_transfer/base.md:477-496",
+          "symbol": "docs/training/weight_transfer/base.md#Base Classes and Custom Engines > Inference Side > Implementing a Custom Engine > 3. Register with the Factory",
+          "score": 0.64011,
+          "via": "dense"
+        },
+        {
+          "location": "docs/training/weight_transfer/base.md:498-515",
+          "symbol": "docs/training/weight_transfer/base.md#Base Classes and Custom Engines > Inference Side > WeightTransferEngineFactory",
+          "score": 0.63586,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_worker.py:1232-1244",
+          "symbol": "vllm.v1.worker.gpu_worker.Worker.init_weight_transfer_engine",
+          "score": 0.63485,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/engine/async_llm.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "code_lookup-002",
+      "question": "What is the purpose of the _pad1d function and how does it handle reflect padding on small inputs?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-002",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/models/whisper_causal.py:52-76",
+          "symbol": "vllm.model_executor.models.whisper_causal._pad1d",
+          "score": 0.46846,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/utils/marlin_utils_fp8.py:222-231",
+          "symbol": "vllm.model_executor.layers.quantization.utils.marlin_utils_fp8._moe_pad_shard_rows",
+          "score": 0.40787,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/base.py:298-307",
+          "symbol": "vllm.model_executor.kernels.linear.base.MMLinearKernel.get_output_padding",
+          "score": 0.38535,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/moe/test_moe_weight_loading_padded.py:249-255",
+          "symbol": "tests.kernels.moe.test_moe_weight_loading_padded.TestWeightLoadingWithPaddedHiddenSize",
+          "score": 0.38519,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_rocm_skinny_gemms.py:159-163",
+          "symbol": "tests.kernels.quantization.test_rocm_skinny_gemms.pad_fp8",
+          "score": 0.36868,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/torch_utils.py:736-758",
+          "symbol": "vllm.utils.torch_utils.make_tensor_with_pad",
+          "score": 0.36742,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/attention/test_rocm_aiter_mla_head_padding.py:54-58",
+          "symbol": "tests.kernels.attention.test_rocm_aiter_mla_head_padding._expected_tile_pad",
+          "score": 0.36605,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/ScaledMMLinearKernel.py:186-187",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.ScaledMMLinearKernel.FP8ScaledMMLinearKernel.get_output_padding",
+          "score": 0.36588,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_marlin_tile_padding.py:521-525",
+          "symbol": "tests.kernels.quantization.test_marlin_tile_padding._FakeLinear.__init__",
+          "score": 0.36158,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/attention/backends/flex_attention.py:69-83",
+          "symbol": "vllm.v1.attention.backends.flex_attention.pad_to_multiple",
+          "score": 0.35645,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/models/whisper_causal.py"
+      ],
+      "retrieval_ms": 14.8
+    },
+    {
+      "question_id": "code_lookup-006",
+      "question": "Where is `apply` implemented and what does it do?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-006",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.14285714285714285,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.204382,
+          "20": 0.204382
+        },
+        "first_hit_rank": 7,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/platforms/interface.py:545-559",
+          "symbol": "vllm.platforms.interface.Platform.pre_register_and_update",
+          "score": 0.36856,
+          "via": "dense"
+        },
+        {
+          "location": "docs/contributing/editing-agent-instructions.md:55-62",
+          "symbol": "docs/contributing/editing-agent-instructions.md#Editing Agent Instructions > Anti-Patterns",
+          "score": 0.35863,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/fused_moe_modular_kernel.md:70-80",
+          "symbol": "docs/design/fused_moe_modular_kernel.md#Fused MoE Modular Kernel > ModularKernel Components > FusedMoEExpertsModular > apply()",
+          "score": 0.33764,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/custom_op.md:1-5",
+          "symbol": "docs/design/custom_op.md#CustomOp",
+          "score": 0.31638,
+          "via": "dense"
+        },
+        {
+          "location": "docs/contributing/profiling.md:251-253",
+          "symbol": "docs/contributing/profiling.md#Profiling vLLM > Continuous Profiling > How It Works",
+          "score": 0.28644,
+          "via": "dense"
+        },
+        {
+          "location": "docs/models/pooling_models/classify.md:24-26",
+          "symbol": "docs/models/pooling_models/classify.md#Classification Usages > Typical Use Cases > Classification",
+          "score": 0.28641,
+          "via": "dense"
+        },
+        {
+          "location": "tests/model_executor/model_loader/test_reload.py:679-680",
+          "symbol": "tests.model_executor.model_loader.test_reload._RecordingQuantMethod.apply",
+          "score": 0.281,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/registry.py:8-26",
+          "symbol": "vllm.utils.registry.ExtensionManager",
+          "score": 0.28015,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/index_cache.md:45-49",
+          "symbol": "docs/features/index_cache.md#IndexCache > How It Works",
+          "score": 0.27861,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/offline_inference.md:71-74",
+          "symbol": "docs/serving/offline_inference.md#Offline Inference > Additional APIs",
+          "score": 0.2765,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/fused_moe/experts/fused_humming_moe.py"
+      ],
+      "retrieval_ms": 14.9
+    },
+    {
+      "question_id": "code_lookup-007",
+      "question": "What is the purpose of the XDRotaryEmbedding class and what does the get_next_input_positions method do?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-007",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.4,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.727272,
+          "10": 0.727272,
+          "20": 0.725027
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:140-146",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.get_next_input_positions",
+          "score": 0.53509,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/mrope.py:423-436",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.mrope.MRotaryEmbedding.get_next_input_positions",
+          "score": 0.48335,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:10-18",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding",
+          "score": 0.47815,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:148-160",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope.XDRotaryEmbedding.get_next_input_positions_tensor",
+          "score": 0.47776,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/rotary_embedding/xdrope.py:1-4",
+          "symbol": "vllm.model_executor.layers.rotary_embedding.xdrope",
+          "score": 0.46588,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/models/dots3_note/nvidia/audio_encoder.py:184-186",
+          "symbol": "vllm.models.dots3_note.nvidia.audio_encoder.WhisperPositionalEmbedding",
+          "score": 0.43298,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/mistral3.py:502-554",
+          "symbol": "vllm.model_executor.models.mistral3.Mistral3ForConditionalGeneration.forward",
+          "score": 0.43161,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/attention/mla_attention.py:2866-2871",
+          "symbol": "vllm.model_executor.layers.attention.mla_attention.MLACommonImpl",
+          "score": 0.42707,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/llava.py:666-718",
+          "symbol": "vllm.model_executor.models.llava.LlavaForConditionalGeneration.forward",
+          "score": 0.42596,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/blip2.py:644-689",
+          "symbol": "vllm.model_executor.models.blip2.Blip2ForConditionalGeneration.forward",
+          "score": 0.42531,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/rotary_embedding/xdrope.py"
+      ],
+      "retrieval_ms": 14.9
+    },
+    {
+      "question_id": "code_lookup-011",
+      "question": "What does the `update_state_after_alloc` method do and what is the purpose of the `tmp_disagg_tracker` dictionary?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-011",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.6,
+          "20": 0.3
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.853932,
+          "10": 0.86645,
+          "20": 0.86645
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/ec_transfer/ec_connector/cpu/scheduler/__init__.py:67-82",
+          "symbol": "vllm.distributed.ec_transfer.ec_connector.cpu.scheduler.ECCPUScheduler.update_state_after_alloc",
+          "score": 0.48144,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/engine/test_abort_final_step.py:90-96",
+          "symbol": "tests.v1.engine.test_abort_final_step.DummyKVConnector.update_state_after_alloc",
+          "score": 0.46809,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_handshake_pp_aggregation.py:146-149",
+          "symbol": "tests.v1.kv_connector.unit.test_handshake_pp_aggregation._LegacyConnector.update_state_after_alloc",
+          "score": 0.46188,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/model_runner_v2.md:194-200",
+          "symbol": "docs/design/model_runner_v2.md#Model Runner V2 Design Document > 9. Explicit CUDA Graph Management > Fused Multi-Step Draft Decoding",
+          "score": 0.45266,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/simple_kv_offload/manager.py:289-410",
+          "symbol": "vllm.v1.simple_kv_offload.manager.SimpleCPUOffloadScheduler.update_state_after_alloc",
+          "score": 0.45114,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_selective_state_update.py:474-477",
+          "symbol": "benchmarks.kernels.benchmark_selective_state_update.current_heuristic",
+          "score": 0.44845,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_scheduler_kv_connector_override.py:38-41",
+          "symbol": "tests.v1.kv_connector.unit.test_scheduler_kv_connector_override.DummyKVConnector.update_state_after_alloc",
+          "score": 0.44391,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/_custom_ops.py:2112-2147",
+          "symbol": "vllm._custom_ops.selective_state_update_cpu",
+          "score": 0.4334,
+          "via": "dense"
+        },
+        {
+          "location": "examples/disaggregated/kv_load_failure_recovery_offline/load_recovery_example_connector.py:119-131",
+          "symbol": "examples.disaggregated.kv_load_failure_recovery_offline.load_recovery_example_connector.LoadRecoveryExampleConnector.update_state_after_alloc",
+          "score": 0.43328,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/extract_hidden_states.md:73-87",
+          "symbol": "docs/features/speculative_decoding/extract_hidden_states.md#Hidden State Extraction > Per-Request Options > Offline usage",
+          "score": 0.42899,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/vllm_v1_adapter.py"
+      ],
+      "retrieval_ms": 14.9
+    },
+    {
+      "question_id": "code_lookup-015",
+      "question": "What does the function do when it needs to reduce the number of audio channels?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-015",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.3,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.932521,
+          "20": 0.588054
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/multimodal/audio.py:46-51",
+          "symbol": "vllm.multimodal.audio.ChannelReduction",
+          "score": 0.57717,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:55-69",
+          "symbol": "vllm.multimodal.audio.AudioSpec",
+          "score": 0.51918,
+          "via": "dense"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:162-167",
+          "symbol": "tests.multimodal.test_audio.TestNormalizeAudio.test_max_channel_reduction",
+          "score": 0.48501,
+          "via": "dense"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:169-174",
+          "symbol": "tests.multimodal.test_audio.TestNormalizeAudio.test_sum_channel_reduction",
+          "score": 0.47204,
+          "via": "dense"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:354-373",
+          "symbol": "tests.multimodal.test_audio.TestMultiModalDataParserChannelNormalization.test_parser_with_target_channels_2",
+          "score": 0.46641,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/multimodal/audio.py:77-83",
+          "symbol": "vllm.multimodal.audio.AudioSpec.__repr__",
+          "score": 0.44944,
+          "via": "dense"
+        },
+        {
+          "location": "tests/multimodal/test_audio.py:155-160",
+          "symbol": "tests.multimodal.test_audio.TestNormalizeAudio.test_first_channel_reduction",
+          "score": 0.43883,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/funaudiochat.py:554-564",
+          "symbol": "vllm.model_executor.models.funaudiochat.FunAudioChatProcessingInfo.get_mm_max_tokens_per_item",
+          "score": 0.42122,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/transformers_utils/configs/funaudiochat.py:16-18",
+          "symbol": "vllm.transformers_utils.configs.funaudiochat.FunAudioChatAudioEncoderConfig",
+          "score": 0.41107,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/interfaces.py:1297-1309",
+          "symbol": "vllm.model_executor.models.interfaces.SupportsTranscription.get_num_audio_tokens",
+          "score": 0.41051,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/multimodal/audio.py"
+      ],
+      "retrieval_ms": 21.8
+    },
+    {
+      "question_id": "code_lookup-029",
+      "question": "What does the function check for when comparing a value to a target string?",
+      "category": "code_lookup",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "code_lookup-029",
+        "category": "code_lookup",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.2,
+          "20": 0.15
+        },
+        "mrr": 0.25,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.430677,
+          "10": 0.438747,
+          "20": 0.445739
+        },
+        "first_hit_rank": 4,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/reasoning/kimi_k3_reasoning_parser.py:39-46",
+          "symbol": "vllm.reasoning.kimi_k3_reasoning_parser._match_at",
+          "score": 0.45931,
+          "via": "dense"
+        },
+        {
+          "location": "tests/detokenizer/test_check_stop_strings.py:42-47",
+          "symbol": "tests.detokenizer.test_check_stop_strings.test_completion_position_not_start_position",
+          "score": 0.44723,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/lmcache_integration/utils.py:26-28",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.lmcache_integration.utils.is_false",
+          "score": 0.43491,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/utils.py:105-123",
+          "symbol": "vllm.model_executor.layers.quantization.quark.utils._is_equal_or_regex_match",
+          "score": 0.43303,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/utils.py:155-172",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.utils._find_first_match",
+          "score": 0.43262,
+          "via": "dense"
+        },
+        {
+          "location": "tests/detokenizer/test_check_stop_strings.py:73-76",
+          "symbol": "tests.detokenizer.test_check_stop_strings.test_no_match_and_empty_inputs_return_none",
+          "score": 0.424,
+          "via": "dense"
+        },
+        {
+          "location": "tests/tool_parsers/test_utils.py:502-503",
+          "symbol": "tests.tool_parsers.test_utils.TestGetParameterValueFString.test_constant_fstring",
+          "score": 0.41369,
+          "via": "dense"
+        },
+        {
+          "location": "tests/parser/test_harmony.py:106-107",
+          "symbol": "tests.parser.test_harmony.get_text",
+          "score": 0.41281,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/quark/utils.py:97-102",
+          "symbol": "vllm.model_executor.layers.quantization.quark.utils.check_equal_or_regex_match",
+          "score": 0.4079,
+          "via": "dense"
+        },
+        {
+          "location": "tests/tool_parsers/test_utils.py:745-751",
+          "symbol": "tests.tool_parsers.test_utils.TestRenameReservedKwargs.test_double_equals_untouched",
+          "score": 0.40324,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/quantization/quark/utils.py"
+      ],
+      "retrieval_ms": 22.5
+    },
+    {
+      "question_id": "configuration-031",
+      "question": "What does the data_parallel_master_ip configuration option control in the context of the DP group initialization?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-031",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.125,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.315465,
+          "20": 0.315465
+        },
+        "first_hit_rank": 8,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/usage/security.md:24-27",
+          "symbol": "docs/usage/security.md#Security > Inter-Node Communication > Configuration Options for Inter-Node Communications > 3. **Data Parallel Configuration:**",
+          "score": 0.55388,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:1413-1415",
+          "symbol": "vllm.distributed.parallel_state.get_dp_group",
+          "score": 0.51363,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:443-455",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > CPU Resources for GPU Deployments > Data Parallel and Multi-API Server Deployments",
+          "score": 0.49259,
+          "via": "dense"
+        },
+        {
+          "location": "tests/distributed/test_mq_connect_ip.py:1-16",
+          "symbol": "tests.distributed.test_mq_connect_ip",
+          "score": 0.48397,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/expert_parallel_deployment.md:127-134",
+          "symbol": "docs/serving/expert_parallel_deployment.md#Expert Parallel Deployment > Multi-Node Deployment > Network Configuration",
+          "score": 0.47984,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/arch_overview.md:109-115",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > DP Coordinator Process (conditional)",
+          "score": 0.47614,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:1445-1447",
+          "symbol": "vllm.distributed.parallel_state.get_pcp_group",
+          "score": 0.47262,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/parallel.py:569-584",
+          "symbol": "vllm.config.parallel.ParallelConfig.get_next_dp_init_port",
+          "score": 0.4487,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:138-149",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Parallelism Strategies > Data Parallelism (DP)",
+          "score": 0.44671,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/expert_parallel_deployment.md:121-125",
+          "symbol": "docs/serving/expert_parallel_deployment.md#Expert Parallel Deployment > Multi-Node Deployment > Key Configuration Notes",
+          "score": 0.44432,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/parallel.py"
+      ],
+      "retrieval_ms": 20.3
+    },
+    {
+      "question_id": "configuration-035",
+      "question": "What does the 'k_values' configuration option control in the benchmark setup?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-035",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "benchmarks/kernels/benchmark_k3_cutedsl_residual.py:34-38",
+          "symbol": "benchmarks.kernels.benchmark_k3_cutedsl_residual.Config",
+          "score": 0.52472,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_k3_cutedsl_residual.py:74-91",
+          "symbol": "benchmarks.kernels.benchmark_k3_cutedsl_residual.candidate_configs",
+          "score": 0.52408,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_kimi_k3_kda_decode.py:36-37",
+          "symbol": "benchmarks.kernels.benchmark_kimi_k3_kda_decode._bench",
+          "score": 0.51748,
+          "via": "dense"
+        },
+        {
+          "location": "docs/benchmarking/dashboard.md:102-102",
+          "symbol": "docs/benchmarking/dashboard.md#Performance Dashboard > Manually Trigger the benchmark > Visualization > Performance Results Comparison",
+          "score": 0.50936,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/multi_turn/bench_dataset.py:60-62",
+          "symbol": "benchmarks.multi_turn.bench_dataset.ConstantDistribution.__init__",
+          "score": 0.50055,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_k3_cutedsl_residual.py:58-71",
+          "symbol": "benchmarks.kernels.benchmark_k3_cutedsl_residual.production_residual_config",
+          "score": 0.49544,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/benchmarks/datasets/datasets.py:787-788",
+          "symbol": "vllm.benchmarks.datasets.datasets.RandomDatasetForReranking.__init__",
+          "score": 0.49326,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/multi_turn/bench_dataset.py:37-45",
+          "symbol": "benchmarks.multi_turn.bench_dataset.UniformDistribution.__init__",
+          "score": 0.49231,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:8-17",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Optimization Levels",
+          "score": 0.48629,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_kimi_k3_kda_decode.py:83-85",
+          "symbol": "benchmarks.kernels.benchmark_kimi_k3_kda_decode.Inputs",
+          "score": 0.48343,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "benchmarks/benchmark_topk_topp.py"
+      ],
+      "retrieval_ms": 18.8
+    },
+    {
+      "question_id": "configuration-036",
+      "question": "What does the SpeculativeConfig.hf_config_override method do in the context of applying overrides to a pretrained configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-036",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.2,
+          "20": 0.1
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/speculative.py:687-693",
+          "symbol": "vllm.config.speculative.SpeculativeConfig._apply_composed_hf_override",
+          "score": 0.7007,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/speculative.py:695-719",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.compose_draft_hf_overrides",
+          "score": 0.63189,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:22-29",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides._make_hf_config",
+          "score": 0.62506,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:42-45",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_none_overrides_fall_back_to_arch_mapping",
+          "score": 0.61756,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:48-62",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_callable_overrides_reach_the_draft_config",
+          "score": 0.60441,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:1-20",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides",
+          "score": 0.58563,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:116-118",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides._module_level_shrink",
+          "score": 0.5839,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:121-134",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_composed_override_is_picklable",
+          "score": 0.57331,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:32-39",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_dict_overrides_are_not_forwarded_to_draft",
+          "score": 0.55701,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_bailing_mtp_config.py:31-39",
+          "symbol": "tests.config.test_bailing_mtp_config.test_bailing_hybrid_mtp_hf_config_override",
+          "score": 0.52332,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 16.8
+    },
+    {
+      "question_id": "configuration-037",
+      "question": "What does the compute_hash method determine based on the configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-037",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.7,
+          "20": 0.6
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.786014,
+          "10": 0.840411,
+          "20": 0.887431
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/compilation.py:218-225",
+          "symbol": "vllm.config.compilation.PassConfig.compute_hash",
+          "score": 0.58751,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/utils.py:209-223",
+          "symbol": "vllm.config.utils.compute_hash_cached",
+          "score": 0.5838,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:54-64",
+          "symbol": "vllm.compilation.compiler_interface.CompilerInterface.compute_hash",
+          "score": 0.58223,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/backends.py:146-147",
+          "symbol": "vllm.compilation.backends.CompilerManager.compute_hash",
+          "score": 0.57867,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:268-273",
+          "symbol": "vllm.compilation.compiler_interface.InductorStandaloneAdaptor.compute_hash",
+          "score": 0.55263,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/kernel.py:254-268",
+          "symbol": "vllm.config.kernel.KernelConfig.compute_hash",
+          "score": 0.54696,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:456-461",
+          "symbol": "vllm.compilation.compiler_interface.InductorAdaptor.compute_hash",
+          "score": 0.54575,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/offload.py:139-153",
+          "symbol": "vllm.config.offload.OffloadConfig.compute_hash",
+          "score": 0.53664,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/utils.py:201-202",
+          "symbol": "vllm.config.utils.SupportsHash",
+          "score": 0.53572,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/benchmark_hash.py:66-68",
+          "symbol": "benchmarks.benchmark_hash.builtin_hash",
+          "score": 0.52914,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/load.py"
+      ],
+      "retrieval_ms": 16.8
+    },
+    {
+      "question_id": "configuration-038",
+      "question": "What does the parallel_config parameter control in the get_layers_start_end_indices method?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-038",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.1
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 0.486893
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/model.py:1538-1540",
+          "symbol": "vllm.config.model.ModelConfig.get_num_layers",
+          "score": 0.5745,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/experts/trtllm_nvfp4_moe.py:305-308",
+          "symbol": "vllm.model_executor.layers.fused_moe.experts.trtllm_nvfp4_moe.TrtLlmNvFp4ExpertsModular._supports_parallel_config",
+          "score": 0.56534,
+          "via": "dense"
+        },
+        {
+          "location": "tests/utils_/test_numa_utils.py:40-55",
+          "symbol": "tests.utils_.test_numa_utils._make_config",
+          "score": 0.54547,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:204-223",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Parallelism Strategies > CPU Backend Thread Affinity",
+          "score": 0.53833,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/experts/aiter_mxfp8_moe.py:87-89",
+          "symbol": "vllm.model_executor.layers.fused_moe.experts.aiter_mxfp8_moe.AiterMxfp8Experts._supports_parallel_config",
+          "score": 0.53432,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/speculative.py:1343-1362",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.create_draft_parallel_config",
+          "score": 0.53371,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/config.py:1257-1273",
+          "symbol": "vllm.model_executor.layers.fused_moe.config.FusedMoEParallelConfig.make_no_parallel",
+          "score": 0.53329,
+          "via": "dense"
+        },
+        {
+          "location": "docs/getting_started/installation/cpu.md:149-155",
+          "symbol": "docs/getting_started/installation/cpu.md#CPU > Related runtime environment variables",
+          "score": 0.53172,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/experts/rocm_aiter_moe.py:491-496",
+          "symbol": "vllm.model_executor.layers.fused_moe.experts.rocm_aiter_moe.AiterExperts._supports_parallel_config",
+          "score": 0.53045,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/experts/trtllm_mxfp4_moe.py:284-288",
+          "symbol": "vllm.model_executor.layers.fused_moe.experts.trtllm_mxfp4_moe.TrtLlmMxfp4ExpertsModular._supports_parallel_config",
+          "score": 0.5303,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/model.py"
+      ],
+      "retrieval_ms": 18.9
+    },
+    {
+      "question_id": "configuration-042",
+      "question": "What does the tensor_parallel_size parameter control in the draft worker configuration?",
+      "category": "configuration",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "configuration-042",
+        "category": "configuration",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.2,
+          "20": 0.1
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.96394,
+          "10": 0.96394,
+          "20": 0.96394
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/speculative.py:1343-1362",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.create_draft_parallel_config",
+          "score": 0.72199,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/expert_parallel_deployment.md:34-46",
+          "symbol": "docs/serving/expert_parallel_deployment.md#Expert Parallel Deployment > Single Node Deployment > Configuration",
+          "score": 0.59312,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/speculative.py:1290-1323",
+          "symbol": "vllm.config.speculative.SpeculativeConfig._verify_and_get_draft_tp",
+          "score": 0.58532,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_model_runner.py:3584-3590",
+          "symbol": "vllm.v1.worker.gpu_model_runner.GPUModelRunner._pad_for_sequence_parallelism",
+          "score": 0.57941,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/arch_overview.md:101-107",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > GPU Worker Processes",
+          "score": 0.55548,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/e2e/spec_decode/draft_model/test_draft_model.py:293-308",
+          "symbol": "tests.v1.e2e.spec_decode.draft_model.test_draft_model.test_draft_model_engine_args_rejects_invalid_tp_argname",
+          "score": 0.5501,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/e2e/spec_decode/draft_model/test_draft_model.py:152-164",
+          "symbol": "tests.v1.e2e.spec_decode.draft_model.test_draft_model.test_draft_model_tensor_parallelism",
+          "score": 0.53431,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:528-545",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.tp_ratio",
+          "score": 0.52873,
+          "via": "dense"
+        },
+        {
+          "location": "tests/distributed/test_comm_ops.py:403-422",
+          "symbol": "tests.distributed.test_comm_ops.test_multi_process_tensor_parallel_pipeline_parallel",
+          "score": 0.52791,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_offload/test_factory.py:142-159",
+          "symbol": "tests.v1.kv_offload.test_factory.test_cpu_spec_sizes_normalized_worker_layout",
+          "score": 0.52676,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 23.8
+    },
+    {
+      "question_id": "tests-058",
+      "question": "Which tests exercise the behavior of binding a KV cache tensor to a layer in the model executor?",
+      "category": "tests",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "tests-058",
+        "category": "tests",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.5,
+          "5": 0.5,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.3,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.613147,
+          "10": 0.88533,
+          "20": 0.88533
+        },
+        "first_hit_rank": 1,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/attention_layer_base.py:26-32",
+          "symbol": "vllm.model_executor.layers.attention_layer_base.AttentionLayerBase.bind_kv_cache",
+          "score": 0.68525,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1031-1037",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod",
+          "score": 0.68428,
+          "via": "dense"
+        },
+        {
+          "location": "tests/model_executor/model_loader/test_reload.py:135-136",
+          "symbol": "tests.model_executor.model_loader.test_reload._ReloadableAttentionLayer.get_kv_cache_spec",
+          "score": 0.65911,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/worker/test_gpu_model_runner.py:1763-1772",
+          "symbol": "tests.v1.worker.test_gpu_model_runner.TestInitFp8KvScalesHybridModels",
+          "score": 0.65509,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_kv_cache_layout.py:9-24",
+          "symbol": "tests.v1.kv_connector.unit.test_kv_cache_layout.test_mla_common_backend_rejects_cross_layer_kv_cache",
+          "score": 0.65347,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/worker/test_utils.py:1-6",
+          "symbol": "tests.v1.worker.test_utils",
+          "score": 0.64965,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/attention/attention.py:716-739",
+          "symbol": "vllm.model_executor.layers.attention.attention.unified_kv_cache_update",
+          "score": 0.6488,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/extract_hidden_states.py:213-227",
+          "symbol": "vllm.model_executor.models.extract_hidden_states.CacheOnlyAttentionImpl.do_kv_cache_update",
+          "score": 0.64857,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/worker/test_utils.py:37-57",
+          "symbol": "tests.v1.worker.test_utils.test_bind_kv_cache_non_attention",
+          "score": 0.64679,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:1009-1016",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheConfig",
+          "score": 0.64227,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/worker/test_utils.py",
+        "vllm/model_executor/layers/attention_layer_base.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "change_impact-064",
+      "question": "What would be affected if the tp_ratio symbol changed in the describe method?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-064",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.25,
+          "10": 0.25,
+          "20": 0.25
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.146553,
+          "10": 0.146553,
+          "20": 0.282415
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/utils.py:528-545",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.utils.TransferTopology.tp_ratio",
+          "score": 0.39046,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:1136-1159",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_compute_physical_blocks_per_logical",
+          "score": 0.38086,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/mooncake/mooncake_connector.py:98-116",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.mooncake.mooncake_connector._get_tp_ratio",
+          "score": 0.37676,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/spec_decode/test_synthetic_rejection_sampler_utils.py:9-13",
+          "symbol": "tests.v1.spec_decode.test_synthetic_rejection_sampler_utils.test_unconditional_to_conditional_rates_basic",
+          "score": 0.37244,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/spec_decode/test_acceptance_length.py:145-147",
+          "symbol": "tests.v1.spec_decode.test_acceptance_length.get_tp_size_params",
+          "score": 0.36206,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/kernels/benchmark_moe.py:80-84",
+          "symbol": "benchmarks.kernels.benchmark_moe.ensure_divisibility",
+          "score": 0.35816,
+          "via": "dense"
+        },
+        {
+          "location": "benchmarks/fused_kernels/silu_mul_block_quant_benchmark.py:27-33",
+          "symbol": "benchmarks.fused_kernels.silu_mul_block_quant_benchmark.bench_params_t.description",
+          "score": 0.35595,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/spec_decode/test_synthetic_rejection_sampler_utils.py:30-43",
+          "symbol": "tests.v1.spec_decode.test_synthetic_rejection_sampler_utils.test_acceptance_length_to_rates",
+          "score": 0.35413,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/transformers/fusers/rms_norm.py:110-111",
+          "symbol": "vllm.model_executor.models.transformers.fusers.rms_norm.TPAwareGemmaRMSNorm",
+          "score": 0.35281,
+          "via": "dense"
+        },
+        {
+          "location": "tests/models/kimi_k3/test_kda.py:102-121",
+          "symbol": "tests.models.kimi_k3.test_kda.assert_close",
+          "score": 0.34553,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "benchmarks/benchmark_serving_structured_output.py",
+        "benchmarks/multi_turn/bench_dataset.py",
+        "benchmarks/multi_turn/benchmark_serving_multi_turn.py",
+        "vllm/distributed/kv_transfer/kv_connector/utils.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "change_impact-067",
+      "question": "What would be affected if the SecondaryTierManager's medium class variable changed?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-067",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.25,
+          "20": 0.25
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.16666666666666666,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.052203,
+          "20": 0.052203
+        },
+        "first_hit_rank": 6,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/kv_offload/tiering/test_tiering_offloading.py:1216-1218",
+          "symbol": "tests.v1.kv_offload.tiering.test_tiering_offloading.TestTieringOffloadingWithoutSecondaryTiers",
+          "score": 0.35969,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_offload/tiering/test_factory.py:95-116",
+          "symbol": "tests.v1.kv_offload.tiering.test_factory.test_register_new_tier_type",
+          "score": 0.35316,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/factory.py:1-4",
+          "symbol": "vllm.v1.kv_offload.tiering.factory",
+          "score": 0.35033,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/weight_transfer/base.py:127-145",
+          "symbol": "vllm.distributed.weight_transfer.base.TrainerInitInfo",
+          "score": 0.34463,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/manager.py:800-807",
+          "symbol": "vllm.v1.kv_offload.tiering.manager.TieringOffloadingManager.has_pending_work",
+          "score": 0.3442,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/example/manager.py:37-51",
+          "symbol": "vllm.v1.kv_offload.tiering.example.manager.ExampleSecondaryTierManager",
+          "score": 0.32952,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/manager.py:84-94",
+          "symbol": "vllm.v1.kv_offload.tiering.manager.CPUPrimaryTierOffloadingManager",
+          "score": 0.32803,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/all2all.py:215-216",
+          "symbol": "vllm.distributed.device_communicators.all2all.DeepEPHTAll2AllManager.__init__",
+          "score": 0.32472,
+          "via": "dense"
+        },
+        {
+          "location": "docs/training/weight_transfer/base.md:199-230",
+          "symbol": "docs/training/weight_transfer/base.md#Base Classes and Custom Engines > Trainer Side > TrainerWeightTransferEngine > TrainerInitInfo",
+          "score": 0.32381,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/all2all.py:1085-1086",
+          "symbol": "vllm.distributed.device_communicators.all2all.DeepEPV2All2AllManager.max_sms_used",
+          "score": 0.32302,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/kv_offload/tiering/base.py",
+        "vllm/v1/kv_offload/tiering/example/manager.py",
+        "vllm/v1/kv_offload/tiering/fs/manager.py",
+        "vllm/v1/kv_offload/tiering/obj/manager.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "change_impact-068",
+      "question": "What would be affected if the StructuredOutputBackend class's compile_grammar method returned a different type than StructuredOutputGrammar?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-068",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.5,
+          "10": 0.75,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.6,
+          "20": 0.55
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.324908,
+          "10": 0.518057,
+          "20": 0.710208
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:106-126",
+          "symbol": "vllm.v1.structured_output.backend_types.StructuredOutputBackend.compile_grammar",
+          "score": 0.6852,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_guidance.py:87-91",
+          "symbol": "vllm.v1.structured_output.backend_guidance.GuidanceBackend",
+          "score": 0.6323,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_xgrammar.py:35-39",
+          "symbol": "vllm.v1.structured_output.backend_xgrammar.XgrammarBackend",
+          "score": 0.6286,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/request.py:65-69",
+          "symbol": "vllm.v1.structured_output.request.StructuredOutputRequest.grammar",
+          "score": 0.62481,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_guidance.py:108-134",
+          "symbol": "vllm.v1.structured_output.backend_guidance.GuidanceBackend.compile_grammar",
+          "score": 0.62413,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:91-95",
+          "symbol": "vllm.v1.structured_output.backend_types.StructuredOutputGrammar.reset",
+          "score": 0.56245,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_lm_format_enforcer.py:94-98",
+          "symbol": "vllm.v1.structured_output.backend_lm_format_enforcer.LMFormatEnforcerBackend",
+          "score": 0.5599,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/request.py:71-75",
+          "symbol": "vllm.v1.structured_output.request.StructuredOutputRequest.grammar",
+          "score": 0.54903,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/__init__.py:177-199",
+          "symbol": "vllm.v1.structured_output.StructuredOutputManager._create_grammar",
+          "score": 0.54741,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/structured_output/backend_types.py:98-105",
+          "symbol": "vllm.v1.structured_output.backend_types.StructuredOutputBackend",
+          "score": 0.54331,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/structured_output/backend_guidance.py",
+        "vllm/v1/structured_output/backend_lm_format_enforcer.py",
+        "vllm/v1/structured_output/backend_outlines.py",
+        "vllm/v1/structured_output/backend_types.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "change_impact-073",
+      "question": "What would be affected if the all_gatherv method in the device communicator changed its behavior?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-073",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.5,
+          "10": 0.75,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.4,
+          "10": 0.5,
+          "20": 0.65
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.441492,
+          "10": 0.575367,
+          "20": 0.709808
+        },
+        "first_hit_rank": 2,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/distributed/device_communicators/mnnvl_compat.py:23-26",
+          "symbol": "vllm.distributed.device_communicators.mnnvl_compat.CustomCommunicator.allgather",
+          "score": 0.53385,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/base_device_communicator.py:254-260",
+          "symbol": "vllm.distributed.device_communicators.base_device_communicator.DeviceCommunicatorBase.all_gatherv",
+          "score": 0.46569,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:712-720",
+          "symbol": "vllm.distributed.parallel_state.GroupCoordinator.all_gatherv",
+          "score": 0.46074,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/_aiter_ops.py:1966-1980",
+          "symbol": "vllm._aiter_ops.rocm_aiter_ops.get_aiter_allreduce",
+          "score": 0.45281,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/custom_all_reduce.py:400-422",
+          "symbol": "vllm.distributed.device_communicators.custom_all_reduce.CustomAllreduce.should_custom_all_gather",
+          "score": 0.42901,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:707-710",
+          "symbol": "vllm.distributed.parallel_state.GroupCoordinator._all_gather_out_place",
+          "score": 0.42062,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/xpu_communicator.py:1-4",
+          "symbol": "vllm.distributed.device_communicators.xpu_communicator",
+          "score": 0.41765,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/all2all.py:1005-1013",
+          "symbol": "vllm.distributed.device_communicators.all2all.DeepEPV2All2AllManager",
+          "score": 0.41455,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/pynccl.py:199-220",
+          "symbol": "vllm.distributed.device_communicators.pynccl.PyNcclCommunicator.all_gather",
+          "score": 0.40378,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/device_communicators/base_device_communicator.py:126-134",
+          "symbol": "vllm.distributed.device_communicators.base_device_communicator.All2AllManagerBase.clean_buffers",
+          "score": 0.39778,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/device_communicators/all2all.py",
+        "vllm/distributed/device_communicators/base_device_communicator.py",
+        "vllm/distributed/device_communicators/cuda_communicator.py",
+        "vllm/distributed/parallel_state.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "change_impact-075",
+      "question": "What would be affected if the build_for_drafting method changed its behavior of using the build function with fast_build=True?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-075",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.25
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.05
+        },
+        "mrr": 0.08333333333333333,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.039604
+        },
+        "first_hit_rank": 12,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:1-20",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides",
+          "score": 0.50354,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/speculative.py:695-719",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.compose_draft_hf_overrides",
+          "score": 0.49607,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:48-62",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_callable_overrides_reach_the_draft_config",
+          "score": 0.48836,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/speculative.py:1343-1362",
+          "symbol": "vllm.config.speculative.SpeculativeConfig.create_draft_parallel_config",
+          "score": 0.46841,
+          "via": "dense"
+        },
+        {
+          "location": "docs/contributing/incremental_build.md:145-149",
+          "symbol": "docs/contributing/incremental_build.md#Incremental Compilation Workflow > Additional Tips",
+          "score": 0.46766,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/e2e/spec_decode/draft_model/test_draft_model.py:112-125",
+          "symbol": "tests.v1.e2e.spec_decode.draft_model.test_draft_model.test_draft_model_parallel_drafting",
+          "score": 0.45588,
+          "via": "dense"
+        },
+        {
+          "location": "commit cbe9c40f99",
+          "symbol": "commit:cbe9c40f99",
+          "score": 0.45135,
+          "via": "dense"
+        },
+        {
+          "location": "tests/config/test_speculative_draft_hf_overrides.py:121-134",
+          "symbol": "tests.config.test_speculative_draft_hf_overrides.test_composed_override_is_picklable",
+          "score": 0.44467,
+          "via": "dense"
+        },
+        {
+          "location": "docs/contributing/ci/update_pytorch_version.md:80-98",
+          "symbol": "docs/contributing/ci/update_pytorch_version.md#Update PyTorch version on vLLM OSS CI/CD > Manually running vLLM builds on BuildKiteCI",
+          "score": 0.44188,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/torch_compile.md:10-30",
+          "symbol": "docs/design/torch_compile.md#`torch.compile` integration > Compilation Cache",
+          "score": 0.44109,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/attention/backend.py",
+        "vllm/v1/spec_decode/extract_hidden_states.py",
+        "vllm/v1/spec_decode/gemma4.py",
+        "vllm/v1/spec_decode/llm_base_proposer.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "change_impact-078",
+      "question": "What would be affected if the return value of the get_number_of_image_patches function changed?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-078",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.25,
+          "5": 0.5,
+          "10": 0.75,
+          "20": 0.75
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.4,
+          "20": 0.2
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.50217,
+          "10": 0.605911,
+          "20": 0.605911
+        },
+        "first_hit_rank": 1,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/models/cohere2_vision.py:169-187",
+          "symbol": "vllm.model_executor.models.cohere2_vision.Cohere2VisionProcessingInfo.get_num_patches",
+          "score": 0.51983,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/pixtral.py:40-47",
+          "symbol": "vllm.transformers_utils.processors.pixtral.MistralCommonImageProcessor.get_number_of_image_patches",
+          "score": 0.50594,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/lfm2_vl.py:258-272",
+          "symbol": "vllm.model_executor.models.lfm2_vl.Lfm2VLProcessingInfo.get_num_patches",
+          "score": 0.48532,
+          "via": "dense"
+        },
+        {
+          "location": "tests/models/multimodal/processing/test_moondream3.py:494-500",
+          "symbol": "tests.models.multimodal.processing.test_moondream3.TestMoondream3VisionShapes.test_expected_patch_count",
+          "score": 0.48021,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/minimax_m3.py:307-326",
+          "symbol": "vllm.transformers_utils.processors.minimax_m3.MiniMaxM3VLImageProcessor.get_number_of_image_patches",
+          "score": 0.4476,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/moondream3.py:523-525",
+          "symbol": "vllm.transformers_utils.processors.moondream3.Moondream3Processor.get_num_image_tokens",
+          "score": 0.44431,
+          "via": "dense"
+        },
+        {
+          "location": "tests/models/multimodal/processing/test_minimax_m3.py:74-84",
+          "symbol": "tests.models.multimodal.processing.test_minimax_m3.test_image_tokens_increase_with_max_long_side_pixel",
+          "score": 0.4424,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/idefics3.py:122-137",
+          "symbol": "vllm.model_executor.models.idefics3.Idefics3ProcessingInfo.get_num_patches",
+          "score": 0.43766,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/phi4siglip.py:89-103",
+          "symbol": "vllm.model_executor.models.phi4siglip.Phi4SiglipProcessingInfo.get_num_image_tokens",
+          "score": 0.43648,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/transformers_utils/processors/internvl.py:422-441",
+          "symbol": "vllm.transformers_utils.processors.internvl.InternVLProcessor.get_num_image_tokens",
+          "score": 0.43415,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/models/cohere2_vision.py",
+        "vllm/model_executor/models/idefics3.py",
+        "vllm/model_executor/models/interns1.py",
+        "vllm/transformers_utils/processors/pixtral.py"
+      ],
+      "retrieval_ms": 17.6
+    },
+    {
+      "question_id": "change_impact-080",
+      "question": "What would be affected if the is_per_tensor method returned a different value?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "change_impact-080",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "tests/quantization/test_online_mxfp4.py:45-69",
+          "symbol": "tests.quantization.test_online_mxfp4.fix_negative_zeros",
+          "score": 0.54785,
+          "via": "dense"
+        },
+        {
+          "location": "tests/model_executor/model_loader/test_ep_weight_filter.py:365-376",
+          "symbol": "tests.model_executor.model_loader.test_ep_weight_filter.TestEpFilterOnSyntheticMoeWeights.test_tensor_values_match",
+          "score": 0.52106,
+          "via": "dense"
+        },
+        {
+          "location": "tests/distributed/test_packed_tensor.py:389-417",
+          "symbol": "tests.distributed.test_packed_tensor.TestPackTensors.test_pack_unpack_roundtrip",
+          "score": 0.51952,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:981-1017",
+          "symbol": "vllm.distributed.parallel_state.GroupCoordinator.send_tensor_dict",
+          "score": 0.51846,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/fused_moe/topk_weight_and_reduce.py:89-121",
+          "symbol": "vllm.model_executor.layers.fused_moe.topk_weight_and_reduce.TopKWeightAndReduceContiguous.apply",
+          "score": 0.51834,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/utils.py:39-67",
+          "symbol": "tests.kernels.utils._assert_accurate",
+          "score": 0.50665,
+          "via": "dense"
+        },
+        {
+          "location": "tests/lora/test_layers.py:1183-1348",
+          "symbol": "tests.lora.test_layers.test_get_masked_input_and_mask",
+          "score": 0.50507,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_output.py:30-36",
+          "symbol": "tests.v1.core.test_output.test_repr_with_multi_element_tensor",
+          "score": 0.50258,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/parallel_state.py:1076-1112",
+          "symbol": "vllm.distributed.parallel_state.GroupCoordinator.recv_tensor_dict",
+          "score": 0.50099,
+          "via": "dense"
+        },
+        {
+          "location": "tests/lora/test_punica_ops_fp8.py:255-261",
+          "symbol": "tests.lora.test_punica_ops_fp8.dequantize_fp8_per_tensor",
+          "score": 0.50097,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/compilation/passes/fusion/matcher_utils.py",
+        "vllm/model_executor/kernels/linear/scaled_mm/flashinfer.py",
+        "vllm/model_executor/kernels/linear/scaled_mm/humming.py",
+        "vllm/model_executor/layers/quantization/utils/quant_utils.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "historical-081",
+      "question": "Why was the MarlinFP8ScaledMMLinearKernel class introduced in the fp8 quantization module?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-081",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/quantization/utils/marlin_utils.py:659-663",
+          "symbol": "vllm.model_executor.layers.quantization.utils.marlin_utils.get__quant_fp8_method",
+          "score": 0.58213,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/scaled_mm/marlin.py:29-37",
+          "symbol": "vllm.model_executor.kernels.linear.scaled_mm.marlin.MarlinFP8ScaledMMLinearKernel",
+          "score": 0.57309,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/moe/modular_kernel_tools/common.py:203-207",
+          "symbol": "tests.kernels.moe.modular_kernel_tools.common.Config.is_fp8_block_quantized",
+          "score": 0.57278,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/kernels/linear/mxfp8/marlin.py:12-22",
+          "symbol": "vllm.model_executor.kernels.linear.mxfp8.marlin.MarlinMxfp8LinearKernel.is_supported",
+          "score": 0.54482,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/utils/marlin_utils_fp8.py:31-32",
+          "symbol": "vllm.model_executor.layers.quantization.utils.marlin_utils_fp8.is_fp8_marlin_supported",
+          "score": 0.53802,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_scaled_mm_kernel_selection.py:96-101",
+          "symbol": "tests.kernels.quantization.test_scaled_mm_kernel_selection.OOTInt8ScaledMMLinearKernel",
+          "score": 0.53725,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/core/test_vit_fp8_quant.py:25-36",
+          "symbol": "tests.kernels.core.test_vit_fp8_quant._naive_fp8_quantize",
+          "score": 0.53585,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_cutlass_w4a8.py:115-117",
+          "symbol": "tests.kernels.quantization.test_cutlass_w4a8.to_fp8",
+          "score": 0.52873,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_cutlass_w4a8_moe.py:27-29",
+          "symbol": "tests.kernels.quantization.test_cutlass_w4a8_moe.to_fp8",
+          "score": 0.52565,
+          "via": "dense"
+        },
+        {
+          "location": "tests/compile/passes/test_double_aiter_rms_quant_fusion.py:59-65",
+          "symbol": "tests.compile.passes.test_double_aiter_rms_quant_fusion._ViewDoubleQuantModel",
+          "score": 0.52445,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/quantization/test_fp8.py",
+        "vllm/model_executor/layers/quantization/fp8.py",
+        "vllm/model_executor/model_loader/base_loader.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "historical-082",
+      "question": "Why was the _make_cp_vllm_config function introduced in the code?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-082",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.3333333333333333,
+          "5": 0.3333333333333333,
+          "10": 0.3333333333333333,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.185433,
+          "10": 0.185433,
+          "20": 0.185433
+        },
+        "first_hit_rank": 1,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/simple_kv_offload/test_scheduler.py:1534-1543",
+          "symbol": "tests.v1.simple_kv_offload.test_scheduler._make_cp_vllm_config",
+          "score": 0.57309,
+          "via": "dense"
+        },
+        {
+          "location": "tests/compile/test_aot_compile.py:80-86",
+          "symbol": "tests.compile.test_aot_compile.make_vllm_config",
+          "score": 0.56933,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/passes/ir/clone_elimination.py:84-85",
+          "symbol": "vllm.compilation.passes.ir.clone_elimination.UnsafeCloneEliminationPass.__init__",
+          "score": 0.56553,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/platforms/interface.py:561-573",
+          "symbol": "vllm.platforms.interface.Platform.apply_config_platform_defaults",
+          "score": 0.56294,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/compiler_interface.py:159-167",
+          "symbol": "vllm.compilation.compiler_interface._get_vllm_functorch_config",
+          "score": 0.55265,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/utils.py:230-231",
+          "symbol": "vllm.config.utils.update_config",
+          "score": 0.55254,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/platforms/interface.py:545-559",
+          "symbol": "vllm.platforms.interface.Platform.pre_register_and_update",
+          "score": 0.55171,
+          "via": "dense"
+        },
+        {
+          "location": "tests/plugins/vllm_add_dummy_platform/vllm_add_dummy_platform/dummy_platform.py:21-23",
+          "symbol": "tests.plugins.vllm_add_dummy_platform.vllm_add_dummy_platform.dummy_platform.DummyPlatform.check_and_update_config",
+          "score": 0.54297,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/vllm.py:881-894",
+          "symbol": "vllm.config.vllm.VllmConfig._set_config_default",
+          "score": 0.5426,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/kernel.py:1-5",
+          "symbol": "vllm.config.kernel",
+          "score": 0.5425,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/simple_kv_offload/test_scheduler.py",
+        "vllm/v1/simple_kv_offload/manager.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "historical-083",
+      "question": "Why was the condition in the CompressedTensorsKVCacheMethod class modified to use an 'or' operator instead of an 'and' operator?",
+      "category": "historical",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "historical-083",
+        "category": "historical",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.5,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.2,
+          "20": 0.2
+        },
+        "mrr": 0.25,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.118613,
+          "10": 0.379261,
+          "20": 0.417236
+        },
+        "first_hit_rank": 4,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w8a8_fp8.py:409-411",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors_moe.compressed_tensors_moe_w8a8_fp8.CompressedTensorsW8A8Fp8MoEMethod.supports_eplb",
+          "score": 0.43278,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_w4a8_fp8.py:240-242",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors_moe.compressed_tensors_moe_w4a8_fp8.CompressedTensorsW4A8Fp8MoEMethod.supports_eplb",
+          "score": 0.43274,
+          "via": "dense"
+        },
+        {
+          "location": "tests/quantization/test_compressed_tensors.py:628-647",
+          "symbol": "tests.quantization.test_compressed_tensors._make_ct_config",
+          "score": 0.43254,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:1037-1039",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsKVCacheMethod.__init__",
+          "score": 0.43123,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/schemes/__init__.py:1-2",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.schemes",
+          "score": 0.43104,
+          "via": "dense"
+        },
+        {
+          "location": "commit 454ea5b526",
+          "symbol": "commit:454ea5b526",
+          "score": 0.42866,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/transform/utils.py:1-4",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.transform.utils",
+          "score": 0.41701,
+          "via": "dense"
+        },
+        {
+          "location": "commit a46abb7ae6",
+          "symbol": "commit:a46abb7ae6",
+          "score": 0.41651,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe_wna16_rdna3.py:57-64",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors_moe.compressed_tensors_moe_wna16_rdna3.CompressedTensorsWNA16RDNA3MoEMethod",
+          "score": 0.41621,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe/compressed_tensors_moe.py:1-4",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors_moe.compressed_tensors_moe",
+          "score": 0.41467,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "historical-085",
+      "question": "Why was the `_mamba_block_aligned_split` function modified to ensure prefill chunks are block-aligned past the last_cache_position?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-085",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.3333333333333333,
+          "5": 0.3333333333333333,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.8,
+          "20": 0.55
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 0.333333,
+          "5": 0.373174,
+          "10": 0.716193,
+          "20": 0.735463
+        },
+        "first_hit_rank": 1,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:171-178",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split.test_fragmented_tail_chunk_does_not_poison_mamba_prefix_cache",
+          "score": 0.67458,
+          "via": "dense"
+        },
+        {
+          "location": "tests/test_config.py:1370-1387",
+          "symbol": "tests.test_config.test_validate_mamba_align_subblock_prefill",
+          "score": 0.64013,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:161-168",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split.test_fragmented_first_chunk_does_not_poison_mamba_prefix_cache",
+          "score": 0.60354,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:153-158",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split._prefill",
+          "score": 0.59305,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:76-92",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split._split",
+          "score": 0.58572,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/scheduler.py:350-425",
+          "symbol": "vllm.v1.core.sched.scheduler.Scheduler._mamba_block_aligned_split",
+          "score": 0.58468,
+          "via": "dense"
+        },
+        {
+          "location": "commit c56f169d9a",
+          "symbol": "commit:c56f169d9a",
+          "score": 0.58421,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:754-764",
+          "symbol": "vllm.v1.kv_cache_interface.MambaSpec.max_num_blocks_per_req",
+          "score": 0.58177,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:1-24",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split",
+          "score": 0.58001,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_mamba_align_chunk_split.py:181-184",
+          "symbol": "tests.v1.core.test_mamba_align_chunk_split.test_intermediate_chunk_ends_stay_block_aligned",
+          "score": 0.57832,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/core/test_mamba_align_chunk_split.py",
+        "vllm/v1/core/sched/scheduler.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "historical-087",
+      "question": "Why was the parameter `worker._physical_blocks_per_logical_kv_block` added to the `_logical_to_kernel_block_ids` method?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-087",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.5,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.4,
+          "10": 0.4,
+          "20": 0.25
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.194202,
+          "10": 0.266111,
+          "20": 0.287373
+        },
+        "first_hit_rank": 2,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/kv_connector/unit/test_mooncake_connector_hybrid_mamba.py:330-339",
+          "symbol": "tests.v1.kv_connector.unit.test_mooncake_connector_hybrid_mamba.test_logical_to_kernel_block_ids_expands_fa_not_gdn",
+          "score": 0.68138,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:66-96",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_logical_to_kernel_block_ids_with_hma",
+          "score": 0.66149,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py:2367-2396",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.base_worker.NixlBaseConnectorWorker._logical_to_kernel_block_ids",
+          "score": 0.65264,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/utils.py:211-232",
+          "symbol": "vllm.v1.worker.utils.KVBlockZeroer.zero_block_ids",
+          "score": 0.63196,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/block_pool.py:745-762",
+          "symbol": "vllm.v1.core.block_pool.BlockPool.evict_blocks",
+          "score": 0.62932,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/worker/test_kv_block_zeroer.py:1-11",
+          "symbol": "tests.v1.worker.test_kv_block_zeroer",
+          "score": 0.62583,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/block_table.py:220-248",
+          "symbol": "vllm.v1.worker.block_table.BlockTable.map_to_kernel_blocks",
+          "score": 0.61676,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py:558-575",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.nixl.base_worker.NixlBaseConnectorWorker._sync_block_size_with_kernel",
+          "score": 0.61564,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_nixl_connector_hma.py:732-759",
+          "symbol": "tests.v1.kv_connector.unit.test_nixl_connector_hma.test_get_block_descs_ids_kernel_block_mismatch",
+          "score": 0.61213,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/utils.py:234-237",
+          "symbol": "vllm.v1.worker.utils.KVBlockZeroer.warmup",
+          "score": 0.60698,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/kv_connector/unit/test_nixl_connector_hma.py",
+        "tests/v1/kv_connector/unit/test_nixl_push_connector.py",
+        "vllm/distributed/kv_transfer/kv_connector/v1/nixl/base_worker.py"
+      ],
+      "retrieval_ms": 19.0
+    },
+    {
+      "question_id": "historical-092",
+      "question": "Why was validation added to check that logprob_token_ids are within the vocabulary bounds?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-092",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.5,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.8,
+          "10": 0.5,
+          "20": 0.35
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.313745,
+          "10": 0.330701,
+          "20": 0.372008
+        },
+        "first_hit_rank": 2,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/logits_process.py:106-121",
+          "symbol": "vllm.logits_process.NoBadWordsLogitsProcessor._check_token_ids_bounds",
+          "score": 0.62319,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/sampling_params.py:851-869",
+          "symbol": "vllm.sampling_params.SamplingParams._validate_logit_bias",
+          "score": 0.61972,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/sample/test_logprobs.py:422-430",
+          "symbol": "tests.v1.sample.test_logprobs.test_logprob_token_ids_validate_vocab_bounds_invalid",
+          "score": 0.60644,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/sample/test_logprobs.py:412-419",
+          "symbol": "tests.v1.sample.test_logprobs.test_logprob_token_ids_validate_vocab_bounds_valid",
+          "score": 0.60015,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/sampling_params.py:789-849",
+          "symbol": "vllm.sampling_params.SamplingParams._validate_logprobs",
+          "score": 0.55272,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/scale_out/token_in_token_out/protocol.py:197-203",
+          "symbol": "vllm.entrypoints.scale_out.token_in_token_out.protocol.GenerateResponseChoice",
+          "score": 0.53599,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/sample/test_logprobs.py:1027-1062",
+          "symbol": "tests.v1.sample.test_logprobs.test_correct_decoded_token_preserves_valid_tokens",
+          "score": 0.52539,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/engine/logprobs.py:312-346",
+          "symbol": "vllm.v1.engine.logprobs.LogprobsProcessor._verify_tokens",
+          "score": 0.52513,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/spec_decode/vocab_mapping.py:42-65",
+          "symbol": "vllm.v1.spec_decode.vocab_mapping._get_unk_token_id",
+          "score": 0.52211,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/logits_processors/test_correctness.py:345-351",
+          "symbol": "tests.v1.logits_processors.test_correctness._min_tokens_params",
+          "score": 0.51292,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/sample/test_logprobs.py",
+        "vllm/sampling_params.py",
+        "vllm/v1/sample/thinking_budget_state.py"
+      ],
+      "retrieval_ms": 17.9
+    },
+    {
+      "question_id": "historical-095",
+      "question": "Why was the `VLLM_GPU_SYNC_CHECK` environment variable added to the codebase?",
+      "category": "historical",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "historical-095",
+        "category": "historical",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.25,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.3,
+          "20": 0.2
+        },
+        "mrr": 0.25,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.063117,
+          "10": 0.231077,
+          "20": 0.250777
+        },
+        "first_hit_rank": 4,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:50-56",
+          "symbol": "vllm.utils.gpu_sync_debug.enable_gpu_sync_check",
+          "score": 0.67236,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:1-22",
+          "symbol": "vllm.utils.gpu_sync_debug",
+          "score": 0.64376,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:127-133",
+          "symbol": "vllm.utils.gpu_sync_debug._allow_syncs",
+          "score": 0.60961,
+          "via": "dense"
+        },
+        {
+          "location": "tests/utils_/test_gpu_sync_debug.py:1-11",
+          "symbol": "tests.utils_.test_gpu_sync_debug",
+          "score": 0.5997,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:200-214",
+          "symbol": "vllm.utils.gpu_sync_debug.gpu_sync_allowed",
+          "score": 0.58876,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:217-234",
+          "symbol": "vllm.utils.gpu_sync_debug.with_gpu_sync_check",
+          "score": 0.57942,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/system_utils.py:168-181",
+          "symbol": "vllm.utils.system_utils.get_mp_context",
+          "score": 0.5669,
+          "via": "dense"
+        },
+        {
+          "location": "commit 4e07ca2c92",
+          "symbol": "commit:4e07ca2c92",
+          "score": 0.55996,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/gpu_sync_debug.py:100-124",
+          "symbol": "vllm.utils.gpu_sync_debug._checked_region",
+          "score": 0.55874,
+          "via": "dense"
+        },
+        {
+          "location": "tests/utils_/test_gpu_sync_debug.py:153-160",
+          "symbol": "tests.utils_.test_gpu_sync_debug.test_without_env_set",
+          "score": 0.55043,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/utils_/test_gpu_sync_debug.py",
+        "vllm/compilation/compiler_interface.py",
+        "vllm/envs.py"
+      ],
+      "retrieval_ms": 17.0
+    },
+    {
+      "question_id": "documentation-102",
+      "question": "What is the process for a client to send audio input and receive transcription updates from the server?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-102",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.5,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:180-191",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Protocol Overview",
+          "score": 0.63207,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:193-199",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Client \u2192 Server Events",
+          "score": 0.53722,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:201-208",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Server \u2192 Client Events",
+          "score": 0.53282,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:169-174",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API",
+          "score": 0.51164,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/speech_to_text.md:210-213",
+          "symbol": "docs/serving/online_serving/speech_to_text.md#Speech to Text APIs > Realtime API > Server \u2192 Client Events > Example Clients",
+          "score": 0.50373,
+          "via": "dense"
+        },
+        {
+          "location": "examples/speech_to_text/realtime/openai_realtime_microphone_client.py:90-96",
+          "symbol": "examples.speech_to_text.realtime.openai_realtime_microphone_client.start_recording",
+          "score": 0.46834,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/speech_to_text/realtime/api_router.py:17-39",
+          "symbol": "vllm.entrypoints.speech_to_text.realtime.api_router.realtime_endpoint",
+          "score": 0.45911,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/speech_to_text/realtime/connection.py:268-273",
+          "symbol": "vllm.entrypoints.speech_to_text.realtime.connection.RealtimeConnection.send",
+          "score": 0.44995,
+          "via": "dense"
+        },
+        {
+          "location": "examples/speech_to_text/realtime/openai_realtime_client.py:1-24",
+          "symbol": "examples.speech_to_text.realtime.openai_realtime_client",
+          "score": 0.44519,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/speech_to_text/realtime/serving.py:23-30",
+          "symbol": "vllm.entrypoints.speech_to_text.realtime.serving.OpenAIServingRealtime",
+          "score": 0.43982,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/serving/online_serving/speech_to_text.md"
+      ],
+      "retrieval_ms": 15.0
+    },
+    {
+      "question_id": "documentation-104",
+      "question": "What is the process for tuning the multi-lora shrink/expand Triton kernel in vLLM?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-104",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.6,
+          "10": 0.3,
+          "20": 0.15
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.757924,
+          "10": 0.757924,
+          "20": 0.757924
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:1-4",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning",
+          "score": 0.80482,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:57-60",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning > Config Files > JSON Structure",
+          "score": 0.67764,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/README_TUNING.md:6-40",
+          "symbol": "vllm/lora/ops/triton_ops/README_TUNING.md#Multi-LoRA Tuning > Tuning Process",
+          "score": 0.62722,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_shrink_op.py:1-10",
+          "symbol": "vllm.lora.ops.triton_ops.lora_shrink_op",
+          "score": 0.59008,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_shrink_fp8_op.py:20-84",
+          "symbol": "vllm.lora.ops.triton_ops.lora_shrink_fp8_op._get_shrink_lora_scale_ptr",
+          "score": 0.58699,
+          "via": "dense"
+        },
+        {
+          "location": "tests/lora/test_gptoss_tp.py:53-64",
+          "symbol": "tests.lora.test_gptoss_tp._enable_deterministic_lora_shrink",
+          "score": 0.58649,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_shrink_fp8_op.py:1-11",
+          "symbol": "vllm.lora.ops.triton_ops.lora_shrink_fp8_op",
+          "score": 0.58587,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/fused_moe_lora_op.py:1618-1662",
+          "symbol": "vllm.lora.ops.triton_ops.fused_moe_lora_op._fused_moe_lora",
+          "score": 0.57751,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_shrink_op.py:268-281",
+          "symbol": "vllm.lora.ops.triton_ops.lora_shrink_op._lora_shrink_fake",
+          "score": 0.57601,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/lora/ops/triton_ops/lora_kernel_metadata.py:170-205",
+          "symbol": "vllm.lora.ops.triton_ops.lora_kernel_metadata.LoRAKernelMeta.meta_args",
+          "score": 0.57545,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/lora/ops/triton_ops/README_TUNING.md"
+      ],
+      "retrieval_ms": 14.6
+    },
+    {
+      "question_id": "documentation-105",
+      "question": "What is the purpose of the `--kv-cache-dtype-skip-layers` flag in the vllm command-line interface?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-105",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.5,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.63093,
+          "10": 0.63093,
+          "20": 0.63093
+        },
+        "first_hit_rank": 2,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/kv_cache_interface.py:994-999",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheGroupSpec",
+          "score": 0.67898,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/quantization/quantized_kvcache.md:43-69",
+          "symbol": "docs/features/quantization/quantized_kvcache.md#Quantized KV Cache > FP8 KV Cache Overview > Skipping Specific Layers from KV-Cache Quantization",
+          "score": 0.66631,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:1-4",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager",
+          "score": 0.63257,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:982-987",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheTensor",
+          "score": 0.62013,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_cache_interface.py:1009-1016",
+          "symbol": "vllm.v1.kv_cache_interface.KVCacheConfig",
+          "score": 0.61966,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:151-154",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > Case 5: KV sharing",
+          "score": 0.6187,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/metrics.md:503-534",
+          "symbol": "docs/design/metrics.md#Metrics > Deprecated Metrics > KV Cache Offloading",
+          "score": 0.61845,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/kv_cache_utils.py:1274-1293",
+          "symbol": "vllm.v1.core.kv_cache_utils._use_packed_kv_cache_config",
+          "score": 0.61798,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/attention/backends/hpc_attn.py:327-331",
+          "symbol": "vllm.v1.attention.backends.hpc_attn.HpcAttentionBackend.supports_kv_cache_dtype",
+          "score": 0.60217,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/example_hidden_states_connector.py:103-110",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.example_hidden_states_connector.ExampleHiddenStatesConnector.prefer_cross_layer_blocks",
+          "score": 0.59691,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/features/quantization/quantized_kvcache.md"
+      ],
+      "retrieval_ms": 17.8
+    },
+    {
+      "question_id": "documentation-107",
+      "question": "What is the main benefit of using Hugging Face Inference Endpoints with vLLM for deploying models?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-107",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.8,
+          "10": 0.4,
+          "20": 0.25
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.838184,
+          "10": 0.838184,
+          "20": 0.829028
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:3-7",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Overview",
+          "score": 0.71264,
+          "via": "dense"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:157-163",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Advanced Deployment Details",
+          "score": 0.70753,
+          "via": "dense"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:165-170",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Next Steps",
+          "score": 0.63006,
+          "via": "dense"
+        },
+        {
+          "location": "docs/deployment/frameworks/hf_inference_endpoints.md:9-13",
+          "symbol": "docs/deployment/frameworks/hf_inference_endpoints.md#Hugging Face Inference Endpoints > Deployment Methods",
+          "score": 0.62901,
+          "via": "dense"
+        },
+        {
+          "location": "docs/models/pooling_models/README.md:1-6",
+          "symbol": "docs/models/pooling_models/README.md#Pooling Models",
+          "score": 0.58802,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/huggingface_integration.md:1-19",
+          "symbol": "docs/design/huggingface_integration.md#Integration with Hugging Face",
+          "score": 0.56071,
+          "via": "dense"
+        },
+        {
+          "location": "docs/models/supported_models.md:292-314",
+          "symbol": "docs/models/supported_models.md#Supported Models > Loading a Model > ModelScope",
+          "score": 0.55875,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/huggingface_integration.md:20-31",
+          "symbol": "docs/design/huggingface_integration.md#Integration with Hugging Face",
+          "score": 0.53435,
+          "via": "dense"
+        },
+        {
+          "location": "docs/models/supported_models.md:192-222",
+          "symbol": "docs/models/supported_models.md#Supported Models > Loading a Model > Hugging Face Hub",
+          "score": 0.51499,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/ernie45.py:1-5",
+          "symbol": "vllm.model_executor.models.ernie45",
+          "score": 0.50325,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/deployment/frameworks/hf_inference_endpoints.md"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "documentation-112",
+      "question": "What is the purpose of the 'kv_transfer_params' in the example code?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-112",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/config/kv_transfer.py:1-5",
+          "symbol": "vllm.config.kv_transfer",
+          "score": 0.6167,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/offloading/common.py:1-8",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.offloading.common",
+          "score": 0.60549,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/example_connector.py:67-69",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.example_connector.ExampleConnectorMetadata",
+          "score": 0.58879,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/decode_bench_connector.py:119-127",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.decode_bench_connector.DecodeBenchConnector.save_kv_layer",
+          "score": 0.58858,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/kv_transfer.py:22-42",
+          "symbol": "vllm.config.kv_transfer.KVTransferConfig",
+          "score": 0.58788,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/base.py:367-376",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.base.KVConnectorBase_V1.wait_for_save",
+          "score": 0.58524,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/base.py:651-661",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.base.KVConnectorBase_V1.get_finished_count",
+          "score": 0.58297,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/kv_transfer.py:108-110",
+          "symbol": "vllm.config.kv_transfer.KVTransferConfig.is_kv_transfer_instance",
+          "score": 0.57306,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/offloading_connector.py:113-120",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.offloading_connector.OffloadingConnector.save_kv_layer",
+          "score": 0.57258,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/distributed/kv_transfer/kv_connector/v1/base.py:550-556",
+          "symbol": "vllm.distributed.kv_transfer.kv_connector.v1.base.KVConnectorBase_V1.on_new_request",
+          "score": 0.57064,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/serving/expert_parallel_deployment.md"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "documentation-117",
+      "question": "What is the purpose of the `max_model_len` parameter in the context extension feature?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-117",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 0.4,
+          "10": 0.3,
+          "20": 0.2
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 0.796708,
+          "10": 0.780968,
+          "20": 0.763345
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/features/context_extension.md:1-5",
+          "symbol": "docs/features/context_extension.md#Context Extension",
+          "score": 0.60832,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/context_extension.md:57-70",
+          "symbol": "docs/features/context_extension.md#Context Extension > OpenAI Online Method > Key Parameters",
+          "score": 0.53525,
+          "via": "dense"
+        },
+        {
+          "location": "tests/entrypoints/serve/utils/test_api_utils.py:110-120",
+          "symbol": "tests.entrypoints.serve.utils.test_api_utils.TestGetMaxTokens.test_input_length_exceeds_max_model_len",
+          "score": 0.52946,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/spec_decode/test_max_len.py:1-8",
+          "symbol": "tests.v1.spec_decode.test_max_len",
+          "score": 0.52552,
+          "via": "dense"
+        },
+        {
+          "location": "examples/features/context_extension/context_extension_offline.py:15-32",
+          "symbol": "examples.features.context_extension.context_extension_offline.create_llm",
+          "score": 0.52319,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/serve/utils/api_utils.py:170-206",
+          "symbol": "vllm.entrypoints.serve.utils.api_utils.get_max_tokens",
+          "score": 0.51341,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/context_extension.md:21-29",
+          "symbol": "docs/features/context_extension.md#Context Extension > OpenAI Online Method > Usage",
+          "score": 0.51317,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/e2e/general/test_context_length.py:1-13",
+          "symbol": "tests.v1.e2e.general.test_context_length",
+          "score": 0.51196,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/models/ultravox.py:436-442",
+          "symbol": "vllm.model_executor.models.ultravox.ModifiedWhisperEncoder.max_context_length",
+          "score": 0.51039,
+          "via": "dense"
+        },
+        {
+          "location": "tests/models/language/pooling/test_nomic_max_model_len.py:1-7",
+          "symbol": "tests.models.language.pooling.test_nomic_max_model_len",
+          "score": 0.50732,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/features/context_extension.md"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "documentation-119",
+      "question": "What is the purpose of the `@register_op` decorator in the vllm codebase?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "documentation-119",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.2,
+          "20": 0.15
+        },
+        "mrr": 0.25,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.430677,
+          "10": 0.442723,
+          "20": 0.451098
+        },
+        "first_hit_rank": 4,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "vllm/model_executor/custom_op.py:69-77",
+          "symbol": "vllm.model_executor.custom_op.PluggableLayer.register",
+          "score": 0.5786,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/custom_op.py:314-327",
+          "symbol": "vllm.model_executor.custom_op.CustomOp.register",
+          "score": 0.56825,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/custom_op.md:1-5",
+          "symbol": "docs/design/custom_op.md#CustomOp",
+          "score": 0.5606,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/vllm_ir.md:351-368",
+          "symbol": "docs/design/vllm_ir.md#vLLM IR: Functional Intermediate Representation > Core vLLM IR Concepts > Operation Declaration",
+          "score": 0.55994,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/registry.py:34-43",
+          "symbol": "vllm.utils.registry.ExtensionManager.register",
+          "score": 0.55923,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/passes/vllm_inductor_pass.py:308-317",
+          "symbol": "vllm.compilation.passes.vllm_inductor_pass.VllmFusionPatternMatcherPass.register",
+          "score": 0.52987,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/compilation/passes/vllm_inductor_pass.py:296-303",
+          "symbol": "vllm.compilation.passes.vllm_inductor_pass.VllmFusionPatternMatcherPass",
+          "score": 0.52425,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/vllm_ir.md:370-374",
+          "symbol": "docs/design/vllm_ir.md#vLLM IR: Functional Intermediate Representation > Core vLLM IR Concepts > The `maybe_inplace` Overload",
+          "score": 0.52361,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/custom_op.py:338-360",
+          "symbol": "vllm.model_executor.custom_op.CustomOp.register_oot",
+          "score": 0.5208,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/registry.py:8-26",
+          "symbol": "vllm.utils.registry.ExtensionManager",
+          "score": 0.51838,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/design/vllm_ir.md"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "debugging-120",
+      "question": "What could cause the error message 'The quantization method {model_config.quantization} is not supported for the current GPU'?",
+      "category": "debugging",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "debugging-120",
+        "category": "debugging",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.1111111111111111,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.30103,
+          "20": 0.30103
+        },
+        "first_hit_rank": 9,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "tests/quantization/utils.py:12-27",
+          "symbol": "tests.quantization.utils.is_quant_method_supported",
+          "score": 0.65614,
+          "via": "dense"
+        },
+        {
+          "location": "tests/quantization/test_register_quantization_config.py:80-83",
+          "symbol": "tests.quantization.test_register_quantization_config.CustomQuantConfig.get_min_capability",
+          "score": 0.64953,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/quantization/README.md:133-144",
+          "symbol": "docs/features/quantization/README.md#Quantization > Out-of-Tree Quantization Plugins > Required QuantizationConfig Methods",
+          "score": 0.64332,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/base_config.py:117-126",
+          "symbol": "vllm.model_executor.layers.quantization.base_config.QuantizationConfig.get_min_capability",
+          "score": 0.61116,
+          "via": "dense"
+        },
+        {
+          "location": "tests/quantization/test_auto_gptq.py:28-55",
+          "symbol": "tests.quantization.test_auto_gptq.test_auto_gptq_quantization_method",
+          "score": 0.60458,
+          "via": "dense"
+        },
+        {
+          "location": "tests/quantization/test_mixed_precision.py:1-11",
+          "symbol": "tests.quantization.test_mixed_precision",
+          "score": 0.60115,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/torchao.py:102-131",
+          "symbol": "vllm.model_executor.layers.quantization.torchao._check_torchao_fp8_activation_capability",
+          "score": 0.59452,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/quantization/test_marlin_tile_padding.py:189-192",
+          "symbol": "tests.kernels.quantization.test_marlin_tile_padding._gpu_marlin_unsupported",
+          "score": 0.58964,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/config/vllm.py:774-809",
+          "symbol": "vllm.config.vllm.VllmConfig._get_quantization_config",
+          "score": 0.5884,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py:375-401",
+          "symbol": "vllm.model_executor.layers.quantization.compressed_tensors.compressed_tensors.CompressedTensorsConfig._check_scheme_supported",
+          "score": 0.58717,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/config/vllm.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "curated-arch-001",
+      "question": "How does a completion request travel from the OpenAI-compatible HTTP server to model execution on the GPU?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-001",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 6
+      },
+      "retrieved": [
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:139-144",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > API Reference > Completions API",
+          "score": 0.63544,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/openai/completion/serving.py:113-129",
+          "symbol": "vllm.entrypoints.openai.completion.serving.OpenAIServingCompletion.create_completion",
+          "score": 0.63137,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/openai_compatible_server.md:146-162",
+          "symbol": "docs/serving/online_serving/openai_compatible_server.md#OpenAI-Compatible Server > API Reference > Completions API > Extra parameters",
+          "score": 0.60172,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/arch_overview.md:173-183",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > LLM Engine > AsyncLLMEngine",
+          "score": 0.57574,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/openai/completion/api_router.py:30-31",
+          "symbol": "vllm.entrypoints.openai.completion.api_router.completion",
+          "score": 0.57196,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/quantization/modelopt.md:109-117",
+          "symbol": "docs/features/quantization/modelopt.md#NVIDIA Model Optimizer > Running the OpenAI-compatible server",
+          "score": 0.56174,
+          "via": "dense"
+        },
+        {
+          "location": "examples/applications/api_server/client.py:1-16",
+          "symbol": "examples.applications.api_server.client",
+          "score": 0.55952,
+          "via": "dense"
+        },
+        {
+          "location": "tests/entrypoints/openai/completion/test_completion_error.py:87-104",
+          "symbol": "tests.entrypoints.openai.completion.test_completion_error._build_serving_completion",
+          "score": 0.55828,
+          "via": "dense"
+        },
+        {
+          "location": "docs/serving/online_serving/renderer.md:9-16",
+          "symbol": "docs/serving/online_serving/renderer.md#Renderer APIs > API Reference",
+          "score": 0.54925,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/openai/completion/serving.py:88-111",
+          "symbol": "vllm.entrypoints.openai.completion.serving.OpenAIServingCompletion.render_completion_request",
+          "score": 0.54707,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/entrypoints/openai/api_server.py",
+        "vllm/v1/engine/async_llm.py",
+        "vllm/v1/engine/core.py",
+        "vllm/v1/executor/multiproc_executor.py",
+        "vllm/v1/worker/gpu_worker.py",
+        "vllm/v1/worker/gpu_model_runner.py"
+      ],
+      "retrieval_ms": 15.9
+    },
+    {
+      "question_id": "curated-arch-003",
+      "question": "How does the scheduler decide which requests are executed in the next engine step, and what limits how many tokens it can batch?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-003",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.3333333333333333,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.1,
+          "20": 0.05
+        },
+        "mrr": 0.16666666666666666,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.066052,
+          "20": 0.066052
+        },
+        "first_hit_rank": 6,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/core/sched/interface.py:53-83",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.schedule",
+          "score": 0.62563,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:91-109",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.update_from_output",
+          "score": 0.59604,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:144-166",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.finish_requests",
+          "score": 0.58269,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/metrics.md:228-255",
+          "symbol": "docs/design/metrics.md#Metrics > Metrics Design > Frontend Stats Collection",
+          "score": 0.57696,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/metrics.md:167-172",
+          "symbol": "docs/design/metrics.md#Metrics > Metrics Design > Scheduler Stats",
+          "score": 0.545,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/scheduler.py:2121-2138",
+          "symbol": "vllm.v1.core.sched.scheduler.Scheduler._update_request_with_output",
+          "score": 0.54337,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:3160-3166",
+          "symbol": "tests.v1.core.test_scheduler.test_schedule_skip_tokenizer_init",
+          "score": 0.54154,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:376-388",
+          "symbol": "tests.v1.core.test_async_scheduler.PipelinedEngine._schedule",
+          "score": 0.53752,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:49-58",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Chunked Prefill",
+          "score": 0.52502,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:444-464",
+          "symbol": "tests.v1.core.test_async_scheduler.PipelinedEngine.run",
+          "score": 0.51848,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/core/sched/output.py",
+        "vllm/config/scheduler.py"
+      ],
+      "retrieval_ms": 15.9
+    },
+    {
+      "question_id": "curated-arch-007",
+      "question": "How does speculative decoding propose draft tokens and decide which of them to keep?",
+      "category": "architecture",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-arch-007",
+        "category": "architecture",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "docs/features/speculative_decoding/mlp.md:1-3",
+          "symbol": "docs/features/speculative_decoding/mlp.md#MLP Draft Models",
+          "score": 0.69142,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/mtp.md:1-10",
+          "symbol": "docs/features/speculative_decoding/mtp.md#MTP (Multi-Token Prediction)",
+          "score": 0.66214,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/metrics.md:557-576",
+          "symbol": "docs/design/metrics.md#Metrics > Future Work > Speculative Decoding",
+          "score": 0.60482,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/speculators.md:15-27",
+          "symbol": "docs/features/speculative_decoding/speculators.md#vLLM-Project/Speculators > Why use Speculators?",
+          "score": 0.59857,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/mtp.md:70-76",
+          "symbol": "docs/features/speculative_decoding/mtp.md#MTP (Multi-Token Prediction) > Notes",
+          "score": 0.58549,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/dynamic_speculative_decoding.md:3-5",
+          "symbol": "docs/features/speculative_decoding/dynamic_speculative_decoding.md#Dynamic Speculative Decoding > Why is Dynamic SD needed?",
+          "score": 0.58292,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/README.md:55-73",
+          "symbol": "docs/features/speculative_decoding/README.md#Speculative Decoding > `--speculative-config` schema",
+          "score": 0.57478,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/parallel_draft_model.md:1-3",
+          "symbol": "docs/features/speculative_decoding/parallel_draft_model.md#Parallel Draft Models",
+          "score": 0.56507,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/README.md:1-5",
+          "symbol": "docs/features/speculative_decoding/README.md#Speculative Decoding",
+          "score": 0.56253,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/speculative_decoding/README.md:7-21",
+          "symbol": "docs/features/speculative_decoding/README.md#Speculative Decoding > vLLM Speculation Methods",
+          "score": 0.55701,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/spec_decode/ngram_proposer.py",
+        "vllm/v1/sample/rejection_sampler.py",
+        "vllm/config/speculative.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "curated-debug-001",
+      "question": "A server dies with 'CUDA out of memory' shortly after startup while allocating the KV cache. Which components decide that allocation and what knobs control it?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-001",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.05
+        },
+        "mrr": 0.05,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.042218
+        },
+        "first_hit_rank": 20,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "vllm/utils/mem_utils.py:55-83",
+          "symbol": "vllm.utils.mem_utils.release_device_memory_under_pressure",
+          "score": 0.57223,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/simple_kv_offload/cuda_mem_ops.py:23-32",
+          "symbol": "vllm.v1.simple_kv_offload.cuda_mem_ops.pin_tensor",
+          "score": 0.56387,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/platforms/cuda.py:350-356",
+          "symbol": "vllm.platforms.cuda.CudaPlatformBase.get_current_memory_usage",
+          "score": 0.53979,
+          "via": "dense"
+        },
+        {
+          "location": "docs/getting_started/installation/cpu.md:291-293",
+          "symbol": "docs/getting_started/installation/cpu.md#CPU > FAQ > How to decide `VLLM_CPU_KVCACHE_SPACE`?",
+          "score": 0.53343,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/kv_offloading_usage.md:1-6",
+          "symbol": "docs/features/kv_offloading_usage.md#KV Offloading Usage Guide",
+          "score": 0.52736,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/platforms/rocm.py:949-955",
+          "symbol": "vllm.platforms.rocm.RocmPlatform.get_current_memory_usage",
+          "score": 0.52329,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/mem_utils.py:135-165",
+          "symbol": "vllm.utils.mem_utils.MemorySnapshot.measure",
+          "score": 0.51946,
+          "via": "dense"
+        },
+        {
+          "location": "tests/kernels/attention/test_minimax_m3.py:59-72",
+          "symbol": "tests.kernels.attention.test_minimax_m3._allocate_main_kv_via_contract",
+          "score": 0.51886,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/device_allocator/cumem.py:58-66",
+          "symbol": "vllm.device_allocator.cumem.get_pluggable_allocator",
+          "score": 0.51667,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/cpu/gpu_worker.py:193-220",
+          "symbol": "vllm.v1.kv_offload.cpu.gpu_worker.pin_mmap_region",
+          "score": 0.51598,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/worker/gpu_worker.py",
+        "vllm/config/cache.py",
+        "vllm/v1/core/kv_cache_utils.py"
+      ],
+      "retrieval_ms": 23.7
+    },
+    {
+      "question_id": "curated-debug-002",
+      "question": "Throughput collapses under load and the logs mention preemption. What causes a running request to be preempted and what happens to its KV blocks?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-002",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "mrr": 0.0,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.0
+        },
+        "first_hit_rank": null,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "docs/features/kv_offloading_usage.md:273-273",
+          "symbol": "docs/features/kv_offloading_usage.md#KV Offloading Usage Guide > Secondary Tiers > P2P (Including P/D) > Orchestration-Layer Protocol",
+          "score": 0.56232,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:49-58",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > Chunked Prefill",
+          "score": 0.50476,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/kv_offloading_usage.md:295-301",
+          "symbol": "docs/features/kv_offloading_usage.md#KV Offloading Usage Guide > Tuning Tips",
+          "score": 0.50183,
+          "via": "dense"
+        },
+        {
+          "location": "docs/usage/security.md:274-278",
+          "symbol": "docs/usage/security.md#Security > Request Parameter Resource Limits",
+          "score": 0.49608,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/p2p/session/server.py:697-729",
+          "symbol": "vllm.v1.kv_offload.tiering.p2p.session.server.ServerRole.finish",
+          "score": 0.49271,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/disagg_prefill.md:8-16",
+          "symbol": "docs/features/disagg_prefill.md#Disaggregated Prefilling (experimental) > Why disaggregated prefilling?",
+          "score": 0.48502,
+          "via": "dense"
+        },
+        {
+          "location": "docs/features/kv_offloading_usage.md:1-6",
+          "symbol": "docs/features/kv_offloading_usage.md#KV Offloading Usage Guide",
+          "score": 0.47501,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/metrics.md:503-534",
+          "symbol": "docs/design/metrics.md#Metrics > Deprecated Metrics > KV Cache Offloading",
+          "score": 0.46611,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:53-83",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.schedule",
+          "score": 0.46425,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/kv_offload/tiering/p2p/control/base.py:145-162",
+          "symbol": "vllm.v1.kv_offload.tiering.p2p.control.base.ControlTransport.poll",
+          "score": 0.4635,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/core/kv_cache_manager.py"
+      ],
+      "retrieval_ms": 23.8
+    },
+    {
+      "question_id": "curated-debug-005",
+      "question": "A multi-GPU run hangs at startup before any request is served. Which parts of the codebase set up the distributed process group and worker processes?",
+      "category": "debugging",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-debug-005",
+        "category": "debugging",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.3333333333333333
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.05
+        },
+        "mrr": 0.05263157894736842,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "20": 0.042905
+        },
+        "first_hit_rank": 19,
+        "n_gold": 3
+      },
+      "retrieved": [
+        {
+          "location": "docs/design/arch_overview.md:101-107",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > GPU Worker Processes",
+          "score": 0.6405,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/arch_overview.md:93-99",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > Engine Core Process",
+          "score": 0.58395,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/utils/system_utils.py:168-181",
+          "symbol": "vllm.utils.system_utils.get_mp_context",
+          "score": 0.53893,
+          "via": "dense"
+        },
+        {
+          "location": "tests/distributed/test_utils.py:115-141",
+          "symbol": "tests.distributed.test_utils.test_stateless_process_group",
+          "score": 0.53243,
+          "via": "dense"
+        },
+        {
+          "location": "tests/distributed/test_split_group.py:1-19",
+          "symbol": "tests.distributed.test_split_group",
+          "score": 0.53166,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/arch_overview.md:117-146",
+          "symbol": "docs/design/arch_overview.md#Architecture Overview > V1 Process Architecture > Process Count Summary",
+          "score": 0.51965,
+          "via": "dense"
+        },
+        {
+          "location": "tests/utils.py:397-443",
+          "symbol": "tests.utils.RemoteVLLMServer._terminate_process_tree",
+          "score": 0.50939,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/worker/gpu_worker.py:114-123",
+          "symbol": "vllm.v1.worker.gpu_worker.AsyncIntermediateTensors.wait_for_comm",
+          "score": 0.50354,
+          "via": "dense"
+        },
+        {
+          "location": "docs/configuration/optimization.md:425-441",
+          "symbol": "docs/configuration/optimization.md#Optimization and Tuning > CPU Resources for GPU Deployments > Minimum CPU Requirements",
+          "score": 0.50231,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/entrypoints/openai/dp_supervisor.py:391-405",
+          "symbol": "vllm.entrypoints.openai.dp_supervisor.DPSupervisor._start_children",
+          "score": 0.49802,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/distributed/parallel_state.py",
+        "vllm/v1/executor/multiproc_executor.py",
+        "vllm/config/parallel.py"
+      ],
+      "retrieval_ms": 23.9
+    },
+    {
+      "question_id": "curated-impact-002",
+      "question": "What depends on the scheduler output structure, so that adding a field to it would require changes elsewhere?",
+      "category": "change_impact",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-impact-002",
+        "category": "change_impact",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.25,
+          "10": 0.25,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.2,
+          "10": 0.1,
+          "20": 0.15
+        },
+        "mrr": 0.2,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.056694,
+          "10": 0.056694,
+          "20": 0.147021
+        },
+        "first_hit_rank": 5,
+        "n_gold": 4
+      },
+      "retrieved": [
+        {
+          "location": "vllm/v1/core/sched/interface.py:91-109",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.update_from_output",
+          "score": 0.52756,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:121-133",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.update_draft_token_ids_in_output",
+          "score": 0.47753,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/engine/output_processor.py:727-728",
+          "symbol": "vllm.v1.engine.output_processor.OutputProcessor.update_scheduler_stats",
+          "score": 0.47632,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_mooncake_store_scheduler.py:33-48",
+          "symbol": "tests.v1.kv_connector.unit.test_mooncake_store_scheduler._make_scheduler_output",
+          "score": 0.45579,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/output.py:271-283",
+          "symbol": "vllm.v1.core.sched.output.SchedulerOutput.make_empty",
+          "score": 0.45246,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/async_scheduler.py:12-15",
+          "symbol": "vllm.v1.core.sched.async_scheduler.AsyncScheduler",
+          "score": 0.44989,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/streaming_input/test_gpu_model_runner_v2_streaming.py:56-67",
+          "symbol": "tests.v1.streaming_input.test_gpu_model_runner_v2_streaming._make_scheduler_output",
+          "score": 0.44959,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/worker/test_mamba_utils.py:92-110",
+          "symbol": "tests.v1.worker.test_mamba_utils._make_scheduler_output",
+          "score": 0.44882,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/kv_connector/unit/test_kv_connector_lifecycle.py:22-34",
+          "symbol": "tests.v1.kv_connector.unit.test_kv_connector_lifecycle._make_empty_scheduler_output",
+          "score": 0.43984,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:135-142",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.add_request",
+          "score": 0.43835,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "vllm/v1/core/sched/output.py",
+        "vllm/v1/core/sched/scheduler.py",
+        "vllm/v1/worker/gpu_model_runner.py",
+        "vllm/v1/engine/core.py"
+      ],
+      "retrieval_ms": 18.0
+    },
+    {
+      "question_id": "curated-tests-002",
+      "question": "How is scheduler behaviour tested without running a real model?",
+      "category": "tests",
+      "difficulty": "multi_hop",
+      "metrics": {
+        "question_id": "curated-tests-002",
+        "category": "tests",
+        "difficulty": "multi_hop",
+        "recall_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.5,
+          "20": 0.5
+        },
+        "precision_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.2,
+          "20": 0.2
+        },
+        "mrr": 0.16666666666666666,
+        "ndcg_at": {
+          "1": 0.0,
+          "5": 0.0,
+          "10": 0.166921,
+          "20": 0.235379
+        },
+        "first_hit_rank": 6,
+        "n_gold": 2
+      },
+      "retrieved": [
+        {
+          "location": "tests/v1/core/test_deferred_block_free.py:51-59",
+          "symbol": "tests.v1.core.test_deferred_block_free._create_deferring_scheduler",
+          "score": 0.57585,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/sched/interface.py:91-109",
+          "symbol": "vllm.v1.core.sched.interface.SchedulerInterface.update_from_output",
+          "score": 0.56901,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/executor/uniproc_executor.py:119-132",
+          "symbol": "vllm.v1.executor.uniproc_executor.UniProcExecutor.execute_model",
+          "score": 0.55219,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:334-356",
+          "symbol": "tests.v1.core.test_async_scheduler.PipelinedEngine",
+          "score": 0.55027,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/spec_decode/test_dynamic_sd.py:219-227",
+          "symbol": "tests.v1.spec_decode.test_dynamic_sd.test_scheduler_uses_static_k_when_no_requests_are_scheduled",
+          "score": 0.54638,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:1799-1824",
+          "symbol": "tests.v1.core.test_scheduler._step_until_done",
+          "score": 0.54266,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_scheduler.py:3160-3166",
+          "symbol": "tests.v1.core.test_scheduler.test_schedule_skip_tokenizer_init",
+          "score": 0.5409,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/executor/abstract.py:209-213",
+          "symbol": "vllm.v1.executor.abstract.Executor.execute_model",
+          "score": 0.53803,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/executor/test_executor.py:33-34",
+          "symbol": "tests.v1.executor.test_executor.test_supports_async_scheduling_uniproc_executor",
+          "score": 0.53077,
+          "via": "dense"
+        },
+        {
+          "location": "tests/v1/core/test_async_scheduler.py:444-464",
+          "symbol": "tests.v1.core.test_async_scheduler.PipelinedEngine.run",
+          "score": 0.52534,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "tests/v1/core/test_scheduler.py",
+        "vllm/v1/core/sched/scheduler.py"
+      ],
+      "retrieval_ms": 23.8
+    },
+    {
+      "question_id": "curated-doc-001",
+      "question": "What does the design documentation say about how the hybrid KV cache manager handles models that mix attention types?",
+      "category": "documentation",
+      "difficulty": "single_hop",
+      "metrics": {
+        "question_id": "curated-doc-001",
+        "category": "documentation",
+        "difficulty": "single_hop",
+        "recall_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "20": 1.0
+        },
+        "precision_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.8,
+          "20": 0.6
+        },
+        "mrr": 1.0,
+        "ndcg_at": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 0.988803,
+          "20": 0.965613
+        },
+        "first_hit_rank": 1,
+        "n_gold": 1
+      },
+      "retrieved": [
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:6-21",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > What is a hybrid model?",
+          "score": 0.84135,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:204-206",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 3: mamba models",
+          "score": 0.73068,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:57-69",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > Case 1: toy model",
+          "score": 0.72626,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:151-154",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > Case 5: KV sharing",
+          "score": 0.71608,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:210-226",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Implementation > Overview",
+          "score": 0.71051,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:45-55",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Allocation > High level idea",
+          "score": 0.70438,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/kv_cache_utils.py:1518-1539",
+          "symbol": "vllm.v1.core.kv_cache_utils.unify_hybrid_kv_cache_specs",
+          "score": 0.69441,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:1-4",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager",
+          "score": 0.68254,
+          "via": "dense"
+        },
+        {
+          "location": "vllm/v1/core/kv_cache_utils.py:1106-1246",
+          "symbol": "vllm.v1.core.kv_cache_utils._get_kv_cache_groups_uniform_page_size",
+          "score": 0.66695,
+          "via": "dense"
+        },
+        {
+          "location": "docs/design/hybrid_kv_cache_manager.md:166-172",
+          "symbol": "docs/design/hybrid_kv_cache_manager.md#Hybrid KV Cache Manager > Prefix caching > Case 0: full attention only models",
+          "score": 0.66319,
+          "via": "dense"
+        }
+      ],
+      "gold_files": [
+        "docs/design/hybrid_kv_cache_manager.md"
+      ],
+      "retrieval_ms": 21.0
+    }
+  ],
+  "failures": [],
+  "started_at": "2026-08-12T23:18:13",
+  "duration_s": 6.1
+}

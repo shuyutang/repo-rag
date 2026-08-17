@@ -1,0 +1,60 @@
+[project]
+name = "engineering-knowledge-agent"
+version = "1.0.0"
+description = "Retrieval-augmented engineering knowledge agent over large code repositories"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "torch",
+    "transformers>=4.44",
+    "sentence-transformers>=3.0",
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic>=2",
+    "typer>=0.12",
+    "rich>=13",
+    "pyyaml",
+    "openai>=1.40",
+    "orjson",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "ruff"]
+anthropic = ["anthropic>=0.40"]
+faiss = ["faiss-cpu>=1.8"]
+
+[project.scripts]
+rag = "eka.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["eka*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+# Google's Python style guide specifies 80 columns; 88 is the pragmatic value
+# this codebase was written to, and reflowing it is a separate concern from
+# documentation style, so line length is not enforced (E501 is not selected).
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+# D = pydocstyle.  The docstring convention below is the enforced contract:
+#   ruff check eka scripts tests
+# must stay clean.
+select = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+# Package markers carry no API surface of their own.
+"eka/**/__init__.py" = ["D104"]
