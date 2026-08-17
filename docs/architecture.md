@@ -9,7 +9,7 @@ kind.
 
 ## 1. Ingestion — structure before size
 
-`eka/ingestion/code_parser.py`
+`repo_rag/ingestion/code_parser.py`
 
 Fixed-size chunking destroys the thing that makes code searchable: a symbol has
 a name, a parent, a signature, a docstring, and a line range you can cite. The
@@ -44,7 +44,7 @@ name, symbol type, parent, line range.
 
 ## 2. Indexing — four views of the same chunks
 
-`eka/indexing/`
+`repo_rag/indexing/`
 
 | index | answers | implementation |
 | --- | --- | --- |
@@ -71,7 +71,7 @@ excluded.
 
 ## 3. Retrieval — strategies that fail differently
 
-`eka/retrieval/`
+`repo_rag/retrieval/`
 
 Every retriever implements the same protocol (`retrieve(query, k) ->
 list[RetrievedChunk]`), which is what makes the ablation possible: the benchmark
@@ -99,7 +99,7 @@ over the few chunks that actually reach the LLM.
 
 ## 4. Agentic retrieval — bounded, inspectable
 
-`eka/agent/`
+`repo_rag/agent/`
 
 ```
 plan  ─> retrieve (multiple sub-queries + symbol/impact/history tools)
@@ -127,7 +127,7 @@ questions get the symbol graph.
 
 ## 5. Context construction — the budget is the design
 
-`eka/generation/context_builder.py`
+`repo_rag/generation/context_builder.py`
 
 Retrieved evidence is not a context window. The builder:
 
@@ -148,7 +148,7 @@ validation possible afterwards.
 
 ## 6. Grounded generation
 
-`eka/generation/answer_generator.py`
+`repo_rag/generation/answer_generator.py`
 
 The system prompt requires three epistemic levels to be kept apart: facts
 supported by evidence, explicit `Inference:` for reasoning beyond it, and a
@@ -165,7 +165,7 @@ construction, not by a judge's opinion.
 
 ## 7. Observability
 
-`eka/observability/tracing.py`
+`repo_rag/observability/tracing.py`
 
 Every query produces a trace: one step per stage (each retriever, fusion,
 rerank, each agent iteration, generation) with duration, the top results with
@@ -178,7 +178,7 @@ object it uses for metrics.
 
 ## 8. Configuration and reproducibility
 
-`eka/config.py`, `configs/default.yaml`
+`repo_rag/config.py`, `configs/default.yaml`
 
 One typed config tree covers chunking, embeddings, retrieval, reranking, the
 agent, generation and the LLM. `Config.fingerprint()` is embedded in every
@@ -194,15 +194,15 @@ PRD §28 asks for a specific layout; this is where each part lives.
 
 | PRD | here |
 | --- | --- |
-| `ingestion/` | [eka/ingestion](../eka/ingestion) — `code_parser.py`, `document_parser.py`, `git_parser.py`, `scanner.py` |
-| `indexing/` | [eka/indexing](../eka/indexing) — `embeddings.py`, `vector_index.py`, `bm25_index.py`, `symbol_index.py`, `graph_index.py`, `knowledge_base.py` |
-| `retrieval/` | [eka/retrieval](../eka/retrieval) — `base.py`, `dense.py`, `sparse.py`, `symbol.py`, `git.py`, `fusion.py`, `reranker.py`, `hybrid.py` |
-| `agent/` | [eka/agent](../eka/agent) — `planner.py`, `tools.py`, `retrieval_agent.py` |
-| `generation/` | [eka/generation](../eka/generation) — `context_builder.py`, `answer_generator.py`, `llm.py` |
-| `evaluation/` | [eka/evaluation](../eka/evaluation) — `dataset.py`, `dataset_builder.py`, `curated.py`, `retrieval_metrics.py`, `answer_metrics.py`, `benchmark.py` |
-| `observability/` | [eka/observability/tracing.py](../eka/observability/tracing.py) |
-| `api/`, `ui/` | [eka/api/server.py](../eka/api/server.py), [ui/index.html](../ui/index.html) |
+| `ingestion/` | [repo_rag/ingestion](../repo_rag/ingestion) — `code_parser.py`, `document_parser.py`, `git_parser.py`, `scanner.py` |
+| `indexing/` | [repo_rag/indexing](../repo_rag/indexing) — `embeddings.py`, `vector_index.py`, `bm25_index.py`, `symbol_index.py`, `graph_index.py`, `knowledge_base.py` |
+| `retrieval/` | [repo_rag/retrieval](../repo_rag/retrieval) — `base.py`, `dense.py`, `sparse.py`, `symbol.py`, `git.py`, `fusion.py`, `reranker.py`, `hybrid.py` |
+| `agent/` | [repo_rag/agent](../repo_rag/agent) — `planner.py`, `tools.py`, `retrieval_agent.py` |
+| `generation/` | [repo_rag/generation](../repo_rag/generation) — `context_builder.py`, `answer_generator.py`, `llm.py` |
+| `evaluation/` | [repo_rag/evaluation](../repo_rag/evaluation) — `dataset.py`, `dataset_builder.py`, `curated.py`, `retrieval_metrics.py`, `answer_metrics.py`, `benchmark.py` |
+| `observability/` | [repo_rag/observability/tracing.py](../repo_rag/observability/tracing.py) |
+| `api/`, `ui/` | [repo_rag/api/server.py](../repo_rag/api/server.py), [ui/index.html](../ui/index.html) |
 
-`eka/pipeline.py` ties them together, and is the single object the CLI, the API
+`repo_rag/pipeline.py` ties them together, and is the single object the CLI, the API
 and the benchmark all share — so a number reported by the benchmark comes from
 exactly the code path the demo runs.

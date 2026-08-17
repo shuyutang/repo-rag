@@ -1,7 +1,7 @@
 
 # Product Requirements Document
 
-## Engineering Knowledge Agent
+## repo-rag
 
 **Version:** 1.0
 **Status:** Proposed
@@ -12,7 +12,7 @@
 
 ## 1. Product Summary
 
-Engineering Knowledge Agent is a production-oriented RAG system for answering complex engineering questions about large software repositories.
+repo-rag is a production-oriented RAG system for answering complex engineering questions about large software repositories.
 
 Unlike conventional "chat with your docs" systems, the agent builds a unified knowledge base across:
 

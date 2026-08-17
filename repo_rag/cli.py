@@ -22,7 +22,10 @@ from .config import REPO_ROOT, Config
 from .indexing.knowledge_base import KnowledgeBase
 from .ingestion.scanner import RepositoryScanner, read_chunks, write_chunks
 
-app = typer.Typer(add_completion=False, help="Engineering Knowledge Agent")
+app = typer.Typer(
+    add_completion=False,
+    help="repo-rag: grounded question answering over a code repository.",
+)
 dataset_app = typer.Typer(help="Evaluation dataset commands")
 app.add_typer(dataset_app, name="dataset")
 console = Console()

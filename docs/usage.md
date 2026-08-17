@@ -182,7 +182,7 @@ function and method carries a docstring with `Args:` / `Returns:` / `Raises:`
 sections where they apply. That is enforced, not merely intended:
 
 ```bash
-.venv/bin/ruff check eka scripts tests    # pydocstyle, convention = "google"
+.venv/bin/ruff check repo_rag scripts tests    # pydocstyle, convention = "google"
 ```
 
 The one deliberate deviation is line length. Google specifies 80 columns; the

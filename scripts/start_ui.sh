@@ -121,12 +121,12 @@ PY
 #######################################
 # Report whether the generation backend is reachable.
 # Globals:
-#   EKA_LLM_PORT (read)
+#   REPO_RAG_LLM_PORT (read)
 # Outputs:
 #   A status line on stdout, or an explanation on stderr when it is down.
 #######################################
 check_llm() {
-  local llm_port="${EKA_LLM_PORT:-${DEFAULT_LLM_PORT}}"
+  local llm_port="${REPO_RAG_LLM_PORT:-${DEFAULT_LLM_PORT}}"
   if curl -sf -m 3 "http://127.0.0.1:${llm_port}/v1/models" >/dev/null 2>&1; then
     echo "generation backend: up on :${llm_port}"
     return

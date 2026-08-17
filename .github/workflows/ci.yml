@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install ruff
-      - run: ruff check eka scripts tests
+      - run: ruff check repo_rag scripts tests
 
   shell:
     name: shellcheck

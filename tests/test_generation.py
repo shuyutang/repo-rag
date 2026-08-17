@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from eka.generation.answer_generator import (
+from repo_rag.generation.answer_generator import (
     AnswerGenerator,
     parse_citations,
     validate_citations,
 )
-from eka.generation.context_builder import ContextBuilder, estimate_tokens
-from eka.generation.llm import EchoClient, extract_json
-from eka.pipeline import Pipeline
-from eka.retrieval.hybrid import build_retriever
-from eka.schema import Chunk, RetrievedChunk
+from repo_rag.generation.context_builder import ContextBuilder, estimate_tokens
+from repo_rag.generation.llm import EchoClient, extract_json
+from repo_rag.pipeline import Pipeline
+from repo_rag.retrieval.hybrid import build_retriever
+from repo_rag.schema import Chunk, RetrievedChunk
 
 
 def _item(path, start, end, text="body text", artifact="source"):

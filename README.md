@@ -1,4 +1,4 @@
-# Engineering Knowledge Agent
+# repo-rag
 
 A retrieval-augmented engineering assistant for large Python repositories. It
 indexes **source, tests, documentation and git history** into one knowledge

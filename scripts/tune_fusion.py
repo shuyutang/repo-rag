@@ -21,15 +21,15 @@ from pathlib import Path
 
 import yaml
 
-from eka.config import REPO_ROOT, Config
-from eka.evaluation.dataset import load_dataset
-from eka.evaluation.retrieval_metrics import aggregate, evaluate_question
-from eka.indexing.knowledge_base import KnowledgeBase
-from eka.retrieval.dense import DenseRetriever
-from eka.retrieval.fusion import fuse
-from eka.retrieval.git import GitRetriever
-from eka.retrieval.sparse import BM25Retriever
-from eka.retrieval.symbol import SymbolRetriever
+from repo_rag.config import REPO_ROOT, Config
+from repo_rag.evaluation.dataset import load_dataset
+from repo_rag.evaluation.retrieval_metrics import aggregate, evaluate_question
+from repo_rag.indexing.knowledge_base import KnowledgeBase
+from repo_rag.retrieval.dense import DenseRetriever
+from repo_rag.retrieval.fusion import fuse
+from repo_rag.retrieval.git import GitRetriever
+from repo_rag.retrieval.sparse import BM25Retriever
+from repo_rag.retrieval.symbol import SymbolRetriever
 
 
 def main() -> None:

@@ -171,7 +171,7 @@ class LLMConfig:
     provider: str = "openai"      # openai|anthropic|echo
     model: str = "Qwen/Qwen3-4B"
     base_url: str = "http://127.0.0.1:8099/v1"
-    api_key_env: str = "EKA_API_KEY"
+    api_key_env: str = "REPO_RAG_API_KEY"
     temperature: float = 0.0
     max_tokens: int = 1200
     timeout: float = 180.0

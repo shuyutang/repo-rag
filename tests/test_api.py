@@ -5,10 +5,10 @@ from __future__ import annotations
 import pytest
 from fastapi.testclient import TestClient
 
-from eka.api.server import create_app
-from eka.generation.llm import EchoClient
-from eka.indexing.knowledge_base import KnowledgeBase
-from eka.pipeline import Pipeline
+from repo_rag.api.server import create_app
+from repo_rag.generation.llm import EchoClient
+from repo_rag.indexing.knowledge_base import KnowledgeBase
+from repo_rag.pipeline import Pipeline
 
 
 @pytest.fixture(scope="module")
@@ -97,7 +97,7 @@ def test_health_reports_index_and_llm(client, monkeypatch):
 
 def _write_benchmark(config, chunk_path: str) -> str:
     """One question whose gold file is a path we know is in the fixture index."""
-    from eka.evaluation.dataset import BenchmarkQuestion, save_dataset
+    from repo_rag.evaluation.dataset import BenchmarkQuestion, save_dataset
 
     question = BenchmarkQuestion(
         id="ui-001",

@@ -64,7 +64,7 @@ llm:
   provider: openai
   model: Qwen/Qwen3-4B
   base_url: http://127.0.0.1:8099/v1
-  api_key_env: EKA_API_KEY
+  api_key_env: REPO_RAG_API_KEY
   temperature: 0.0
   max_tokens: 1200
   extra_body:

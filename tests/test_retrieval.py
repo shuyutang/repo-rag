@@ -5,16 +5,16 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from eka.indexing.bm25_index import BM25Index
-from eka.indexing.knowledge_base import KnowledgeBase
-from eka.indexing.tokenizer import tokenize
-from eka.retrieval.dense import DenseRetriever
-from eka.retrieval.fusion import fuse, reciprocal_rank_fusion
-from eka.retrieval.git import GitRetriever
-from eka.retrieval.hybrid import RetrievalRequest, build_retriever
-from eka.retrieval.sparse import BM25Retriever
-from eka.retrieval.symbol import SymbolRetriever, extract_symbols
-from eka.schema import Chunk, RetrievedChunk
+from repo_rag.indexing.bm25_index import BM25Index
+from repo_rag.indexing.knowledge_base import KnowledgeBase
+from repo_rag.indexing.tokenizer import tokenize
+from repo_rag.retrieval.dense import DenseRetriever
+from repo_rag.retrieval.fusion import fuse, reciprocal_rank_fusion
+from repo_rag.retrieval.git import GitRetriever
+from repo_rag.retrieval.hybrid import RetrievalRequest, build_retriever
+from repo_rag.retrieval.sparse import BM25Retriever
+from repo_rag.retrieval.symbol import SymbolRetriever, extract_symbols
+from repo_rag.schema import Chunk, RetrievedChunk
 
 
 def _paths(results):

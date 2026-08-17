@@ -46,7 +46,7 @@ make them unanswerable standalone — those fall back to a self-contained
 template phrasing.
 
 **Curated (28).** Hand-written architecture, debugging, change-impact and
-configuration questions (`eka/evaluation/curated.py`) with gold files chosen by
+configuration questions (`repo_rag/evaluation/curated.py`) with gold files chosen by
 reading the repository. These are the multi-hop questions no mechanical
 procedure produces.
 
@@ -169,7 +169,7 @@ the answer two ways.
 * *citation precision / completeness* — cited files vs the question's gold files.
 
 **LLM-judged** (correctness, faithfulness, unsupported-claim rate) with the
-judge prompt in `eka/evaluation/answer_metrics.py`.
+judge prompt in `repo_rag/evaluation/answer_metrics.py`.
 
 Measured on 60 sampled test questions per system (`results/gen-*.json`):
 
@@ -197,11 +197,11 @@ agreement and MAE between the human labels and the judge once the sheet is
 filled in. The workflow is:
 
 ```bash
-python -c "from eka.evaluation.answer_metrics import sample_for_audit; import json,pathlib; \
+python -c "from repo_rag.evaluation.answer_metrics import sample_for_audit; import json,pathlib; \
   rows=json.load(open('results/gen-hybrid+rerank.json'))['per_question']; \
   sample_for_audit(rows, pathlib.Path('evaluation_data/judge_audit.jsonl'), n=20)"
 # fill in human_correctness / human_faithfulness
-python -c "from eka.evaluation.answer_metrics import judge_agreement; import pathlib; \
+python -c "from repo_rag.evaluation.answer_metrics import judge_agreement; import pathlib; \
   print(judge_agreement(pathlib.Path('evaluation_data/judge_audit.jsonl')))"
 ```
 

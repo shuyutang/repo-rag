@@ -4,24 +4,24 @@ from __future__ import annotations
 
 import json
 
-from eka.agent.planner import QueryPlanner, classify
-from eka.agent.retrieval_agent import RetrievalAgent
-from eka.agent.tools import ToolBox
-from eka.evaluation.answer_metrics import citation_metrics, judge_agreement
-from eka.evaluation.benchmark import BenchmarkRunner, RunSpec, render_ablation
-from eka.evaluation.curated import curated_questions
-from eka.evaluation.dataset import (
+from repo_rag.agent.planner import QueryPlanner, classify
+from repo_rag.agent.retrieval_agent import RetrievalAgent
+from repo_rag.agent.tools import ToolBox
+from repo_rag.evaluation.answer_metrics import citation_metrics, judge_agreement
+from repo_rag.evaluation.benchmark import BenchmarkRunner, RunSpec, render_ablation
+from repo_rag.evaluation.curated import curated_questions
+from repo_rag.evaluation.dataset import (
     BenchmarkQuestion,
     assign_splits,
     dataset_summary,
     save_dataset,
     validate_dataset,
 )
-from eka.evaluation.retrieval_metrics import aggregate, evaluate_question, relevance_grade
-from eka.generation.llm import EchoClient, LLMResponse
-from eka.observability.tracing import Trace
-from eka.retrieval.hybrid import build_retriever
-from eka.schema import Answer, Chunk, Citation, RetrievedChunk
+from repo_rag.evaluation.retrieval_metrics import aggregate, evaluate_question, relevance_grade
+from repo_rag.generation.llm import EchoClient, LLMResponse
+from repo_rag.observability.tracing import Trace
+from repo_rag.retrieval.hybrid import build_retriever
+from repo_rag.schema import Answer, Chunk, Citation, RetrievedChunk
 
 
 # ---------------------------------------------------------------- planner
@@ -234,7 +234,7 @@ def test_dataset_validation_catches_missing_gold(kb, tmp_path):
 # ---------------------------------------------------------------- benchmark
 def test_benchmark_runs_end_to_end(config, kb, tmp_path):
     """A full run produces metrics, per-question rows and a saved report."""
-    from eka.pipeline import Pipeline
+    from repo_rag.pipeline import Pipeline
 
     records = [
         _question(id="q1", relevant_files=["minirepo/cache_engine.py"],

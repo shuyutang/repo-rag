@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Engineering Knowledge Agent</title>
+<title>repo-rag</title>
 <style>
   :root {
     --bg: #0e1116; --panel: #161b22; --panel-2: #1c2230; --line: #2a3140;
@@ -110,7 +110,7 @@
 </head>
 <body>
 <header>
-  <h1>Engineering Knowledge Agent</h1>
+  <h1>repo-rag</h1>
   <span class="meta" id="meta">loading index…</span>
   <span class="health" id="health">
     <span><span class="dot wait" id="dot-index"></span>index</span>
@@ -333,14 +333,14 @@ async function checkHealth() {
 function setQ(i) { el("q").value = EXAMPLES[i]; ask(); }
 
 function saveOpts() {
-  localStorage.setItem("eka-opts", JSON.stringify({
+  localStorage.setItem("repo-rag-opts", JSON.stringify({
     retriever: el("retriever").value, reranker: el("reranker").checked,
     agentic: el("agentic").checked, k: el("k").value,
   }));
 }
 function loadOpts() {
   try {
-    const o = JSON.parse(localStorage.getItem("eka-opts") || "{}");
+    const o = JSON.parse(localStorage.getItem("repo-rag-opts") || "{}");
     if (o.retriever) el("retriever").value = o.retriever;
     if (o.k) el("k").value = o.k;
     el("reranker").checked = !!o.reranker;

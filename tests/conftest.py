@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from eka.config import (
+from repo_rag.config import (
     AgentConfig,
     Config,
     EmbeddingConfig,
@@ -22,8 +22,8 @@ from eka.config import (
     RerankerConfig,
     RetrievalConfig,
 )
-from eka.indexing.knowledge_base import KnowledgeBase
-from eka.ingestion.scanner import RepositoryScanner
+from repo_rag.indexing.knowledge_base import KnowledgeBase
+from repo_rag.ingestion.scanner import RepositoryScanner
 
 FIXTURE_FILES: dict[str, str] = {
     "minirepo/cache_engine.py": '''\

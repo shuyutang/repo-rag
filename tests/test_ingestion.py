@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from eka.config import IngestionConfig
-from eka.ingestion.code_parser import PythonCodeParser, is_test_path, module_name_for
-from eka.ingestion.document_parser import DocumentParser
+from repo_rag.config import IngestionConfig
+from repo_rag.ingestion.code_parser import PythonCodeParser, is_test_path, module_name_for
+from repo_rag.ingestion.document_parser import DocumentParser
 
 
 def test_symbols_are_chunked_structurally(chunks):
@@ -111,7 +111,7 @@ def test_module_name_for():
 
 def test_chunk_ids_are_stable(config, chunks):
     """Re-ingesting an unchanged checkout reproduces the same chunk ids."""
-    from eka.ingestion.scanner import RepositoryScanner
+    from repo_rag.ingestion.scanner import RepositoryScanner
 
     again, _ = RepositoryScanner(config).scan(config.repo_dir, include_git=False)
     ids = {c.chunk_id for c in chunks}

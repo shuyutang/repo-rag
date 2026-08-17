@@ -79,7 +79,7 @@ def create_app(config: Config | None = None) -> FastAPI:
       The configured application.
     """
     config = config or default_config()
-    app = FastAPI(title="Engineering Knowledge Agent", version="1.0.0")
+    app = FastAPI(title="repo-rag", version="1.0.0")
     state: dict[str, Any] = {}
     lock = threading.Lock()
 
@@ -134,7 +134,7 @@ def create_app(config: Config | None = None) -> FastAPI:
         """Serve the demo UI."""
         html = UI_DIR / "index.html"
         if not html.exists():
-            return "<h1>Engineering Knowledge Agent</h1><p>UI not installed.</p>"
+            return "<h1>repo-rag</h1><p>UI not installed.</p>"
         return html.read_text(encoding="utf-8")
 
     @app.get("/api/meta")

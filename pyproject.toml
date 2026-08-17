@@ -1,7 +1,7 @@
 [project]
-name = "engineering-knowledge-agent"
+name = "repo-rag"
 version = "1.0.0"
-description = "Retrieval-augmented engineering knowledge agent over large code repositories"
+description = "Retrieval-augmented question answering over large code repositories"
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.26",
@@ -26,14 +26,14 @@ anthropic = ["anthropic>=0.40"]
 faiss = ["faiss-cpu>=1.8"]
 
 [project.scripts]
-rag = "eka.cli:main"
+rag = "repo_rag.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["eka*"]
+include = ["repo_rag*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -48,7 +48,7 @@ target-version = "py310"
 
 [tool.ruff.lint]
 # D = pydocstyle.  The docstring convention below is the enforced contract:
-#   ruff check eka scripts tests
+#   ruff check repo_rag scripts tests
 # must stay clean.
 select = ["D"]
 
@@ -57,4 +57,4 @@ convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 # Package markers carry no API surface of their own.
-"eka/**/__init__.py" = ["D104"]
+"repo_rag/**/__init__.py" = ["D104"]

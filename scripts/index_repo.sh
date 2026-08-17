@@ -355,7 +355,7 @@ cleanup_build() {
 #######################################
 build_index() {
   BUILD_DIR="${INDEX_DIR}.build"
-  BUILD_CFG="$(mktemp -t eka-build-XXXXXX.yaml)"
+  BUILD_CFG="$(mktemp -t repo-rag-build-XXXXXX.yaml)"
   trap cleanup_build EXIT
   rm -rf "${BUILD_DIR}"
 
@@ -411,7 +411,7 @@ serve_ui() {
     done
   fi
 
-  local llm_port="${EKA_LLM_PORT:-${DEFAULT_LLM_PORT}}"
+  local llm_port="${REPO_RAG_LLM_PORT:-${DEFAULT_LLM_PORT}}"
   if ! curl -sf -m 3 "http://127.0.0.1:${llm_port}/v1/models" >/dev/null 2>&1; then
     warn "no generation backend on :${llm_port} -- the Ask tab will fail (./scripts/serve_llm.sh)"
   fi
